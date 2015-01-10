@@ -5,6 +5,7 @@
 // Change #4 from Mr. R machine
 // Change #5 from L01 machine
 // Change #6 from L02 machine
+// Change #7
 class Robot: public IterativeRobot
 {
 
