@@ -1,4 +1,4 @@
-# ignore compiler outputs
+# ignore compiler output
 Debug/
 
 # ignore workstation-specific Eclipse settings
