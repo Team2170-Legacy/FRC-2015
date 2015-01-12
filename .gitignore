@@ -1,5 +1,7 @@
 # ignore compiler output
+
 Debug/
 
 # ignore workstation-specific Eclipse settings
+
 .settings/
