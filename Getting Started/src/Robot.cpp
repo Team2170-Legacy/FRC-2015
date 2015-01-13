@@ -21,6 +21,8 @@
 // Change #21 Tushar disappoints worldwide
 // Change #22 Testing Testing Testing
 // Change #23 Rahul Narain hopes this works
+// Change #24 Updated velocity to -0.6 from -0.5 in autonomous
+
 class Robot: public IterativeRobot
 {
 
@@ -54,7 +56,7 @@ private:
 	{
 		if(autoLoopCounter < 100) //Check if we've completed 100 loops (approximately 2 seconds)
 		{
-			myRobot.Drive(-0.5, 0.0); 	// drive forwards half speed
+			myRobot.Drive(-0.6, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
 			} else {
 			myRobot.Drive(0.0, 0.0); 	// stop robot
