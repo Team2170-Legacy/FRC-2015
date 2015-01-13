@@ -17,6 +17,7 @@
 // Change #16 Mr. Rudolph after repository restore - test #2
 // Change #18 Mr. Rudolph after repository restore - test #3
 // Change #19 C. Noll rocks....
+// Change #20 Nick Maglio is better....
 class Robot: public IterativeRobot
 {
 
