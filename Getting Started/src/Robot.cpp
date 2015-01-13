@@ -13,6 +13,7 @@
 // Change #12 Mr. Rudolph after Pull issue resolved - test #1
 // Change #13 Mr. Rudolph after Pull issue resolved - test #2
 // Change #14 Mr. Rudolph after Pull issue resolved - test #3
+// Change #15 Mr. Rudolph after Pull issue resolved - test #4
 class Robot: public IterativeRobot
 {
 
