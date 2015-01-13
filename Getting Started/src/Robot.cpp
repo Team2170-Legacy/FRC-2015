@@ -15,6 +15,7 @@
 // Change #14 Mr. Rudolph after Pull issue resolved - test #3
 // Change #15 Mr. Rudolph after repository restore - test #1
 // Change #16 Mr. Rudolph after repository restore - test #2
+// Change #18 Mr. Rudolph after repository restore - test #3
 class Robot: public IterativeRobot
 {
 
