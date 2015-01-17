@@ -1,29 +1,5 @@
 #include "WPILib.h"
-// Change #1
-// Change #2
-// Change #3
-// Change #4 from Mr. R machine
-// Change #5 from L01 machine
-// Change #6 from L02 machine
-// Change #7
-// Change #8 Ethan
-// Change #9 Patrick
-// Change #10 Tushar
-// Change #11 Rahul
-// Change #12 Mr. Rudolph after Pull issue resolved - test #1
-// Change #13 Mr. Rudolph after Pull issue resolved - test #2
-// Change #14 Mr. Rudolph after Pull issue resolved - test #3
-// Change #15 Mr. Rudolph after repository restore - test #1
-// Change #16 Mr. Rudolph after repository restore - test #2
-// Change #18 Mr. Rudolph after repository restore - test #3
-// Change #19 C. Noll rocks....
-// Change #20 Nick Maglio is better....
-// Change #21 Tushar disappoints worldwide
-// Change #22 Testing Testing Testing
-// Change #23 Rahul Narain hopes this works
-// Change #24 Kiele testing code change
-// Change # 25 From Tim's Computer
-// Change #26 Updated velocity to -0.6 from -0.5 in autonomous
+// Change #27 Patrick Geaslin.... again. Also cleaned out comments at Colin's behest
 
 class Robot: public IterativeRobot
 {
