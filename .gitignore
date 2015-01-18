@@ -3,3 +3,7 @@ Debug/
 
 # ignore workstation-specific Eclipse settings
 language.settings.xml
+
+# ignore Eclipse temporary files
+*~ 
+/RemoteSystemsTempFiles/ 
