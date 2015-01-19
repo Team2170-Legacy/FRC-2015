@@ -1,5 +1,7 @@
 # ignore compiler outputs
 Debug/
+Binaries/
+Includes/
 
 # ignore workstation-specific Eclipse settings
 language.settings.xml
