@@ -3,9 +3,16 @@ Debug/
 Binaries/
 Includes/
 
-# ignore workstation-specific Eclipse settings
+# ignore workstation-specific Eclipse files
+*.xml
 language.settings.xml
+.settings/
+.cproject
+.project
+.build.properties
+.build.xml
+sysProps.xml
 
 # ignore Eclipse temporary files
 *~ 
-/RemoteSystemsTempFiles/ 
+RemoteSystemsTempFiles/ 
