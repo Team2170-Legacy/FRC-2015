@@ -87,6 +87,10 @@ bool Elevator::isBelowTarget() {
 	return GetCurrentPosition() <= targetLevel;
 }
 
+void Elevator::ManualControl() {
+	motor->Set(Robot::oi->joystickGunnerOnPort1->GetRawAxis(2));
+}
+
 void Elevator::RampUp(float direction, float MaxSpeed,  float RampRate){
 	motor->Set(direction * fmin( (1+RampRate) * MaxSpeed, MaxSpeed));
 }

@@ -47,6 +47,7 @@ public:
 	bool isAboveTarget();
 	bool isBelowTarget();
 
+	void ManualControl();
 	void RampUp(float direction,  float MaxSpeed, float RampRate);
 	void RampDown(float direction,  float MinSpeed, float RampRate);
 	void Stop();

@@ -22,17 +22,19 @@ ElevatorManual::ElevatorManual() {
 
 // Called just before this Command runs the first time
 void ElevatorManual::Initialize() {
-	
+	if ( Robot::elevator->isMoving() ){
+		End();
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ElevatorManual::Execute() {
-	
+	Robot::elevator->ManualControl();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorManual::IsFinished() {
-	return false;
+	return (Robot::oi->joystickButton4->Get() == false);
 }
 
 // Called once after isFinished returns true
