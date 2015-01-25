@@ -33,7 +33,8 @@ if ( Robot::elevator->isMoving() ){
 // Called repeatedly when this Command is scheduled to run
 void ElevatorUpOne::Execute() {
 	Robot::elevator->RampUp(1.0, 1.0, .3);
-	
+	Robot::elevator->SmartDashboardOutputs();
+
 }
 
 // Make this return true when this Command no longer needs to run execute()

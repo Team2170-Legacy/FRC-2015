@@ -50,6 +50,7 @@ public:
 	void ManualControl();
 	void RampUp(float direction,  float MaxSpeed, float RampRate);
 	void RampDown(float direction,  float MinSpeed, float RampRate);
+	void SmartDashboardOutputs();
 	void Stop();
 	//These two functions are periodic and need to be continuously called to achieve the desired effect
 	//This allows them to be interrupted

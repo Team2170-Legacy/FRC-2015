@@ -60,7 +60,7 @@ void RobotMap::init() {
 	elevatorUpperLimit = new DigitalInput(3);
 	lw->AddSensor("Elevator", "UpperLimit", elevatorUpperLimit);
 	
-	Warning, the two modules in robot builder are different!
+	//Warning, the two modules in robot builder are different!
 armDoubleSolenoid = new DoubleSolenoid(0, 0, 1);      
 	lw->AddActuator("Arm", "DoubleSolenoid", armDoubleSolenoid);
 	
