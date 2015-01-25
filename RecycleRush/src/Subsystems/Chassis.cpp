@@ -56,7 +56,8 @@ void Chassis::StopMotors(void)
 void Chassis::DriveStraight()
 {
 	// Drive chassis straight for specified time
-	driveMotors->Drive(mAutoVelocity, 0.0);
+	float ChassisAngle = ReadChassisYaw();
+	driveMotors->Drive(mAutoVelocity, mYawGain * ChassisAngle);
 }
 
 void Chassis::TurnClockwise()
