@@ -62,8 +62,9 @@ float Elevator::GetCurrentPosition(){
 }
 
 void Elevator::AddOneLevel(){
-	targetLevel = fmin(targetLevel + distanceBetweenLevels, 6 * distanceBetweenLevels);
+	targetLevel = fmin(targetLevel + distanceBetweenLevels, 4 * distanceBetweenLevels);
 }
+
 void Elevator::SubtractOneLevel(){
 	targetLevel = fmax(targetLevel - distanceBetweenLevels, 0);
 }
