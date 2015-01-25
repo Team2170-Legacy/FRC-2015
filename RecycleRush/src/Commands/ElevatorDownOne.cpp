@@ -21,22 +21,27 @@ ElevatorDownOne::ElevatorDownOne() {
 
 // Called just before this Command runs the first time
 void ElevatorDownOne::Initialize() {
-	
+	if ( Robot::elevator->isMoving() ){
+		End();
+	}else{
+		Robot::elevator->SubtractOneLevel();
+
+}
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ElevatorDownOne::Execute() {
-	
+	Robot::elevator->RampDown(-1.0,1.0,0.3);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorDownOne::IsFinished() {
-	return false;
+	return (Robot::elevator->isBelowTarget() || Robot::elevator->GetLowerSafety());
 }
 
 // Called once after isFinished returns true
 void ElevatorDownOne::End() {
-	
+	Robot::elevator->Stop();
 }
 
 // Called when another command which requires one or more of the same
