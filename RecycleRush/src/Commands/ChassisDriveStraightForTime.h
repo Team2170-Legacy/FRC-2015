@@ -22,8 +22,11 @@
  * @author ExampleAuthor
  */
 class ChassisDriveStraightForTime: public Command {
+private:
+	float mDriveTime = 0.0;
 public:
 	ChassisDriveStraightForTime();
+	ChassisDriveStraightForTime(float NewTime);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
