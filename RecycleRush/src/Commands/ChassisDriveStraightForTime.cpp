@@ -28,6 +28,7 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(float NewTime)
 // Called just before this Command runs the first time
 void ChassisDriveStraightForTime::Initialize() {
 	Command::SetTimeout(mDriveTime);
+	Robot::chassis->ResetChassisYaw();
 }
 
 // Called repeatedly when this Command is scheduled to run

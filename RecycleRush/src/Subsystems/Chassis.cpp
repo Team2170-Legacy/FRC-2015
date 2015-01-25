@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-
+#include <iostream>
 
 #include "Chassis.h"
 #include "../RobotMap.h"
@@ -57,6 +57,7 @@ void Chassis::DriveStraight()
 {
 	// Drive chassis straight for specified time
 	float ChassisAngle = ReadChassisYaw();
+	std::cout << "ChassisAngle: " << ChassisAngle << " : Product: " << mYawGain * ChassisAngle << std::endl;
 	driveMotors->Drive(mAutoVelocity, mYawGain * ChassisAngle);
 }
 
