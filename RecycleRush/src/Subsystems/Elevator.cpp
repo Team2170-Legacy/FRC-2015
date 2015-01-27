@@ -96,7 +96,6 @@ void Elevator::ManualControl() {
 void Elevator::SmartDashboardOutputs() {
 	SmartDashboard::PutNumber("CurrentPosition", GetCurrentPosition());
 	SmartDashboard::PutNumber("TargetLevel", targetLevel);
-
 }
 
 void Elevator::RampUp(float direction, float MaxSpeed,  float RampRate){
