@@ -22,7 +22,7 @@ DriveWithJoysticks::DriveWithJoysticks() {
 
 // Called just before this Command runs the first time
 void DriveWithJoysticks::Initialize() {
-	
+	Robot::chassis->driveMotors->SetSensitivity(0.1);
 }
 
 // Called repeatedly when this Command is scheduled to run
