@@ -22,11 +22,13 @@ ArmOpenClose::ArmOpenClose() {
 
 // Called just before this Command runs the first time
 void ArmOpenClose::Initialize() {
+	DoubleSolenoid::Value DoubleSolenoid::Get();
 	
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArmOpenClose::Execute() {
+	Robot::oi->joystickGunnerOnPort1, 1;
 	
 }
 
