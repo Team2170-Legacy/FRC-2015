@@ -22,6 +22,7 @@ DriveWithJoysticks::DriveWithJoysticks() {
 
 // Called just before this Command runs the first time
 void DriveWithJoysticks::Initialize() {
+	//sets the initial sensitivity
 	Robot::chassis->driveMotors->SetSensitivity(SmartDashboard::GetNumber("DrivingSensitivity", 0.1));
 }
 
@@ -32,7 +33,12 @@ void DriveWithJoysticks::Execute() {
 	Robot::chassis->SendJoystickYAxesValuesToMotors(
 		Robot::oi->getJoystickDriverOnPort0()->GetRawAxis(1),
 		Robot::oi->getJoystickDriverOnPort0()->GetRawAxis(5));
+	//sets the sensitivty
 		Robot::chassis->driveMotors->SetSensitivity(SmartDashboard::GetNumber("DrivingSensitivity", 0.1));
+		//displays the new sensitivity
+		SmartDashboard::PutNumber("Sensitivity Retrieved", SmartDashboard::GetNumber("DrivingSensitivity", 0.1));
+		//shows time since initialized
+		SmartDashboard::PutNumber("Time since initialized", TimeSinceInitialized());
 }
 
 // Make this return true when this Command no longer needs to run execute()
