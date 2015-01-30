@@ -23,9 +23,7 @@ ElevatorManual::ElevatorManual() {
 
 // Called just before this Command runs the first time
 void ElevatorManual::Initialize() {
-	if ( Robot::elevator->isMoving() ){
-		End();
-	}
+
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -46,5 +44,5 @@ void ElevatorManual::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ElevatorManual::Interrupted() {
-
+	End();
 }

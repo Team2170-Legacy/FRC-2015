@@ -47,9 +47,10 @@ public:
 	bool isAboveTarget();
 	bool isBelowTarget();
 
+	void Start(float speed);
 	void ManualControl();
-	void RampUp(float direction,  float MaxSpeed, float RampRate);
-	void RampDown(float direction,  float MinSpeed, float RampRate);
+	void RampUp( float MaxSpeed, float RampRate);
+	void RampDown(  float MinSpeed, float RampRate);
 	void SmartDashboardOutputs();
 	void Stop();
 	//These two functions are periodic and need to be continuously called to achieve the desired effect

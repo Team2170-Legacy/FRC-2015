@@ -105,13 +105,18 @@ void Elevator::SmartDashboardOutputs() {
 	SmartDashboard::PutNumber("TargetLevel", targetLevel);
 }
 
-void Elevator::RampUp(float direction, float MaxSpeed,  float RampRate){
-	motor->Set(direction * fmin( (1+RampRate) * MaxSpeed, MaxSpeed));
+void Elevator::RampUp( float MaxSpeed,  float RampRate){
+	motor->Set( fmin( (1+RampRate) * motor->Get(), MaxSpeed));
 }
 
-void Elevator::RampDown(float direction,  float MinSpeed, float RampRate){
-	motor->Set(direction * fmax( (1-RampRate) * MinSpeed, MinSpeed));
+void Elevator::RampDown(  float MinSpeed, float RampRate){
+	motor->Set( fmax( (1-RampRate) * motor->Get(), MinSpeed));
 }
+
+void Elevator::Start(float speed){
+	motor->Set(speed);
+}
+
 
 void Elevator::Stop(){
 	motor->Set(0.00);

@@ -22,17 +22,15 @@ ElevatorUpOne::ElevatorUpOne() {
 
 // Called just before this Command runs the first time
 void ElevatorUpOne::Initialize() {
-if ( Robot::elevator->isMoving() ){
-	End();
-}else{
-	Robot::elevator->AddOneLevel();
 
-}
+	Robot::elevator->AddOneLevel();
+	Robot::elevator->Start(.1);
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ElevatorUpOne::Execute() {
-	Robot::elevator->RampUp(1.0, 1.0, .3);
+	Robot::elevator->RampUp( 1.0, .3);
 	Robot::elevator->SmartDashboardOutputs();
 
 }
@@ -50,5 +48,5 @@ void ElevatorUpOne::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ElevatorUpOne::Interrupted() {
-
+	End();
 }
