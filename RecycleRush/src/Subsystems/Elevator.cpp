@@ -89,8 +89,15 @@ bool Elevator::isBelowTarget() {
 }
 
 void Elevator::ManualControl() {
+	if (GetUpperSafety()){
+		motor->Set(fmin(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(2),0));
+	}else if(GetLowerSafety()){
+		motor->Set(fmax(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(2),0));
+	}else{
 	motor->Set(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(2));
+	}
 	SmartDashboardOutputs();
+
 }
 
 void Elevator::SmartDashboardOutputs() {
