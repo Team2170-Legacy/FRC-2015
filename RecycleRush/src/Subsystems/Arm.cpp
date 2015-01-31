@@ -51,7 +51,7 @@ void Arm::Reverse() {
 	switch(doubleSolenoid->Get())
 	{
 		case DoubleSolenoid::kOff:
-				Close();
+				Open();
 				break;
 		case DoubleSolenoid::kForward:
 			Close();
