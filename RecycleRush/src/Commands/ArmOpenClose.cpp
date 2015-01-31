@@ -23,7 +23,8 @@ ArmOpenClose::ArmOpenClose() {
 // Called just before this Command runs the first time
 void ArmOpenClose::Initialize() {
 	//DoubleSolenoid::Value DoubleSolenoid::Get();
-	Robot::arm->ArmOpen(DoubleSolenoid::kForward);
+	////Robot::arm->ArmOpen(DoubleSolenoid::kForward); dont uncomment
+	//Robot::arm->Reverse();
 }
 
 // Called repeatedly when this Command is scheduled to run

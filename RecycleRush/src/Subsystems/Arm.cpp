@@ -57,11 +57,30 @@ bool Arm::isOpen() {
 // is the assumption is wrong, change the kForwards
 void Arm::Open() {
 	doubleSolenoid->Set(DoubleSolenoid::kForward);
+
 }
 
+//	void Arm::Close() {
+	//doubleSolenoid->Set(DoubleSolenoid::kReverse);
 
+//}
 
+//void Arm::Reverse() {
 
+	//switch(doubleSolenoid->Get())
+
+	//{
+		//case DoubleSolenoid::kOff:
+			//	Close();
+			//	break;
+		//case DoubleSolenoid::kForward:
+			//Close();
+			//break;
+		//case DoubleSolenoid::kReverse:
+			//Open();
+			//break;
+//	}
+//}
 
 
 
