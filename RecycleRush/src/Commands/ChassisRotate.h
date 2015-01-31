@@ -22,8 +22,11 @@
  * @author ExampleAuthor
  */
 class ChassisRotate: public Command {
+private:
+	float mRotateAngle = 0.0;
 public:
 	ChassisRotate();
+	ChassisRotate(float NewAngle);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
