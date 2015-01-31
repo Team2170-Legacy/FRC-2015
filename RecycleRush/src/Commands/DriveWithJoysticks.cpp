@@ -37,30 +37,12 @@ void DriveWithJoysticks::Execute() {
 	//hold the desired sensitivity
 	float SensitivityHolder;
 	SensitivityHolder = SmartDashboard::GetNumber("DrivingSensitivity");
-	//setting the range for the sensitivity
-	if ((SensitivityHolder >= 0.1) && (SensitivityHolder <= 1))
-	{
-		//if within the range then set the desired sensitivity
+	//Return what was inputted
+	SmartDashboard::PutNumber("Sensitivity Inputted", SensitivityHolder);
+	//Sets the range for the sensitivity
+	SensitivityHolder = fmin(fmax(SensitivityHolder,0),1);
+		//displays the outputted sensitivity
 		Robot::chassis->driveMotors->SetSensitivity(SensitivityHolder);
-	}
-	else
-	{
-		//if it is less than the minimum
-		if (SensitivityHolder < 0.1)
-		{
-			//set it to the minimum
-			SensitivityHolder = 0.1;
-		}
-		//if it is more than the minimum
-		if (SensitivityHolder > 1)
-		{
-			//set it to the maximum
-			SensitivityHolder = 1;
-		}
-		Robot::chassis->driveMotors->SetSensitivity(SensitivityHolder);
-	}
-		//displays the new sensitivity
-		SmartDashboard::PutNumber("Sensitivity Retrieved", SensitivityHolder);
 		SmartDashboard::PutNumber("DrivingSensitivity", SensitivityHolder);
 		//shows time since initialized
 		SmartDashboard::PutNumber("Time since initialized", TimeSinceInitialized());
