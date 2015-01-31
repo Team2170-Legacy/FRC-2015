@@ -33,6 +33,10 @@ public:
 	bool isOpen();
 	void ArmOpen(DoubleSolenoid::Value direction);
 	void ArmClose(DoubleSolenoid::Value direction);
+
+	void Open();
+	void Close();
+	void Reverse();
 };
 
 #endif
