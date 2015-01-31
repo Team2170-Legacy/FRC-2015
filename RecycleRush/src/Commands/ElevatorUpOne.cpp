@@ -22,26 +22,31 @@ ElevatorUpOne::ElevatorUpOne() {
 
 // Called just before this Command runs the first time
 void ElevatorUpOne::Initialize() {
-	
+
+	Robot::elevator->AddOneLevel();
+	Robot::elevator->Start(.1);
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ElevatorUpOne::Execute() {
-	
+	Robot::elevator->RampUp( 1.0, .3);
+	Robot::elevator->SmartDashboardOutputs();
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorUpOne::IsFinished() {
-	return false;
+	return (Robot::elevator->isAboveTarget() || Robot::elevator->GetUpperSafety() );
 }
 
 // Called once after isFinished returns true
 void ElevatorUpOne::End() {
-	
+	Robot::elevator->Stop();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ElevatorUpOne::Interrupted() {
-
+	End();
 }
