@@ -48,11 +48,11 @@ void Elevator::InitDefaultCommand() {
 
 
 bool Elevator::GetLowerSafety(){
-	return lowerLimit->Get();//True when pushed
+	return !lowerLimit->Get();//True when pushed
 }
 
 bool Elevator::GetUpperSafety(){
-	return upperLimit->Get();//True when pushed
+	return !upperLimit->Get();//True when pushed
 }
 
 float Elevator::GetCurrentPosition(){
@@ -90,12 +90,14 @@ bool Elevator::isBelowTarget() {
 
 void Elevator::ManualControl() {
 	if (GetUpperSafety()){
-		motor->Set(fmin(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(2),0));
-	}else if(GetLowerSafety()){
-		motor->Set(fmax(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(2),0));
+		motor->Set(fmin(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(1),0));
+	}else 	if (GetLowerSafety()){
+		motor->Set(fmax(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(1),0));
 	}else{
-	motor->Set(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(2));
+		motor->Set(Robot::oi->getJoystickGunnerOnPort1()->GetRawAxis(1));
 	}
+
+
 	SmartDashboardOutputs();
 
 }
