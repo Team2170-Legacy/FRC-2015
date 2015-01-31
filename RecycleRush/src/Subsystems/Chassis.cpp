@@ -64,14 +64,14 @@ void Chassis::DriveStraight()
 void Chassis::TurnClockwise()
 {
 	// Rotate chassis by specified degrees
-	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << mAutoRotatationVelocity << std::endl;
+//	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << mAutoRotatationVelocity << std::endl;
 	driveMotors->Drive(-0.2, mAutoRotatationVelocity);
 
 }
 void Chassis::TurnCounterclockwise()
 {
 	// Rotate chassis by specified degrees
-	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << -1 * mAutoRotatationVelocity << std::endl;
+//	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << -1 * mAutoRotatationVelocity << std::endl;
 	driveMotors->Drive(0.2, -1 * mAutoRotatationVelocity);
 }
 

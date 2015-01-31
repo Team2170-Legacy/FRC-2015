@@ -38,7 +38,7 @@ void ChassisRotate::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ChassisRotate::Execute() {
-	std::cout << "Rotate Execute\n";
+
 	if (mRotateAngle > 0)
 		Robot::chassis->TurnClockwise();
 	else if (mRotateAngle < 0)

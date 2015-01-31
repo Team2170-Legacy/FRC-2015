@@ -34,5 +34,6 @@ AutonomousDriveToScore::AutonomousDriveToScore() {
 
 	AddSequential(new ChassisDriveStraightForTime(3.0));
 	AddSequential(new ChassisRotate(90));
+	AddSequential(new WaitCommand(2.0));
 	AddSequential(new ChassisDriveStraightForTime(2.0));
 }
