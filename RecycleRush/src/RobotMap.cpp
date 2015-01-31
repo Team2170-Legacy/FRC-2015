@@ -53,14 +53,14 @@ void RobotMap::init() {
         elevatorShaftEncoder->SetPIDSourceParameter(Encoder::kRate);
 	elevatorMotor = new Talon(2);
 	lw->AddActuator("Elevator", "Motor", (Talon*) elevatorMotor);
-	
+
 	elevatorLowerLimit = new DigitalInput(2);
 	lw->AddSensor("Elevator", "LowerLimit", elevatorLowerLimit);
-	
+
 	elevatorUpperLimit = new DigitalInput(3);
 	lw->AddSensor("Elevator", "UpperLimit", elevatorUpperLimit);
-	
-	armDoubleSolenoid = new DoubleSolenoid(0, 0, 1);      
+
+	armDoubleSolenoid = new DoubleSolenoid(0, 0, 1);
 	lw->AddActuator("Arm", "DoubleSolenoid", armDoubleSolenoid);
 	
 
