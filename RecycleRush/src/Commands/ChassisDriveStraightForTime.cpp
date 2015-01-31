@@ -26,37 +26,37 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(float NewTime)
 
 	mDriveTime = NewTime;
 
-	std::cout << "DriveStraightForTime Construct\n";
+
 }
 
 // Called just before this Command runs the first time
 void ChassisDriveStraightForTime::Initialize() {
 	Command::SetTimeout(mDriveTime);
 	Robot::chassis->ResetChassisYaw();
-	std::cout << "DriveStraightForTime Init\n";
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ChassisDriveStraightForTime::Execute() {
 	Robot::chassis->DriveStraight();
-	std::cout << "DriveStraightForTime Execute\n";
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ChassisDriveStraightForTime::IsFinished() {
-	std::cout << "DriveStraightForTime IsFinished\n";
+
 	return Command::IsTimedOut();
 }
 
 // Called once after isFinished returns true
 void ChassisDriveStraightForTime::End() {
 	Robot::chassis->StopMotors();
-	std::cout << "DriveStraightForTime End\n";
+
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ChassisDriveStraightForTime::Interrupted() {
-	std::cout << "DriveStraightForTime Interrupted\n";
+
 
 }

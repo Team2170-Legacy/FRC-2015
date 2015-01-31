@@ -26,14 +26,14 @@ ChassisRotate::ChassisRotate(float NewAngle)
 	Requires(Robot::chassis);
 
 	mRotateAngle = NewAngle;
-	std::cout << "Rotate Construct\n";
+
 }
 
 // Called just before this Command runs the first time
 void ChassisRotate::Initialize() {
 	Command::SetTimeout(5.0);
 	Robot::chassis->ResetChassisYaw();
-	std::cout << "Rotate Init\n";
+
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -49,7 +49,7 @@ void ChassisRotate::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ChassisRotate::IsFinished() {
-	std::cout << "Rotate IsFinished\n";
+
 	float CurrentAngle = Robot::chassis->ReadChassisYaw();
 	if (fabs(CurrentAngle) >= fabs(mRotateAngle))
 		return true;
@@ -62,7 +62,7 @@ bool ChassisRotate::IsFinished() {
 // Called once after isFinished returns true
 void ChassisRotate::End() {
 	Robot::chassis->StopMotors();
-	std::cout << "Rotate End\n";
+
 }
 
 // Called when another command which requires one or more of the same

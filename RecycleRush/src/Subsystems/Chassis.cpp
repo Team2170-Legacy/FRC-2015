@@ -57,7 +57,7 @@ void Chassis::DriveStraight()
 {
 	// Drive chassis straight for specified time
 	float ChassisAngle = ReadChassisYaw();
-	//std::cout << "ChassisAngle: " << ChassisAngle << " : Product: " << mYawGain * ChassisAngle << std::endl;
+	std::cout << "ChassisAngle: " << ChassisAngle << " : Product: " << mYawGain * ChassisAngle << std::endl;
 	driveMotors->Drive(mAutoVelocity, mYawGain * ChassisAngle);
 }
 
@@ -65,14 +65,14 @@ void Chassis::TurnClockwise()
 {
 	// Rotate chassis by specified degrees
 	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << mAutoRotatationVelocity << std::endl;
-	driveMotors->Drive(mAutoVelocity, mAutoRotatationVelocity);
+	driveMotors->Drive(-0.2, mAutoRotatationVelocity);
 
 }
 void Chassis::TurnCounterclockwise()
 {
 	// Rotate chassis by specified degrees
 	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << -1 * mAutoRotatationVelocity << std::endl;
-	driveMotors->Drive(mAutoVelocity, -1 * mAutoRotatationVelocity);
+	driveMotors->Drive(0.2, -1 * mAutoRotatationVelocity);
 }
 
 void Chassis::ResetChassisYaw()
