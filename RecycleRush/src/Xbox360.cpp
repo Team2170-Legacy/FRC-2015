@@ -19,7 +19,7 @@ Xbox360::Xbox360(unsigned int port) :
  * @return The value of the axis from -1 to 1.
  */
 double Xbox360::GetLeftX() {
-	return (GetRawAxis(1));
+	return (mJoystick->GetRawAxis(1));
 }
 
 /**
@@ -29,7 +29,7 @@ double Xbox360::GetLeftX() {
  * @return The value of the axis from -1 to 1.
  */
 double Xbox360::GetLeftY() {
-	return (-1 * GetRawAxis(2)); //Multiply output by -1 because GetAxis() returns the axis backwards.
+	return (-1 * mJoystick->GetRawAxis(2)); //Multiply output by -1 because GetAxis() returns the axis backwards.
 }
 
 /**
@@ -39,7 +39,7 @@ double Xbox360::GetLeftY() {
  * @return The value of the axis from -1 to 1.
  */
 double Xbox360::GetRightX() {
-	return (GetRawAxis(4));
+	return (mJoystick->GetRawAxis(4));
 }
 
 /**
@@ -49,7 +49,7 @@ double Xbox360::GetRightX() {
  * @return The value of the axis from -1 to 1.
  */
 double Xbox360::GetRightY() {
-	return (-1 * GetRawAxis(5));
+	return (-1 * mJoystick->GetRawAxis(5));
 }
 
 /**
@@ -59,7 +59,7 @@ double Xbox360::GetRightY() {
  * @return The value corresponding to the triggers.
  */
 double Xbox360::GetTriggers() {
-	return (GetRawAxis(3));
+	return (mJoystick->GetRawAxis(3));
 }
 
 /**
@@ -68,7 +68,7 @@ double Xbox360::GetTriggers() {
  * @return The current state of the button
  */
 bool Xbox360::GetA() {
-	return (GetRawButton(1));
+	return (mJoystick->GetRawButton(1));
 }
 
 /**
@@ -77,7 +77,7 @@ bool Xbox360::GetA() {
  * @return The current state of the button
  */
 bool Xbox360::GetB() {
-	return (GetRawButton(2));
+	return (mJoystick->GetRawButton(2));
 }
 
 /**
@@ -86,7 +86,7 @@ bool Xbox360::GetB() {
  * @return The current state of the button
  */
 bool Xbox360::GetX() {
-	return (GetRawButton(3));
+	return (mJoystick->GetRawButton(3));
 }
 
 /**
@@ -95,7 +95,7 @@ bool Xbox360::GetX() {
  * @return The current state of the button
  */
 bool Xbox360::GetY() {
-	return (GetRawButton(4));
+	return (mJoystick->GetRawButton(4));
 }
 
 /**
@@ -104,7 +104,7 @@ bool Xbox360::GetY() {
  * @return The current state of the button
  */
 bool Xbox360::GetLeftBumper() {
-	return (GetRawButton(5));
+	return (mJoystick->GetRawButton(5));
 }
 
 /**
@@ -113,7 +113,7 @@ bool Xbox360::GetLeftBumper() {
  * @return The current state of the button
  */
 bool Xbox360::GetRightBumper() {
-	return (GetRawButton(6));
+	return (mJoystick->GetRawButton(6));
 }
 
 /**
@@ -122,7 +122,7 @@ bool Xbox360::GetRightBumper() {
  * @return The current state of the button
  */
 bool Xbox360::GetBack() {
-	return (GetRawButton(7));
+	return (mJoystick->GetRawButton(7));
 }
 
 /**
@@ -131,7 +131,7 @@ bool Xbox360::GetBack() {
  * @return The current state of the button
  */
 bool Xbox360::GetStart() {
-	return (GetRawButton(8));
+	return (mJoystick->GetRawButton(8));
 }
 
 /**
@@ -153,7 +153,7 @@ bool Xbox360::GetStart() {
  * @return The state of the button.
  */
 bool Xbox360::GetRawButton(unsigned int button) {
-	return (Joystick::GetRawButton(button));
+	return (mJoystick->GetRawButton(button));
 }
 
 /**
@@ -176,7 +176,7 @@ bool Xbox360::GetRawButton(unsigned int button) {
  * @return The value of the axis from -1 to 1.
  */
 float Xbox360::GetRawAxis(unsigned int axis) {
-	return (Joystick::GetRawAxis(axis));
+	return (mJoystick->GetRawAxis(axis));
 }
 
 /**

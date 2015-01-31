@@ -41,6 +41,7 @@ private:
 	float GetRawAxis(unsigned int axis);
 	bool GetRawButton(unsigned int button);
 	double Limit(double num);
+	Joystick*mJoystick;
 };
 
 #endif
