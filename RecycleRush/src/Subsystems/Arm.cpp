@@ -10,7 +10,6 @@
 
 
 
-
 #include "Arm.h"
 #include "../RobotMap.h"
 #include "../Commands/ArmOpenClose.h"
@@ -35,4 +34,26 @@ void Arm::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+
+void Arm::ArmOpen(DoubleSolenoid::Value kForward) {
+	if (!isOpen()) {
+			doubleSolenoid->Set(kForward);
+	}
+}
+
+	void Arm::ArmClose(DoubleSolenoid::Value kReverse){
+		if (isOpen()== true){
+		doubleSolenoid->Set(kReverse);
+		}
+	}
+bool Arm::isOpen() {
+		//doubleSolenoid->Get();
+		return doubleSolenoid->Get();
+}
+
+
+
+
+
+
 

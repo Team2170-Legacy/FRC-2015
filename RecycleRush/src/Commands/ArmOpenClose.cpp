@@ -22,28 +22,27 @@ ArmOpenClose::ArmOpenClose() {
 
 // Called just before this Command runs the first time
 void ArmOpenClose::Initialize() {
-	DoubleSolenoid::Value DoubleSolenoid::Get();
-	
+	//DoubleSolenoid::Value DoubleSolenoid::Get();
+	Robot::arm->ArmOpen(DoubleSolenoid::kForward);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArmOpenClose::Execute() {
-	Robot::oi->joystickGunnerOnPort1, 1;
-	
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmOpenClose::IsFinished() {
-	return false;
+	return (Robot::oi->getJoystickGunnerOnPort1()->GetRawButton(1) == false);
 }
 
 // Called once after isFinished returns true
 void ArmOpenClose::End() {
-	
+	Robot::arm->ArmOpen(DoubleSolenoid::kOff);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ArmOpenClose::Interrupted() {
-
+	End();
 }
