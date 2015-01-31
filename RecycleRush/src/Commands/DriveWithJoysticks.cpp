@@ -23,7 +23,7 @@ DriveWithJoysticks::DriveWithJoysticks() {
 // Called just before this Command runs the first time
 void DriveWithJoysticks::Initialize() {
 	//sets the initial sensitivity
-	Robot::chassis->driveMotors->SetSensitivity(SmartDashboard::GetNumber("DrivingSensitivity", 0.1));
+	Robot::chassis->driveMotors->SetSensitivity(SmartDashboard::GetNumber("DrivingSensitivity"));
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -33,10 +33,35 @@ void DriveWithJoysticks::Execute() {
 	Robot::chassis->SendJoystickYAxesValuesToMotors(
 		Robot::oi->getJoystickDriverOnPort0()->GetRawAxis(1),
 		Robot::oi->getJoystickDriverOnPort0()->GetRawAxis(5));
-	//sets the sensitivty
-		Robot::chassis->driveMotors->SetSensitivity(SmartDashboard::GetNumber("DrivingSensitivity", 0.1));
+
+	//hold the desired sensitivity
+	float SensitivityHolder;
+	SensitivityHolder = SmartDashboard::GetNumber("DrivingSensitivity");
+	//setting the range for the sensitivity
+	if ((SensitivityHolder >= 0.1) && (SensitivityHolder <= 1))
+	{
+		//if within the range then set the desired sensitivity
+		Robot::chassis->driveMotors->SetSensitivity(SensitivityHolder);
+	}
+	else
+	{
+		//if it is less than the minimum
+		if (SensitivityHolder < 0.1)
+		{
+			//set it to the minimum
+			SensitivityHolder = 0.1;
+		}
+		//if it is more than the minimum
+		if (SensitivityHolder > 1)
+		{
+			//set it to the maximum
+			SensitivityHolder = 1;
+		}
+		Robot::chassis->driveMotors->SetSensitivity(SensitivityHolder);
+	}
 		//displays the new sensitivity
-		SmartDashboard::PutNumber("Sensitivity Retrieved", SmartDashboard::GetNumber("DrivingSensitivity", 0.1));
+		SmartDashboard::PutNumber("Sensitivity Retrieved", SensitivityHolder);
+		SmartDashboard::PutNumber("DrivingSensitivity", SensitivityHolder);
 		//shows time since initialized
 		SmartDashboard::PutNumber("Time since initialized", TimeSinceInitialized());
 }
