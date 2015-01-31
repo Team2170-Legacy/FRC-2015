@@ -70,8 +70,6 @@ void Robot::TeleopInit() {
 	// these lines or comment it out.
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
-	// after testing remove this line
-	Robot::arm->Open();
 }
 
 

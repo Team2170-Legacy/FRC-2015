@@ -60,27 +60,27 @@ void Arm::Open() {
 
 }
 
-//	void Arm::Close() {
-	//doubleSolenoid->Set(DoubleSolenoid::kReverse);
+	void Arm::Close() {
+	doubleSolenoid->Set(DoubleSolenoid::kReverse);
 
-//}
+}
 
-//void Arm::Reverse() {
+void Arm::Reverse() {
 
-	//switch(doubleSolenoid->Get())
+	switch(doubleSolenoid->Get())
 
-	//{
-		//case DoubleSolenoid::kOff:
-			//	Close();
-			//	break;
-		//case DoubleSolenoid::kForward:
-			//Close();
-			//break;
-		//case DoubleSolenoid::kReverse:
-			//Open();
-			//break;
-//	}
-//}
+	{
+		case DoubleSolenoid::kOff:
+				Close();
+				break;
+		case DoubleSolenoid::kForward:
+			Close();
+			break;
+		case DoubleSolenoid::kReverse:
+			Open();
+			break;
+	}
+}
 
 
 
