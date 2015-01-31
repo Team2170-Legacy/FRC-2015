@@ -10,6 +10,7 @@
 
 
 #include "ArmOpenClose.h"
+#include "SmartDashboard/SmartDashboard.h"
 
 ArmOpenClose::ArmOpenClose() {
 	// Use requires() here to declare subsystem dependencies
@@ -22,24 +23,21 @@ ArmOpenClose::ArmOpenClose() {
 
 // Called just before this Command runs the first time
 void ArmOpenClose::Initialize() {
-	//DoubleSolenoid::Value DoubleSolenoid::Get();
-	////Robot::arm->ArmOpen(DoubleSolenoid::kForward); dont uncomment
 	Robot::arm->Reverse();
+//	SmartDashboard::PutNumber("In ArmOpenClose", TimeSinceInitialized());
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArmOpenClose::Execute() {
-
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmOpenClose::IsFinished() {
-	return (Robot::oi->getJoystickGunnerOnPort1()->GetRawButton(1) == false);
+	return true;
 }
 
 // Called once after isFinished returns true
 void ArmOpenClose::End() {
-	Robot::arm->ArmOpen(DoubleSolenoid::kOff);
 }
 
 // Called when another command which requires one or more of the same

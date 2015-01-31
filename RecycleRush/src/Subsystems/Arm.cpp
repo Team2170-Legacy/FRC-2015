@@ -36,39 +36,19 @@ void Arm::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void Arm::ArmOpen(DoubleSolenoid::Value kForward) {
-	if (!isOpen()) {
-			doubleSolenoid->Set(kForward);
-	}
-}
-
-	void Arm::ArmClose(DoubleSolenoid::Value kReverse){
-		if (isOpen()== true){
-		doubleSolenoid->Set(kReverse);
-		}
-	}
-bool Arm::isOpen() {
-		//doubleSolenoid->Get();
-		return doubleSolenoid->Get();
-}
-
-// Assume kForward (forward channel enabled) means Arm is open. In other words
+// wired for kForward (forward channel enabled) means Arm is open. In other words
 //	kForward is returned by Get() when arm is open; to open arm use set(kForward)
 // is the assumption is wrong, change the kForwards
 void Arm::Open() {
 	doubleSolenoid->Set(DoubleSolenoid::kForward);
-
 }
 
-	void Arm::Close() {
+void Arm::Close() {
 	doubleSolenoid->Set(DoubleSolenoid::kReverse);
-
 }
 
 void Arm::Reverse() {
-
 	switch(doubleSolenoid->Get())
-
 	{
 		case DoubleSolenoid::kOff:
 				Close();
@@ -81,6 +61,3 @@ void Arm::Reverse() {
 			break;
 	}
 }
-
-
-
