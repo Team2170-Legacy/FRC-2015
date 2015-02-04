@@ -33,6 +33,8 @@ ElevatorPID::ElevatorPID() : PIDSubsystem("ElevatorPID", 1.0, 0.0, 0.0) {
 	// SetSetpoint() -  Sets where the PID controller should move the system
 	//                  to
 	// Enable() - Enables the PID controller.
+
+	shaftEncoder->Reset();
 }
 
 double ElevatorPID::ReturnPIDInput() {
