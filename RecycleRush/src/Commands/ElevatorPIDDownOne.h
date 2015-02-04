@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef ELEVATORGOTOZEROPID_H
-#define ELEVATORGOTOZEROPID_H
+#ifndef ELEVATORPIDDOWNONE_H
+#define ELEVATORPIDDOWNONE_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,9 +21,9 @@
  *
  * @author ExampleAuthor
  */
-class ElevatorGotoZeroPID: public Command {
+class ElevatorPIDDownOne: public Command {
 public:
-	ElevatorGotoZeroPID();
+	ElevatorPIDDownOne();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
