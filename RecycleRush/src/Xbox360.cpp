@@ -7,9 +7,9 @@
  * 
  * @param port The port on the drivers station that the controller is connected to
  */
-Xbox360::Xbox360(unsigned int port) :
-	Joystick(port) {
-	//Do nothing
+Xbox360::Xbox360(Joystick* NewJoystick)
+ {
+	mJoystick = NewJoystick;
 }
 
 /**
@@ -19,7 +19,7 @@ Xbox360::Xbox360(unsigned int port) :
  * @return The value of the axis from -1 to 1.
  */
 double Xbox360::GetLeftX() {
-	return (mJoystick->GetRawAxis(1));
+	return (mJoystick->GetRawAxis(0));
 }
 
 /**
@@ -29,7 +29,7 @@ double Xbox360::GetLeftX() {
  * @return The value of the axis from -1 to 1.
  */
 double Xbox360::GetLeftY() {
-	return (-1 * mJoystick->GetRawAxis(2)); //Multiply output by -1 because GetAxis() returns the axis backwards.
+	return (-1 * mJoystick->GetRawAxis(1)); //Multiply output by -1 because GetAxis() returns the axis backwards.
 }
 
 /**
@@ -59,7 +59,8 @@ double Xbox360::GetRightY() {
  * @return The value corresponding to the triggers.
  */
 double Xbox360::GetTriggers() {
-	return (mJoystick->GetRawAxis(3));
+	float Triggervalue =  (-1 * mJoystick->GetRawAxis(2) + mJoystick->GetRawAxis(3));
+	return Triggervalue;
 }
 
 /**

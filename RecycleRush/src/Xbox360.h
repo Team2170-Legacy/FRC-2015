@@ -2,6 +2,8 @@
 #define XBOX360_H_
 
 #include <Joystick.h>
+#include <cstddef>
+
 
 
 /**
@@ -16,10 +18,12 @@
  * to provide a complete math library. Please edit the include line to match
  * its location 
  */
-class Xbox360 : public Joystick
+class Xbox360
 {
+
+
 public:
-	explicit Xbox360(unsigned int port);
+	explicit Xbox360(Joystick* NewJoystick);
 	
 	double GetLeftX();
 	double GetLeftY();
@@ -41,7 +45,7 @@ private:
 	float GetRawAxis(unsigned int axis);
 	bool GetRawButton(unsigned int button);
 	double Limit(double num);
-	Joystick*mJoystick;
+	Joystick* mJoystick = NULL;
 };
 
 #endif

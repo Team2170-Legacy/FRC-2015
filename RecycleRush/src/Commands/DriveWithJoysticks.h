@@ -14,6 +14,7 @@
 
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
+#include "../Xbox360.h"
 
 /**
  *
@@ -21,6 +22,9 @@
  * @author ExampleAuthor
  */
 class DriveWithJoysticks: public Command {
+
+private:
+	Xbox360* mDriverControl;
 public:
 	DriveWithJoysticks();
 	virtual void Initialize();
