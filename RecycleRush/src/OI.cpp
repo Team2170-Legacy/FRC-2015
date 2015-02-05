@@ -37,7 +37,7 @@ OI::OI() {
 	joystickDriverOnPort2 = new Joystick(2);
 	
 	joystick2Button3 = new JoystickButton(joystickDriverOnPort2, 3);
-	joystick2Button3->WhenPressed(new IntakeIn());
+	joystick2Button3->WhileHeld(new IntakeIn());
 	joystickGunnerOnPort1 = new Joystick(1);
 	
 	joystickButton4 = new JoystickButton(joystickGunnerOnPort1, 4);
