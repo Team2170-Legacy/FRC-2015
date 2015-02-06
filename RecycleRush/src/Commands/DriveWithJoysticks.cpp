@@ -39,6 +39,8 @@ void DriveWithJoysticks::Execute() {
 	Robot::chassis->TankDriveWithTriggers(mDriverControl->GetLeftY(),
 			mDriverControl->GetRightY(),
 			mDriverControl->GetTriggers());
+	Robot::chassis->RotateWithTriggers(mDriverControl->GetLeftBumper(),
+			mDriverControl->GetRightBumper());
 }
 
 // Make this return true when this Command no longer needs to run execute()

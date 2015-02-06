@@ -52,10 +52,7 @@ public:
 	void CalibrateChassis();
 
 	void TankDriveWithTriggers(float Left, float Right, float Trigger);
-
-
-
-
+	void RotateWithTriggers(bool LeftBumper, bool RightBumper);
 };
 
 #endif
