@@ -24,7 +24,6 @@ DriveWithJoysticks::DriveWithJoysticks() {
 void DriveWithJoysticks::Initialize() {
 	//sets the initial sensitivity COMMENTED OUT UNTIL DRIVE TEAM MAKES TANK DRIVE SENSITIVITY CODE
 	//Robot::chassis->driveMotors->SetSensitivity(SmartDashboard::GetNumber("DrivingSensitivity"));
-	Robot::chassis->driveMotors->SetSensitivity(0.5);
 }
 
 // Called repeatedly when this Command is scheduled to run
