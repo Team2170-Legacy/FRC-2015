@@ -38,6 +38,7 @@ public:
 	void AddOneLevel();
 	void SubtractOneLevel();
 
+	float GetThrottle();
 	float GetTargetLevel(float direction);
 	float GetCurrentPosition();//'Position' should refer to actual encoder reading, while Level should used for theoretical/target positions
 	void InitDefaultCommand();
