@@ -56,27 +56,6 @@ void Chassis::TankDriveWithTriggers(float Left, float Right, float Trigger){
 
 	driveMotors->TankDrive(-1 * newLeft, -1 * newRight);
 }
-
-void Chassis::RotateWithTriggers(bool LeftBumper, bool RightBumper)
-{
-	float TurnDirection;
-
-//	std::cout << "Left Bumper: " << LeftBumper << "       Right Bumper: " << RightBumper << std::endl;
-
-	if (LeftBumper && RightBumper)
-		return;
-	else if (LeftBumper)
-		TurnDirection = 1.0;
-	else if (RightBumper)
-		TurnDirection = -1.0;
-	else
-		return;
-
-//	std::cout << "Turn Direction " << TurnDirection << std::endl;
-
-	ChassisRotate((TurnDirection * 90.0));
-}
-
     
 void Chassis::InitDefaultCommand()
 {
@@ -123,7 +102,7 @@ void Chassis::TurnCounterclockwise()
 {
 	// Rotate chassis by specified degrees
 	Robot::chassis->driveMotors->SetSensitivity(1.0);
-	driveMotors->Drive(0.3, -1 * mAutoRotatationVelocity);
+	driveMotors->Drive(-0.3, -1 * mAutoRotatationVelocity);
 }
 
 void Chassis::ResetChassisYaw()

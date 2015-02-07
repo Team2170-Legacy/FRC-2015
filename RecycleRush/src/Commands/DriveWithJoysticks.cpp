@@ -37,8 +37,6 @@ void DriveWithJoysticks::Execute() {
 	Robot::chassis->TankDriveWithTriggers(mDriverControl->GetLeftY(),
 			mDriverControl->GetRightY(),
 			mDriverControl->GetTriggers());
-	Robot::chassis->RotateWithTriggers(mDriverControl->GetLeftBumper(),
-			mDriverControl->GetRightBumper());
 
 	//hold the desired sensitivity
 	float SensitivityHolder;
