@@ -22,22 +22,30 @@ RotateWithBumpersLeft::RotateWithBumpersLeft() {
 
 // Called just before this Command runs the first time
 void RotateWithBumpersLeft::Initialize() {
-	
+	std::cout << "Initialize" << std::endl;
+	Command::SetTimeout(5.0);
+	Robot::chassis->ResetChassisYaw();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RotateWithBumpersLeft::Execute() {
-	
+	Robot::chassis->TurnCounterclockwise();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool RotateWithBumpersLeft::IsFinished() {
-	return false;
+	float CurrentAngle = Robot::chassis->ReadChassisYaw();
+	if (fabs(CurrentAngle) >= fabs(90.0))
+		return true;
+	else if (Command::IsTimedOut())
+		return true;
+	else
+		return false;
 }
 
 // Called once after isFinished returns true
 void RotateWithBumpersLeft::End() {
-	
+	Robot::chassis->StopMotors();
 }
 
 // Called when another command which requires one or more of the same
