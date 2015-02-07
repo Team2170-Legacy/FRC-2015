@@ -49,7 +49,6 @@ void Robot::RobotInit() {
 	//Perform any one time chassis related calibrations
 	Robot::chassis->CalibrateChassis();
 
-	SmartDashboard::PutData(Scheduler::GetInstance());
 	//Adds a sendable chooser to choose between AutonomousDriveToScore and AutonomousPickupAndScore
 	chooser = new SendableChooser();
 	chooser->AddDefault("DriveToScore", new AutonomousDriveToScore());
@@ -81,6 +80,7 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutData(Scheduler::GetInstance());
 }
 
 void Robot::TeleopInit() {
@@ -95,6 +95,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutData(Scheduler::GetInstance());
 }
 
 void Robot::TestPeriodic() {
