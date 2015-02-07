@@ -106,6 +106,7 @@ void Chassis::StopMotors(void)
 void Chassis::DriveStraight()
 {
 	// Drive chassis straight for specified time
+	Robot::chassis->driveMotors->SetSensitivity(0.1);
 	float ChassisAngle = ReadChassisYaw();
 	std::cout << "ChassisAngle: " << ChassisAngle << " : Product: " << mYawGain * ChassisAngle << std::endl;
 	driveMotors->Drive(mAutoVelocity, mYawGain * ChassisAngle);
@@ -114,15 +115,15 @@ void Chassis::DriveStraight()
 void Chassis::TurnClockwise()
 {
 	// Rotate chassis by specified degrees
-//	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << mAutoRotatationVelocity << std::endl;
-	driveMotors->Drive(-0.2, mAutoRotatationVelocity);
+	Robot::chassis->driveMotors->SetSensitivity(1.0);
+	driveMotors->Drive(-0.3, mAutoRotatationVelocity);
 
 }
 void Chassis::TurnCounterclockwise()
 {
 	// Rotate chassis by specified degrees
-//	std::cout << "Velocity:" << mAutoVelocity << " Rotation Velocity: " << -1 * mAutoRotatationVelocity << std::endl;
-	driveMotors->Drive(0.2, -1 * mAutoRotatationVelocity);
+	Robot::chassis->driveMotors->SetSensitivity(1.0);
+	driveMotors->Drive(0.3, -1 * mAutoRotatationVelocity);
 }
 
 void Chassis::ResetChassisYaw()
