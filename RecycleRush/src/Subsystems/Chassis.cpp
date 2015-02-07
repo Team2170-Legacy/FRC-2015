@@ -36,28 +36,25 @@ void Chassis::TankDriveWithTriggers(float Left, float Right, float Trigger){
 	float OriginalRight = 0.0;
 	bool bSwapDirection = false;
 
-	if (bSwapDirection == false){
-		if (fabs(Left) >= .1){
+	if (bSwapDirection == false) {
+		if (fabs(Left) >= .1) {
 			OriginalLeft = Left;
 		}
-		if (fabs(Right) >= .1){
+		if (fabs(Right) >= .1) {
 			OriginalRight = Right;
 		}
-	}else{
-		if (fabs(Left) >= .1){
+	} else {
+		if (fabs(Left) >= .1) {
 			OriginalRight = Left;
 		}
-		if (fabs(Right) >= .1){
+		if (fabs(Right) >= .1) {
 			OriginalLeft = Right;
 		}
 	}
-		newLeft = fmax(fmin(OriginalLeft + (Trigger*.8),1.0),-1.0);
-		newRight = fmax(fmin(OriginalRight + (Trigger*.8),1.0),-1.0);
+	newLeft = fmax(fmin(OriginalLeft + (Trigger * .8), 1.0), -1.0);
+	newRight = fmax(fmin(OriginalRight + (Trigger * .8), 1.0), -1.0);
 
-	//float newLeft = (-1)*max(min(Left + (Trigger*.8),1.0),-1.0);
-	//float newRight = (-1)*max(min(Right + (Trigger*.8),1.0),-1.0);
-
-	driveMotors->TankDrive(-1*newLeft ,-1*newRight );
+	driveMotors->TankDrive(-1 * newLeft, -1 * newRight);
 }
 
 void Chassis::RotateWithTriggers(bool LeftBumper, bool RightBumper)
