@@ -11,6 +11,8 @@
 
 
 #include "AutonomousPickupAndScore.h"
+#include "ChassisDriveStraightForTime.h"
+#include "ChassisRotate.h"
 
 AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// Add Commands here:
@@ -29,4 +31,9 @@ AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+
+	AddSequential(new ChassisDriveStraightForTime(3.0));
+	AddSequential(new ChassisRotate(90));
+	AddSequential(new WaitCommand(1.0));
+	AddSequential(new ChassisDriveStraightForTime(2.0));
 }

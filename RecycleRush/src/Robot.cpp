@@ -72,7 +72,7 @@ void Robot::AutonomousInit() {
 	//run autonomous command using sendable chooser
 
 	autonomousCommand = (Command *) chooser->GetSelected();
-	if (autonomousCommand != NULL){
+	if (autonomousCommand != NULL) {
 		autonomousCommand->Start();
 	}
 }
