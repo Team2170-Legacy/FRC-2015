@@ -48,7 +48,7 @@ void Robot::RobotInit() {
 
 	//Perform any one time chassis related calibrations
 	Robot::chassis->CalibrateChassis();
-
+	SmartDashboard::PutData(Scheduler::GetInstance());
 	//Adds a sendable chooser to choose between AutonomousDriveToScore and AutonomousPickupAndScore
 	chooser = new SendableChooser();
 	chooser->AddDefault("DriveToScore", new AutonomousDriveToScore());
@@ -62,11 +62,12 @@ void Robot::RobotInit() {
  * You can use it to reset subsystems before shutting down.
  */
 void Robot::DisabledInit(){
-
+	SmartDashboard::PutData(Scheduler::GetInstance());
 }
 
 void Robot::DisabledPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutData(Scheduler::GetInstance());
 }
 
 void Robot::AutonomousInit() {
@@ -75,6 +76,7 @@ void Robot::AutonomousInit() {
 	autonomousCommand = (Command *) chooser->GetSelected();
 	if (autonomousCommand != NULL) {
 		autonomousCommand->Start();
+		SmartDashboard::PutData(Scheduler::GetInstance());
 	}
 }
 
@@ -90,6 +92,7 @@ void Robot::TeleopInit() {
 	// these lines or comment it out.
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
+	SmartDashboard::PutData(Scheduler::GetInstance());
 }
 
 
@@ -100,6 +103,7 @@ void Robot::TeleopPeriodic() {
 
 void Robot::TestPeriodic() {
 	lw->Run();
+	SmartDashboard::PutData(Scheduler::GetInstance());
 }
 
 START_ROBOT_CLASS(Robot);
