@@ -39,6 +39,9 @@ public:
 	void StopBothSides();
 	void StopRightSide();
 	void StopLeftSide();
+	void Open();
+	void Close();
+	void Reverse();
 };
 
 #endif

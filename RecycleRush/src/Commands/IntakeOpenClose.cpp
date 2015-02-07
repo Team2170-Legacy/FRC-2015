@@ -22,7 +22,7 @@ IntakeOpenClose::IntakeOpenClose() {
 
 // Called just before this Command runs the first time
 void IntakeOpenClose::Initialize() {
-	
+	Robot::intake->Reverse();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -32,16 +32,15 @@ void IntakeOpenClose::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool IntakeOpenClose::IsFinished() {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
 void IntakeOpenClose::End() {
-	
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void IntakeOpenClose::Interrupted() {
-
+	End();
 }
