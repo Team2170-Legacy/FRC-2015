@@ -25,12 +25,15 @@ ChassisRotate::ChassisRotate(float NewAngle)
 {
 	Requires(Robot::chassis);
 
+//	std::cout << "Angle: " << NewAngle << std::endl;
+
 	mRotateAngle = NewAngle;
 
 }
 
 // Called just before this Command runs the first time
 void ChassisRotate::Initialize() {
+	std::cout << "Initialize" << std::endl;
 	Command::SetTimeout(5.0);
 	Robot::chassis->ResetChassisYaw();
 
@@ -38,11 +41,17 @@ void ChassisRotate::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ChassisRotate::Execute() {
-
+	std::cout << "Executing" << std::endl;
 	if (mRotateAngle > 0)
+	{
+		std::cout << "Turn clockwise" << std::endl;
 		Robot::chassis->TurnClockwise();
+	}
 	else if (mRotateAngle < 0)
+	{
+		std::cout << "Turn counterclockwise" << std::endl;
 		Robot::chassis->TurnCounterclockwise();
+	}
 	else
 		End();
 }

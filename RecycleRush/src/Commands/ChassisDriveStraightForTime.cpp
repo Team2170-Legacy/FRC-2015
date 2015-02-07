@@ -31,27 +31,14 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(float NewTime)
 
 // Called just before this Command runs the first time
 void ChassisDriveStraightForTime::Initialize() {
-	Command::SetTimeout(mDriveTime);
 	Robot::chassis->ResetChassisYaw();
-
+	Command::SetTimeout(mDriveTime);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ChassisDriveStraightForTime::Execute() {
 	Robot::chassis->DriveStraight();
-	float TimeHolder;
-	//Gets the inputted time
-	TimeHolder = SmartDashboard::GetNumber("ChassisDriveStraightForTimeInput");
-	//Outputs what was inputted
-	SmartDashboard::PutNumber("TimeInputted", TimeHolder);
-	//Sets the range for the input
-	TimeHolder = fmin(fmax(TimeHolder, 0), 15);
-	//Sets the new drive time according to the outputted variable which was formatted to the range
-	mDriveTime = TimeHolder;
-	//Displays the new number
-	SmartDashboard::PutNumber("ChassisDriveStraightForTimeInput", TimeHolder);
-	//Sets the timeout with the new number
-	Command::SetTimeout(mDriveTime);
+	
 }
 
 // Make this return true when this Command no longer needs to run execute()
