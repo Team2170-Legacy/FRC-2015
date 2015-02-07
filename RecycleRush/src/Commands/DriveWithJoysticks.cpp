@@ -24,7 +24,8 @@ DriveWithJoysticks::DriveWithJoysticks() {
 
 // Called just before this Command runs the first time
 void DriveWithJoysticks::Initialize() {
-	Robot::chassis->driveMotors->SetSensitivity(0.1);
+	//sets the initial sensitivity
+	Robot::chassis->driveMotors->SetSensitivity(SmartDashboard::GetNumber("DrivingSensitivity"));
 	mDriverControl = new Xbox360(Robot::oi->getJoystickDriverOnPort0());
 }
 
@@ -32,15 +33,25 @@ void DriveWithJoysticks::Initialize() {
 void DriveWithJoysticks::Execute() {
 	// Gather the XBox controller left and right joystick Y axes values from the most recently received
 	// Driver Station transmission packet, and send them to the chassis SendJoystickYAxesToMotors method
-//	Robot::chassis->SendJoystickYAxesValuesToMotors(
-//	Robot::oi->getJoystickDriverOnPort0()->GetRawAxis(1),
-//	Robot::oi->getJoystickDriverOnPort0()->GetRawAxis(5));
 
 	Robot::chassis->TankDriveWithTriggers(mDriverControl->GetLeftY(),
 			mDriverControl->GetRightY(),
 			mDriverControl->GetTriggers());
 	Robot::chassis->RotateWithTriggers(mDriverControl->GetLeftBumper(),
 			mDriverControl->GetRightBumper());
+
+	//hold the desired sensitivity
+	float SensitivityHolder;
+	SensitivityHolder = SmartDashboard::GetNumber("DrivingSensitivity");
+	//Return what was inputted
+	SmartDashboard::PutNumber("Sensitivity Inputted", SensitivityHolder);
+	//Sets the range for the sensitivity
+	SensitivityHolder = fmin(fmax(SensitivityHolder,0),1);
+		//displays the outputted sensitivity
+		Robot::chassis->driveMotors->SetSensitivity(SensitivityHolder);
+		SmartDashboard::PutNumber("DrivingSensitivity", SensitivityHolder);
+		//shows time since initialized
+		SmartDashboard::PutNumber("Time since initialized", TimeSinceInitialized());
 }
 
 // Make this return true when this Command no longer needs to run execute()
