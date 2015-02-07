@@ -67,13 +67,13 @@ float Elevator::GetCurrentPosition(){
 }
 
 void Elevator::AddOneLevel(){
-	targetLevel = int(GetCurrentPosition() / distanceBetweenLevels)*distanceBetweenLevels;
+	targetLevel = round(GetCurrentPosition() / distanceBetweenLevels)*distanceBetweenLevels;
 
 	targetLevel = fmin(targetLevel + distanceBetweenLevels, 4 * distanceBetweenLevels);
 }
 
 void Elevator::SubtractOneLevel(){
-	targetLevel = int((GetCurrentPosition() / distanceBetweenLevels)+1.0)*distanceBetweenLevels;
+	targetLevel = (round((GetCurrentPosition() / distanceBetweenLevels)))*distanceBetweenLevels;
 
 	targetLevel = fmax(targetLevel - distanceBetweenLevels, 0);
 }
@@ -117,15 +117,19 @@ void Elevator::SmartDashboardOutputs() {
 }
 
 void Elevator::RampUp( float MaxSpeed,  float RampRate){
-	motor->Set( fmax( fmin( (1+RampRate) * motor->Get(), MaxSpeed) , -1 * MaxSpeed) );
+	motor->Set( fmax( fmin( (1+RampRate) * motor->Get(), MaxSpeed), -1* MaxSpeed) ) ;
 }
 
 void Elevator::RampDown(  float MinSpeed, float RampRate){
-	motor->Set( fmin( fmax( (1-RampRate) * motor->Get(), MinSpeed) , -1 * MinSpeed) );
+	if (MinSpeed > 0){
+	motor->Set( fmax((1-RampRate) * motor->Get(), MinSpeed ));
+	}else{
+	motor->Set( fmin((1-RampRate) * motor->Get(), -1*MinSpeed ));
+	}
 }
 
 void Elevator::RampCombined(float MinSpeed, float MaxSpeed, float RampRate) {
-	if (abs( GetCurrentPosition() - targetLevel ) < (.3 * distanceBetweenLevels)) {
+	if (abs( GetCurrentPosition() - targetLevel ) < (.4 * distanceBetweenLevels)) {
 		RampDown( MinSpeed, RampRate);
 	}else{
 		RampUp(MaxSpeed, RampRate);
