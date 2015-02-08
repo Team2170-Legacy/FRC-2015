@@ -68,7 +68,7 @@ float Elevator::GetCurrentPosition(){
 
 void Elevator::AddOneLevel(){
 
-	// Gets the ClicksPerToteHeight number from SmartDashboard and range checks it and displays it
+	// Gets the distanceBetweenLevels number from SmartDashboard and range checks it and displays it
 	distanceBetweenLevels = SmartDashboard::GetNumber("distanceBetweenLevels");
 	distanceBetweenLevels = fmin(fmax(distanceBetweenLevels,0),5000);
 	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
@@ -80,7 +80,7 @@ void Elevator::AddOneLevel(){
 
 void Elevator::SubtractOneLevel(){
 
-	// Gets the ClicksPerToteHeight number from SmartDashboard and range checks it and displays it
+	// Gets the distanceBetweenLevels number from SmartDashboard and range checks it and displays it
 	distanceBetweenLevels = SmartDashboard::GetNumber("distanceBetweenLevels");
 	distanceBetweenLevels = fmin(fmax(distanceBetweenLevels,0),5000);
 	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
