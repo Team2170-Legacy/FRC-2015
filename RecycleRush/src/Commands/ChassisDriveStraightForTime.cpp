@@ -32,7 +32,7 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(float NewTime)
 // Called just before this Command runs the first time
 void ChassisDriveStraightForTime::Initialize() {
 	Robot::chassis->ResetChassisYaw();
-	Command::SetTimeout(mDriveTime);
+	Command::SetTimeout(GetDriveTime());
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -53,9 +53,35 @@ void ChassisDriveStraightForTime::End() {
 
 }
 
+float ChassisDriveStraightForTime::GetDriveTime(void) {
+	float fTime = 0.0;
+
+	if (bSmartDashCtrl) {
+		fTime = (float)SmartDashboard::GetNumber(mKey);
+		//Gets the inputed time
+		fTime = SmartDashboard::GetNumber("ChassisDriveStraightForTimeInput");
+		//Outputs what was
+		SmartDashboard::PutNumber("TimeInputted", fTime);
+		//Sets the range for the input
+		fTime = fmin(fmax(fTime, 0), 15);
+		//Displays the new number
+		SmartDashboard::PutNumber("ChassisDriveStraightForTimeInput", fTime);
+	}
+	else {
+		fTime = mDriveTime;
+	}
+
+	return fTime;
+}
+
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ChassisDriveStraightForTime::Interrupted() {
 
 
+}
+
+ChassisDriveStraightForTime::ChassisDriveStraightForTime(std::string key) {
+	mKey = key;
+	bSmartDashCtrl = true;
 }
