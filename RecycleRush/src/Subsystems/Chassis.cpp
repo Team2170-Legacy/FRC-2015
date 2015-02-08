@@ -70,12 +70,7 @@ void Chassis::InitDefaultCommand()
 
 
 // Put methods for controlling this subsystem
-// here. Call these from Commands.
-void Chassis::SendJoystickYAxesValuesToMotors(float left, float right)
-{
-	// Take the passed left and right parameters and send them to the TankDrive method
-	driveMotors->TankDrive(left, right);
-}
+//// here. Call these from Commands.
 
 void Chassis::StopMotors(void)
 {
@@ -88,7 +83,7 @@ void Chassis::DriveStraight()
 	// Drive chassis straight for specified time
 	Robot::chassis->driveMotors->SetSensitivity(0.1);
 	float ChassisAngle = ReadChassisYaw();
-	std::cout << "ChassisAngle: " << ChassisAngle << " : Product: " << mYawGain * ChassisAngle << std::endl;
+//	std::cout << "ChassisAngle: " << ChassisAngle << " : Product: " << mYawGain * ChassisAngle << std::endl;
 	driveMotors->Drive(mAutoVelocity, mYawGain * ChassisAngle);
 }
 
