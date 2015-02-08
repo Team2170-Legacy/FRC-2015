@@ -23,8 +23,9 @@
  */
 class ChassisRotate: public Command {
 private:
-	float mRotateAngle = 0.0;
 	int mDownshiftCounter = 0;
+protected:
+	float mRotateAngle = 0.0;
 public:
 	ChassisRotate();
 	ChassisRotate(float NewAngle);
