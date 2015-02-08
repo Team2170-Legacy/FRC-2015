@@ -76,6 +76,9 @@ void Chassis::StopMotors(void)
 {
 	// Send zero to the driveMotors controller for both left and right .i.e. stop the motors
 	driveMotors->StopMotor();
+
+	mCurrentAutoMagnitude = mDefaultAutoMagnitude;
+	mCurrentAutoRotationVelocity = mDefaultAutoRotatationVelocity;
 }
 
 void Chassis::DriveStraight()
@@ -83,7 +86,7 @@ void Chassis::DriveStraight()
 	// Drive chassis straight for specified time
 	Robot::chassis->driveMotors->SetSensitivity(0.1);
 	float ChassisAngle = ReadChassisYaw();
-//	std::cout << "ChassisAngle: " << ChassisAngle << " : Product: " << mYawGain * ChassisAngle << std::endl;
+
 	driveMotors->Drive(mAutoVelocity, mYawGain * ChassisAngle);
 }
 
@@ -91,14 +94,14 @@ void Chassis::TurnClockwise()
 {
 	// Rotate chassis by specified degrees
 	Robot::chassis->driveMotors->SetSensitivity(1.0);
-	driveMotors->Drive(-0.3, mAutoRotatationVelocity);
+	driveMotors->Drive(mCurrentAutoMagnitude, mCurrentAutoRotationVelocity);
 
 }
 void Chassis::TurnCounterclockwise()
 {
 	// Rotate chassis by specified degrees
 	Robot::chassis->driveMotors->SetSensitivity(1.0);
-	driveMotors->Drive(-0.3, -1 * mAutoRotatationVelocity);
+	driveMotors->Drive(mCurrentAutoMagnitude, -1 * mCurrentAutoRotationVelocity);
 }
 
 void Chassis::ResetChassisYaw()
@@ -116,4 +119,20 @@ float Chassis::ReadChassisYaw()
 void Chassis::CalibrateChassis(){
 	//Perform any one time chassis related calibrations
 	yawGyro->InitGyro();
+}
+
+float Chassis::getCurrentAutoMagnitude() const {
+	return mCurrentAutoMagnitude;
+}
+
+void Chassis::setCurrentAutoMagnitude(float currentAutoMagnitude) {
+	mCurrentAutoMagnitude = currentAutoMagnitude;
+}
+
+float Chassis::getCurrentAutoRotationVelocity() const {
+	return mCurrentAutoRotationVelocity;
+}
+
+void Chassis::setCurrentAutoRotationVelocity(float currentAutoRotationVelocity) {
+	mCurrentAutoRotationVelocity = currentAutoRotationVelocity;
 }

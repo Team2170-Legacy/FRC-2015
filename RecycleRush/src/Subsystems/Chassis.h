@@ -25,7 +25,10 @@ private:
 	// for methods that implement subsystem capabilities
 
 	float mAutoVelocity = -0.4;
-	float mAutoRotatationVelocity = 1.0;
+	const float mDefaultAutoRotatationVelocity = 1.0;
+	const float mDefaultAutoMagnitude = -0.3;
+	float mCurrentAutoRotationVelocity = 1.0;
+	float mCurrentAutoMagnitude = -0.3;
 	float mYawGain = -0.2;
 
 	const bool bSwapDirection = true;
@@ -54,6 +57,11 @@ public:
 	void CalibrateChassis();
 
 	void TankDriveWithTriggers(float Left, float Right, float Trigger);
+
+	float getCurrentAutoMagnitude() const;
+	void setCurrentAutoMagnitude(float currentAutoMagnitude = -0.3);
+	float getCurrentAutoRotationVelocity() const;
+	void setCurrentAutoRotationVelocity(float currentAutoRotationVelocity = 1.0);
 };
 
 #endif

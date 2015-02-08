@@ -29,6 +29,7 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(double NewTime)
 
 // Called just before this Command runs the first time
 void ChassisDriveStraightForTime::Initialize() {
+	std::cout << "Current Yaw: " << Robot::chassis->ReadChassisYaw() << std::endl;
 	Robot::chassis->ResetChassisYaw();
 	Command::SetTimeout(GetDriveTime());
 }

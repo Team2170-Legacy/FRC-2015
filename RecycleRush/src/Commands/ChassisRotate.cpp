@@ -25,15 +25,12 @@ ChassisRotate::ChassisRotate(float NewAngle)
 {
 	Requires(Robot::chassis);
 
-//	std::cout << "Angle: " << NewAngle << std::endl;
-
 	mRotateAngle = NewAngle;
 
 }
 
 // Called just before this Command runs the first time
 void ChassisRotate::Initialize() {
-	std::cout << "Initialize" << std::endl;
 	Command::SetTimeout(5.0);
 	Robot::chassis->ResetChassisYaw();
 
@@ -41,42 +38,59 @@ void ChassisRotate::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ChassisRotate::Execute() {
-	std::cout << "Executing" << std::endl;
+	float RemainingAngle = fabs(mRotateAngle) - Robot::chassis->ReadChassisYaw();
+
+	if ((RemainingAngle < 30.0) && (mDownshiftCounter == 0))
+	{
+		Robot::chassis->setCurrentAutoMagnitude(Robot::chassis->getCurrentAutoMagnitude() / 2.0);
+		mDownshiftCounter++;
+	}
+
 	if (mRotateAngle > 0)
 	{
-		std::cout << "Turn clockwise" << std::endl;
 		Robot::chassis->TurnClockwise();
 	}
 	else if (mRotateAngle < 0)
 	{
-		std::cout << "Turn counterclockwise" << std::endl;
 		Robot::chassis->TurnCounterclockwise();
 	}
 	else
+	{
 		End();
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ChassisRotate::IsFinished() {
-
 	float CurrentAngle = Robot::chassis->ReadChassisYaw();
+	bool rval = false;
+
 	if (fabs(CurrentAngle) >= fabs(mRotateAngle))
-		return true;
+	{
+		rval = true;
+	}
 	else if (Command::IsTimedOut())
-		return true;
+	{
+		rval = true;
+	}
 	else
-		return false;
+	{
+		rval = false;
+	}
+
+	return rval;
 }
 
 // Called once after isFinished returns true
 void ChassisRotate::End() {
 	Robot::chassis->StopMotors();
+	mDownshiftCounter = 0;
+	std::cout << "Current Yaw: " << Robot::chassis->ReadChassisYaw() << std::endl;
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ChassisRotate::Interrupted() {
-	std::cout << "Rotate Interrupted\n";
 
 }
