@@ -45,7 +45,6 @@ public:
 	Chassis();
 	void InitDefaultCommand();
 
-	void SendJoystickYAxesValuesToMotors(float left, float right);
 	void StopMotors();
 
 	void DriveStraight();

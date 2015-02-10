@@ -32,6 +32,10 @@ void LowPassFilter::Reset(void) {
 	fCurrentOutput = 0.0;
 }
 
+double LowPassFilter::GetCurrentValue() {
+	return fCurrentOutput;
+}
+
 LowPassFilter::~LowPassFilter() {
 	// TODO Auto-generated destructor stub
 }

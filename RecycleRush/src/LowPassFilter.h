@@ -17,6 +17,7 @@ public:
 	LowPassFilter();
 	LowPassFilter(double fCutoffHz, double fSampleRateHz);
 	double Update(double fNewVal);
+	double GetCurrentValue();
 	void Reset(void);
 	virtual ~LowPassFilter();
 };
