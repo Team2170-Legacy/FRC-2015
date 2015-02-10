@@ -51,6 +51,7 @@ public:
 
 	void Start(float speed);
 	void ManualControl();
+	void SmartDashboardInputs();
 	void SmartDashboardOutputs();
 	void Stop();
 
