@@ -33,7 +33,7 @@ void ElevatorManual::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorManual::IsFinished() {
-	return (Robot::oi->getJoystickGunnerOnPort1()->GetRawButton(4) == false);
+	return (Robot::oi->getJoystickGunnerOnPort1()->GetRawButton(5) == false);
 }
 
 // Called once after isFinished returns true
