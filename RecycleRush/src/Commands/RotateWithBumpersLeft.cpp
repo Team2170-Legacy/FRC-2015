@@ -25,7 +25,7 @@ RotateWithBumpersLeft::RotateWithBumpersLeft() {
 
 // Called just before this Command runs the first time
 void RotateWithBumpersLeft::Initialize() {
-	ChassisRotate();
+	ChassisRotate::Initialize();
 }
 
 // Called repeatedly when this Command is scheduled to run

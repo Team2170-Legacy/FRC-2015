@@ -24,11 +24,11 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 
-	float mAutoVelocity = -0.4;
+	float mAutoVelocity = 0.4;
 	const float mDefaultAutoRotatationVelocity = 1.0;
-	const float mDefaultAutoMagnitude = -0.3;
+	const float mDefaultAutoMagnitude = 0.3;
 	float mCurrentAutoRotationVelocity = 1.0;
-	float mCurrentAutoMagnitude = -0.3;
+	float mCurrentAutoMagnitude = 0.3;
 	float mYawGain = -0.2;
 
 	const bool bSwapDirection = true;

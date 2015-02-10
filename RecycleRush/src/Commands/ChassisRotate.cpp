@@ -38,9 +38,9 @@ void ChassisRotate::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ChassisRotate::Execute() {
-	float RemainingAngle = fabs(mRotateAngle) - Robot::chassis->ReadChassisYaw();
+	float RemainingAngle = mRotateAngle - Robot::chassis->ReadChassisYaw();
 
-	if ((RemainingAngle < 30.0) && (mDownshiftCounter == 0))
+	if ((fabs(RemainingAngle) < 25.0) && (mDownshiftCounter == 0))
 	{
 		Robot::chassis->setCurrentAutoMagnitude(Robot::chassis->getCurrentAutoMagnitude() / 2.0);
 		mDownshiftCounter++;
