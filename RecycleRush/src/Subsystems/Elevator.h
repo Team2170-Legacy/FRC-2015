@@ -38,9 +38,11 @@ public:
 	void AddOneLevel();
 	void SubtractOneLevel();
 
+	float GetThrottle();
 	float GetTargetLevel(float direction);
 	float GetCurrentPosition();//'Position' should refer to actual encoder reading, while Level should used for theoretical/target positions
 	void InitDefaultCommand();
+
 	bool GetUpperSafety();
 	bool GetLowerSafety();
 	bool isMoving();
@@ -49,10 +51,12 @@ public:
 
 	void Start(float speed);
 	void ManualControl();
-	void RampUp( float MaxSpeed, float RampRate);
-	void RampDown(  float MinSpeed, float RampRate);
 	void SmartDashboardOutputs();
 	void Stop();
+
+	void RampUp( float MaxSpeed, float RampRate);
+	void RampDown(  float MinSpeed, float RampRate);
+	void RampCombined(float MinSpeed, float MaxSpeed, float RampRate);
 	//These two functions are periodic and need to be continuously called to achieve the desired effect
 	//This allows them to be interrupted
 

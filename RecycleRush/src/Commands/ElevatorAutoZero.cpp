@@ -22,26 +22,28 @@ ElevatorAutoZero::ElevatorAutoZero() {
 
 // Called just before this Command runs the first time
 void ElevatorAutoZero::Initialize() {
-	
+	Robot::elevator->motor->Set(-.1);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ElevatorAutoZero::Execute() {
 	
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorAutoZero::IsFinished() {
-	return false;
+	return (Robot::elevator->GetLowerSafety());
 }
 
 // Called once after isFinished returns true
 void ElevatorAutoZero::End() {
-	
+	Robot::elevator->Stop();
+	Robot::elevator->shaftEncoder->Reset();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ElevatorAutoZero::Interrupted() {
-
+	Robot::elevator->Stop();
 }
