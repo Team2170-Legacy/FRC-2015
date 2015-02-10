@@ -23,10 +23,14 @@
  */
 class ChassisDriveStraightForTime: public Command {
 private:
-	float mDriveTime = 0.0;
+	double mDriveTime = 0.0;
+	std::string mKey = "";
+	bool bSmartDashCtrl = false;
+	double GetDriveTime(void);
 public:
 	ChassisDriveStraightForTime();
-	ChassisDriveStraightForTime(float NewTime);
+	ChassisDriveStraightForTime(double NewTime);
+	ChassisDriveStraightForTime(std::string key);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
