@@ -32,17 +32,5 @@ AutonomousDriveToScore::AutonomousDriveToScore() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-
-//	float TimeHolder;
-//	//Gets the inputted time
-//	TimeHolder = SmartDashboard::GetNumber("ChassisDriveStraightForTimeInput");
-//	//Outputs what was inputted
-//	SmartDashboard::PutNumber("TimeInputted", TimeHolder);
-//	//Sets the range for the input
-//	TimeHolder = fmin(fmax(TimeHolder, 0), 15);
-//	//Displays the new number
-//	SmartDashboard::PutNumber("ChassisDriveStraightForTimeInput", TimeHolder);
-//	//Sets the timeout with the new number
-
-	AddSequential(new ChassisDriveStraightForTime(3.0));
+	AddSequential(new ChassisDriveStraightForTime("ChassisDriveStraightForTimeInput"));
 }

@@ -15,13 +15,14 @@
 
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
+#include "ChassisRotate.h"
 
 /**
  *
  *
  * @author ExampleAuthor
  */
-class RotateWithBumpersLeft: public Command {
+class RotateWithBumpersLeft: public ChassisRotate {
 public:
 	RotateWithBumpersLeft();
 	virtual void Initialize();
