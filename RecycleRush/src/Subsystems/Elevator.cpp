@@ -68,25 +68,19 @@ float Elevator::GetCurrentPosition(){
 
 void Elevator::AddOneLevel(){
 
-	// Gets the distanceBetweenLevels number from SmartDashboard and range checks it and displays it
-	distanceBetweenLevels = SmartDashboard::GetNumber("distanceBetweenLevels");
-	distanceBetweenLevels = fmin(fmax(distanceBetweenLevels,0),5000);
-	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
+	SmartDashboardInputs();
+	SmartDashboardOutputs();
 
 	targetLevel = round(GetCurrentPosition() / distanceBetweenLevels)*distanceBetweenLevels;
-
 	targetLevel = fmin(targetLevel + distanceBetweenLevels, 4 * distanceBetweenLevels);
 }
 
 void Elevator::SubtractOneLevel(){
 
-	// Gets the distanceBetweenLevels number from SmartDashboard and range checks it and displays it
-	distanceBetweenLevels = SmartDashboard::GetNumber("distanceBetweenLevels");
-	distanceBetweenLevels = fmin(fmax(distanceBetweenLevels,0),5000);
-	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
+	SmartDashboardInputs();
+	SmartDashboardOutputs();
 
 	targetLevel = (round((GetCurrentPosition() / distanceBetweenLevels)))*distanceBetweenLevels;
-
 	targetLevel = fmax(targetLevel - distanceBetweenLevels, 0);
 }
 
@@ -123,9 +117,17 @@ void Elevator::ManualControl() {
 
 }
 
+void Elevator::SmartDashboardInputs() {
+	// Gets the distanceBetweenLevels number from SmartDashboard and range checks it and displays it
+
+	distanceBetweenLevels = SmartDashboard::GetNumber("distanceBetweenLevels");
+	distanceBetweenLevels = fmin(fmax(distanceBetweenLevels,0),5000);
+}
+
 void Elevator::SmartDashboardOutputs() {
 	SmartDashboard::PutNumber("CurrentPosition", GetCurrentPosition());
 	SmartDashboard::PutNumber("TargetLevel", targetLevel);
+	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
 }
 
 void Elevator::RampUp( float MaxSpeed,  float RampRate){
