@@ -16,7 +16,7 @@ private:
 	double mVelocity = 0.0;
 	double mDistance = 0.0;
 	double mOdometer = 0.0;
-	Accelerometer* mAccel = NULL;
+	Accelerometer* mAccel = nullptr;
 	double mDeltaTime = (1.0 / 50.0);			// 50 Hz (20 msec)
 	const double GsToMeters = 9.80665;	// Gs to Meters/S^2
 
