@@ -10,16 +10,9 @@
 
 
 
-#include "AutonomousPickupAndScore.h"
-#include "ChassisDriveStraightForTime.h"
-#include "ChassisRotate.h"
-#include "ElevatorUpOne.h"
-#include "ArmCalibrate.h"
-#include "ElevatorAutoZero.h"
-#include "IntakeCalibrate.h"
-#include "ArmOpenClose.h"
+#include "ElevatorFloorStage.h"
 
-AutonomousPickupAndScore::AutonomousPickupAndScore() {
+ElevatorFloorStage::ElevatorFloorStage() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -36,17 +29,4 @@ AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-
-	AddSequential(new ArmCalibrate());
-	AddSequential(new ElevatorAutoZero());
-	AddSequential(new IntakeCalibrate());
-
-	AddSequential(new ChassisDriveStraightForTime(0.25));
-	AddSequential(new ElevatorUpOne());
-	AddSequential(new ElevatorUpOne());
-	AddSequential(new ArmOpenClose());
-	AddSequential(new ElevatorUpOne());
-
-	AddSequential(new ChassisRotate(180.0));
-	AddSequential(new ChassisDriveStraightForTime(3.0));
 }

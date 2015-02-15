@@ -24,9 +24,16 @@
 #include "Commands/DriveWithJoysticks.h"
 #include "Commands/ElevatorAutoZero.h"
 #include "Commands/ElevatorDownOne.h"
+#include "Commands/ElevatorFeederPickup.h"
+#include "Commands/ElevatorFeederStage.h"
+#include "Commands/ElevatorFloorPickup.h"
+#include "Commands/ElevatorFloorStage.h"
+#include "Commands/ElevatorGotoPosition.h"
 #include "Commands/ElevatorManual.h"
 #include "Commands/ElevatorPIDDownOne.h"
 #include "Commands/ElevatorPIDUpOne.h"
+#include "Commands/ElevatorPlatformPlace.h"
+#include "Commands/ElevatorPlatformStage.h"
 #include "Commands/ElevatorUpOne.h"
 #include "Commands/IntakeCalibrate.h"
 #include "Commands/IntakeIn.h"
@@ -90,6 +97,20 @@ OI::OI() {
 	SmartDashboard::PutData("ChassisDriveStraightForTime", new ChassisDriveStraightForTime());
 
 	SmartDashboard::PutData("ChassisRotate", new ChassisRotate());
+
+	SmartDashboard::PutData("ElevatorGotoPosition", new ElevatorGotoPosition());
+
+	SmartDashboard::PutData("ElevatorFeederStage", new ElevatorFeederStage());
+
+	SmartDashboard::PutData("ElevatorFeederPickup", new ElevatorFeederPickup());
+
+	SmartDashboard::PutData("ElevatorFloorStage", new ElevatorFloorStage());
+
+	SmartDashboard::PutData("ElevatorFloorPickup", new ElevatorFloorPickup());
+
+	SmartDashboard::PutData("ElevatorPlatformStage", new ElevatorPlatformStage());
+
+	SmartDashboard::PutData("ElevatorPlatformPlace", new ElevatorPlatformPlace());
 
 	SmartDashboard::PutData("ElevatorUpOne", new ElevatorUpOne());
 

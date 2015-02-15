@@ -31,7 +31,7 @@ ChassisRotate::ChassisRotate(float NewAngle)
 
 // Called just before this Command runs the first time
 void ChassisRotate::Initialize() {
-	Command::SetTimeout(5.0);
+	Command::SetTimeout(10.0);
 	Robot::chassis->ResetChassisYaw();
 
 }
