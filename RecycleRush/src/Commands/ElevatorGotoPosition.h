@@ -24,6 +24,7 @@
 class ElevatorGotoPosition: public Command {
 public:
 	ElevatorGotoPosition();
+	ElevatorGotoPosition(double TargetPosition);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
