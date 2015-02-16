@@ -10,6 +10,7 @@
 
 #include "ElevatorPlatformPlace.h"
 #include "ElevatorGotoPosition.h"
+#include "ArmOpen.h"
 
 ElevatorPlatformPlace::ElevatorPlatformPlace() {
 
@@ -17,4 +18,5 @@ ElevatorPlatformPlace::ElevatorPlatformPlace() {
 		AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorPlatformTop"), 0), 654 * 6)));
 	}
 	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorPlatformBot"), 0), 654 * 6)));
+	AddSequential(new ArmOpen());
 }
