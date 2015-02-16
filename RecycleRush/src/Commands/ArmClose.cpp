@@ -21,7 +21,7 @@ ArmClose::ArmClose() {
 
 // Called just before this Command runs the first time
 void ArmClose::Initialize() {
-	
+	Robot::arm->Close();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,7 +31,7 @@ void ArmClose::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmClose::IsFinished() {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
@@ -42,5 +42,5 @@ void ArmClose::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ArmClose::Interrupted() {
-
+	End();
 }
