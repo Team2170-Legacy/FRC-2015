@@ -22,6 +22,7 @@ ElevatorAutoZero::ElevatorAutoZero() {
 
 // Called just before this Command runs the first time
 void ElevatorAutoZero::Initialize() {
+	Robot::elevator->ResetLowerLimitCounter();
 	Robot::elevator->motor->Set(-.1);
 }
 
@@ -33,7 +34,8 @@ void ElevatorAutoZero::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorAutoZero::IsFinished() {
-	return (Robot::elevator->GetLowerSafety());
+	return (Robot::elevator->LowerLimitHasBeenReached());
+//	return (Robot::elevator->GetLowerSafety());
 }
 
 // Called once after isFinished returns true
