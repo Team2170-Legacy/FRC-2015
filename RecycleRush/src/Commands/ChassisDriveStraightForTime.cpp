@@ -31,6 +31,8 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(double NewTime)
 void ChassisDriveStraightForTime::Initialize() {
 	std::cout << "Current Yaw: " << Robot::chassis->ReadChassisYaw() << std::endl;
 	Robot::chassis->ResetChassisYaw();
+	Robot::chassis->movementData->ResetOdometer();
+	Robot::chassis->movementData->Start();
 	Command::SetTimeout(GetDriveTime());
 }
 
@@ -41,12 +43,15 @@ void ChassisDriveStraightForTime::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ChassisDriveStraightForTime::IsFinished() {
+	Robot::chassis->movementData->UpdateData();
 	return Command::IsTimedOut();
 }
 
 // Called once after isFinished returns true
 void ChassisDriveStraightForTime::End() {
 	Robot::chassis->StopMotors();
+	Robot::chassis->movementData->Stop();
+	SmartDashboard::PutNumber("Auto Distance", Robot::chassis->movementData->GetOdometer());
 
 }
 

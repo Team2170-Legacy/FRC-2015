@@ -73,10 +73,6 @@ bool ChassisRotate::IsFinished() {
 	{
 		rval = true;
 	}
-	else
-	{
-		rval = false;
-	}
 
 	return rval;
 }
