@@ -22,7 +22,7 @@ IntakeStop::IntakeStop() {
 
 // Called just before this Command runs the first time
 void IntakeStop::Initialize() {
-	
+	Robot::intake->StopBothSides();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -43,5 +43,5 @@ void IntakeStop::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void IntakeStop::Interrupted() {
-
+	End();
 }
