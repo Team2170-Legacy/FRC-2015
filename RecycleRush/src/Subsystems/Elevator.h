@@ -40,6 +40,7 @@ public:
 
 	float GetThrottle();
 	float GetTargetLevel(float direction);
+	void SetTargetLevel(float TargetLevel);
 	float GetCurrentPosition();//'Position' should refer to actual encoder reading, while Level should used for theoretical/target positions
 	void InitDefaultCommand();
 
@@ -48,9 +49,11 @@ public:
 	bool isMoving();
 	bool isAboveTarget();
 	bool isBelowTarget();
+	float GetSpeed();
 
 	void Start(float speed);
 	void ManualControl();
+	void SmartDashboardInputs();
 	void SmartDashboardOutputs();
 	void Stop();
 

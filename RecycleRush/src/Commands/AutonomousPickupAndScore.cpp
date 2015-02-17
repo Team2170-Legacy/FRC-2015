@@ -13,6 +13,11 @@
 #include "AutonomousPickupAndScore.h"
 #include "ChassisDriveStraightForTime.h"
 #include "ChassisRotate.h"
+#include "ElevatorUpOne.h"
+#include "ArmCalibrate.h"
+#include "ElevatorAutoZero.h"
+#include "IntakeCalibrate.h"
+#include "ArmOpenClose.h"
 
 AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// Add Commands here:
@@ -32,7 +37,16 @@ AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
+	AddSequential(new ArmCalibrate());
+	AddSequential(new ElevatorAutoZero());
+	AddSequential(new IntakeCalibrate());
+
+	AddSequential(new ChassisDriveStraightForTime(0.25));
+	AddSequential(new ElevatorUpOne());
+	AddSequential(new ElevatorUpOne());
+	AddSequential(new ArmOpenClose());
+	AddSequential(new ElevatorUpOne());
+
+	AddSequential(new ChassisRotate(180.0));
 	AddSequential(new ChassisDriveStraightForTime(3.0));
-	AddSequential(new ChassisRotate(90.0));
-	AddSequential(new ChassisDriveStraightForTime(2.0));
 }

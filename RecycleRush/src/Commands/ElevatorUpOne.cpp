@@ -30,7 +30,7 @@ void ElevatorUpOne::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ElevatorUpOne::Execute() {
-	Robot::elevator->RampCombined( .1, 1, .05);
+	Robot::elevator->RampCombined( .1, 1, .30);
 	Robot::elevator->SmartDashboardOutputs();
 
 }
