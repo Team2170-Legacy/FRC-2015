@@ -14,6 +14,7 @@
 #include "Commands/Subsystem.h"
 #include "../MotionData.h"
 #include "../MaxSonarEZ1.h"
+#include "../LowPassFilter.h"
 #include "WPILib.h"
 
 /**
@@ -32,6 +33,10 @@ private:
 	float mCurrentAutoRotationVelocity = 1.0;
 	float mCurrentAutoMagnitude = 0.3;
 	float mYawGain = -0.2;
+	LowPassFilter* LeftStickFilter;
+	LowPassFilter* RightStickFilter;
+
+	double AxisPower(double axis, double exponent);
 
 	const bool bSwapDirection = true;
 public:
