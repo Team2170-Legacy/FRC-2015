@@ -66,6 +66,8 @@ void Chassis::TankDriveWithTriggers(float Left, float Right, float Trigger){
 	newLeft = fmax(fmin(OriginalLeft + (Trigger * .8), 1.0), -1.0);
 	newRight = fmax(fmin(OriginalRight + (Trigger * .8), 1.0), -1.0);
 
+	newLeft = pow(newLeft, 2.0);
+	newRight = pow(newRight, 2.0);
 	driveMotors->TankDrive(newLeft, newRight, false);
 }
     
