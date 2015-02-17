@@ -22,7 +22,9 @@ IntakeIn::IntakeIn() {
 
 // Called just before this Command runs the first time
 void IntakeIn::Initialize() {
+	Robot::intake->ResetToteLimitCounter();
 	Robot::intake->StartBothSides(Relay::kReverse);
+	Robot::intake->Close();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,7 +33,7 @@ void IntakeIn::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool IntakeIn::IsFinished() {
-	return false;
+	return (Robot::intake->ToteLimitHasBeenReached());
 }
 
 // Called once after isFinished returns true
