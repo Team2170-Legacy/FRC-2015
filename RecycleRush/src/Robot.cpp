@@ -54,10 +54,7 @@ void Robot::RobotInit() {
 	chooser->AddObject("PickupAndScore", new AutonomousPickupAndScore());
 	SmartDashboard::PutData("Autonomous Modes", chooser);
 
-	//Simple Vision camera code
-	CameraServer::GetInstance()->SetQuality(50);
-	//The camera name (ex "cam0") can be found through the roborio web interface
-	CameraServer::GetInstance()->StartAutomaticCapture("cam0");
+
   }
 
 /**
