@@ -40,6 +40,7 @@
 #include "Commands/IntakeCalibrate.h"
 #include "Commands/IntakeIn.h"
 #include "Commands/IntakeOpenClose.h"
+#include "Commands/IntakeStop.h"
 #include "Commands/RotateWithBumpersLeft.h"
 #include "Commands/RotateWithBumpersRight.h"
 
@@ -68,8 +69,10 @@ OI::OI() {
 
 	joystickDriverOnPort2 = new Joystick(2);
 	
+	joystick2Button7 = new JoystickButton(joystickDriverOnPort2, 7);
+	joystick2Button7->WhenPressed(new IntakeStop());
 	joystick2Button3 = new JoystickButton(joystickDriverOnPort2, 3);
-	joystick2Button3->WhileHeld(new IntakeIn());
+	joystick2Button3->WhenPressed(new IntakeIn());
 	joystick2Button1 = new JoystickButton(joystickDriverOnPort2, 1);
 	joystick2Button1->WhenPressed(new IntakeOpenClose());
 	joystickGunnerOnPort1 = new Joystick(1);
@@ -144,6 +147,8 @@ OI::OI() {
 	SmartDashboard::PutData("IntakeIn", new IntakeIn());
 
 	SmartDashboard::PutData("IntakeOpenClose", new IntakeOpenClose());
+
+	SmartDashboard::PutData("IntakeStop", new IntakeStop());
 
 	SmartDashboard::PutData("ElevatorPIDUpOne", new ElevatorPIDUpOne());
 
