@@ -30,6 +30,10 @@ Elevator::Elevator() : Subsystem("Elevator") {
 	//shaftEncoder->Reset();
 	targetLevel = 0;
 	distanceBetweenLevels = 654;//FIND THIS
+
+	m_direction=0.0;
+	m_startingPosition=0.0;
+	m_targetPosition=0.0;
 }
     
 void Elevator::InitDefaultCommand() {
@@ -49,7 +53,7 @@ void Elevator::InitDefaultCommand() {
 
 
 bool Elevator::GetLowerSafety(){
-	return !lowerLimit->Get();//True when pushed
+	return !lowerLimit->Get();	//True when pushed
 }
 
 bool Elevator::GetUpperSafety(){
@@ -165,4 +169,83 @@ void Elevator::Start(float speed){
 
 void Elevator::Stop(){
 	motor->Set(0.00);
+}
+
+void Elevator::StartMovingTowardTargetPosition(float TargetPosition){
+
+	std::cout << "Initialize";
+
+	// Remember what our goal was and where we started out from
+//	m_targetPosition = TargetPosition;
+	m_targetPosition = 654 * 3.5;	// Crawl, walk, run
+	m_startingPosition = shaftEncoder->GetDistance();
+
+	// Remember our direction
+	if (m_targetPosition > m_startingPosition) {
+		m_direction = +1.0;		// Move Upward
+	}else{
+		m_direction = -1.0;		// Move Downward
+	}
+
+	// Start moving
+//	motor->Set(kAutomatedStartSpeed * m_direction);
+		motor->Set(0.1);	// Crawl, walk, run
+
+	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+}
+
+void Elevator::AccelerateMaxSpeedDecelerate(){
+
+	std::cout << "Execute ";
+
+//	// If we are within acceleration range of starting position. Speed up
+//	if (fabs(m_startingPosition - shaftEncoder->GetDistance()) < kAccelerateDecelerateEncoderCountRange) {
+//		motor->Set(motor->Get()*(1+kAccelerateDeceleratePercentPerInvocation));
+//		std::cout << "Accel>";
+//
+//	// If we are within deceleration range of ending position. Slow down
+//	}else if(fabs(m_targetPosition - shaftEncoder->GetDistance()) < kAccelerateDecelerateEncoderCountRange){
+//		motor->Set(motor->Get()*kAccelerateDeceleratePercentPerInvocation);
+//		std::cout << "Decel>";
+//
+//	// We are outside of both the acceleration range and the deceleration range. Go to max speed
+//	}else{
+//		motor->Set(kAutomatedMaxSpeed * m_direction);
+//		std::cout << "FullSpeed>";
+//	}
+
+//		motor->Set(kAutomatedMaxSpeed * m_direction);	// Crawl, walk, run
+		motor->Set(1.0);	// Crawl, walk, run
+	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+}
+
+bool Elevator::ReachedTargetPosition(){
+
+	std::cout << "IsFinished";
+	std::cout << " Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+
+	return shaftEncoder->GetDistance() > 654 * 3.5;	// Crawl, walk, run
+
+//	if (m_direction > 0) {
+//		// Moving upward
+//		std::cout << " Upward Test>";
+//		std::cout << " Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+//		return shaftEncoder->GetDistance() > m_targetPosition;
+//	}else{
+//		// Moving downward
+//		std::cout << " Downward Test>";
+//		std::cout << " Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+//		return shaftEncoder->GetDistance() < m_targetPosition;
+//	}
+	return true;	// Will never reach this line but it eliminates a compiler warning. All code paths now have a return
+}
+
+bool Elevator::LowerSafetyIsCurrentlyPressed(){
+	// Limit switch currently wired to return false when pressed. We negate that and return true when pressed
+	return !lowerLimit->Get();
+}
+
+bool Elevator::UpperSafetyIsCurrentlyPressed(){
+	// Limit switch currently wired to return false when pressed. We negate that and return true when pressed
+	return !upperLimit->Get();
 }

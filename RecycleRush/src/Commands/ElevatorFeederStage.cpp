@@ -13,5 +13,7 @@
 
 ElevatorFeederStage::ElevatorFeederStage() {
 
-	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorFeederTop"), 0), 654 * 6)));
+	// Move Arm to tote level 3.5.
+	// Room for feeder station totes to slide diagonally onto single floor tote and not hit carried stack
+	AddSequential(new ElevatorGotoPosition( 654.0*3.5 ));		// Initial estimate 2289
 }

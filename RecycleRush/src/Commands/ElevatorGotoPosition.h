@@ -23,8 +23,11 @@
  */
 class ElevatorGotoPosition: public Command {
 public:
+
+	float m_commandTargetPosition; // TargetPosition as captured by overloaded command constructor
+
 	ElevatorGotoPosition();
-	ElevatorGotoPosition(double TargetPosition);
+	ElevatorGotoPosition(float TargetPosition);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

@@ -10,13 +10,12 @@
 
 #include "ElevatorPlatformPlace.h"
 #include "ElevatorGotoPosition.h"
+
 #include "ArmOpen.h"
 
 ElevatorPlatformPlace::ElevatorPlatformPlace() {
 
-	if (Robot::elevator->GetCurrentPosition() > SmartDashboard::GetNumber("ElevatorPlatformTop")) {
-		AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorPlatformTop"), 0), 654 * 6)));
-	}
-	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorPlatformBot"), 0), 654 * 6)));
+	// Move Arm to tote level 1, plus 1.5" to set stack on 2" Scoring Platform
+	AddSequential(new ElevatorGotoPosition( 654.0*1 + 54*1.5 ));		// Initial estimate 735
 	AddSequential(new ArmOpen());
 }

@@ -10,9 +10,12 @@
 
 #include "ElevatorFloorPickup.h"
 #include "ElevatorGotoPosition.h"
+#include "ElevatorFloorStage.h"
+
 
 ElevatorFloorPickup::ElevatorFloorPickup() {
 
-	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorFloorBot"), 0), 654 * 6)));
-	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorFloorTop"), 0), 654 * 6)));
+	// Move Arm to tote level 1 minus 2" to allow fingers to snap into place
+	AddSequential(new ElevatorGotoPosition( 654*1.0 - 54*2.0 ));	// Initial estimate 546
+	AddSequential(new ElevatorFloorStage());
 }

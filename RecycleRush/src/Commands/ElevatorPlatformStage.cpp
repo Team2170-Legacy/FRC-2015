@@ -13,5 +13,6 @@
 
 ElevatorPlatformStage::ElevatorPlatformStage() {
 
-	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorPlatformTop"), 0), 654 * 6)));
+	// Move Arm to tote level 1, plus 3" clearance in order to clear 2" Scoring Platform
+	AddSequential(new ElevatorGotoPosition( 654.0*1 + 54*3.0 ));		// Initial estimate 816
 }
