@@ -40,6 +40,8 @@
 #include "Commands/IntakeCalibrate.h"
 #include "Commands/IntakeIn.h"
 #include "Commands/IntakeOpenClose.h"
+#include "Commands/IntakeOut.h"
+#include "Commands/IntakeSpin.h"
 #include "Commands/IntakeStop.h"
 #include "Commands/RotateWithBumpersLeft.h"
 #include "Commands/RotateWithBumpersRight.h"
@@ -71,8 +73,12 @@ OI::OI() {
 	
 	joystick2Button7 = new JoystickButton(joystickDriverOnPort2, 7);
 	joystick2Button7->WhenPressed(new IntakeStop());
+	joystick2Button4 = new JoystickButton(joystickDriverOnPort2, 4);
+	joystick2Button4->WhileHeld(new IntakeSpin());
 	joystick2Button3 = new JoystickButton(joystickDriverOnPort2, 3);
-	joystick2Button3->WhenPressed(new IntakeIn());
+	joystick2Button3->WhileHeld(new IntakeIn());
+	joystick2Button2 = new JoystickButton(joystickDriverOnPort2, 2);
+	joystick2Button2->WhileHeld(new IntakeOut());
 	joystick2Button1 = new JoystickButton(joystickDriverOnPort2, 1);
 	joystick2Button1->WhenPressed(new IntakeOpenClose());
 	joystickGunnerOnPort1 = new Joystick(1);
@@ -80,9 +86,9 @@ OI::OI() {
 	joystickButton5 = new JoystickButton(joystickGunnerOnPort1, 5);
 	joystickButton5->WhenPressed(new ElevatorManual());
 	joystickButton3 = new JoystickButton(joystickGunnerOnPort1, 3);
-	joystickButton3->WhenPressed(new ElevatorUpOne());
+	joystickButton3->WhenPressed(new ElevatorFeederStage());
 	joystickButton2 = new JoystickButton(joystickGunnerOnPort1, 2);
-	joystickButton2->WhenPressed(new ElevatorDownOne());
+	joystickButton2->WhenPressed(new ElevatorFloorStage());
 	joystickButton1 = new JoystickButton(joystickGunnerOnPort1, 1);
 	joystickButton1->WhenPressed(new ArmOpenClose());
 	joystickDriverOnPort0 = new Joystick(0);
@@ -146,7 +152,11 @@ OI::OI() {
 
 	SmartDashboard::PutData("IntakeIn", new IntakeIn());
 
+	SmartDashboard::PutData("IntakeOut", new IntakeOut());
+
 	SmartDashboard::PutData("IntakeOpenClose", new IntakeOpenClose());
+
+	SmartDashboard::PutData("IntakeSpin", new IntakeSpin());
 
 	SmartDashboard::PutData("IntakeStop", new IntakeStop());
 
