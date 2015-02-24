@@ -53,16 +53,16 @@ void Chassis::TankDriveWithTriggers(float Left, float Right, float Trigger){
 	double fExponent = 1.0;
 
 	ProcessedLeft = LeftStickFilter->Update(ProcessedLeft);
-	ProcessedLeft = DEADBAND(AxisPower(ProcessedLeft, fExponent), 0.075);
+	ProcessedLeft = DEADBAND(AxisPower(ProcessedLeft, fExponent), 0.15);
 
 	ProcessedRight = RightStickFilter->Update(ProcessedRight);
-	ProcessedRight = DEADBAND(AxisPower(ProcessedRight, fExponent), 0.075);
+	ProcessedRight = DEADBAND(AxisPower(ProcessedRight, fExponent), 0.15);
 
 	newLeft = fmax(fmin(ProcessedLeft + (Trigger * .8), 1.0), -1.0);
 	newRight = fmax(fmin(ProcessedRight + (Trigger * .8), 1.0), -1.0);
 
 	if ((ProcessedLeft == 0) && (ProcessedRight == 0)) {
-		if (!bDriveStraight) {
+		if (!bDriveStraight || DEADBAND(Trigger, 0.15) == 0) {
 			ResetChassisYaw();
 		}
 		bDriveStraight = true;
