@@ -82,6 +82,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
+//	chassis->movementData->UpdateData();
 	Scheduler::GetInstance()->Run();
 }
 
