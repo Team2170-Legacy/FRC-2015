@@ -22,7 +22,7 @@ ElevatorAutoZero::ElevatorAutoZero() {
 
 // Called just before this Command runs the first time
 void ElevatorAutoZero::Initialize() {
-	Robot::elevator->motor->Set(-.1);
+	Robot::elevator->motor->Set(-.3);
 }
 
 // Called repeatedly when this Command is scheduled to run
