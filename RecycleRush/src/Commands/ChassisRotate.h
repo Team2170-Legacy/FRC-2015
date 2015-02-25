@@ -23,11 +23,13 @@
  */
 class ChassisRotate: public Command {
 protected:
+	float mPassedAngle = 0.0;
 	float mRotateAngle = 0.0;
 	int mDownshiftCounter = 0;
+	bool bCorrection = false;
 public:
 	ChassisRotate();
-	ChassisRotate(float NewAngle);
+	ChassisRotate(float NewAngle, bool Correction = false);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

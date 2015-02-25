@@ -31,8 +31,8 @@ Chassis::Chassis() : Subsystem("Chassis")
 	internalAccel = new BuiltInAccelerometer();
 	movementData = new MotionData(internalAccel);
 
-	LeftStickFilter = new LowPassFilter(5.0, 50.0);
-	RightStickFilter = new LowPassFilter(5.0, 50.0);
+	LeftStickFilter = new LowPassFilter(2.0, 50.0);
+	RightStickFilter = new LowPassFilter(2.0, 50.0);
 
 	// Motor direction (based on gearing)
 	bool isInverted = false;
