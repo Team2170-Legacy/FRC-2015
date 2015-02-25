@@ -85,6 +85,8 @@ OI::OI() {
 	
 	joystickButton5 = new JoystickButton(joystickGunnerOnPort1, 5);
 	joystickButton5->WhenPressed(new ElevatorManual());
+	joystickButton4 = new JoystickButton(joystickGunnerOnPort1, 4);
+	joystickButton4->WhenPressed(new ElevatorFeederPickup());
 	joystickButton3 = new JoystickButton(joystickGunnerOnPort1, 3);
 	joystickButton3->WhenPressed(new ElevatorFeederStage());
 	joystickButton2 = new JoystickButton(joystickGunnerOnPort1, 2);
