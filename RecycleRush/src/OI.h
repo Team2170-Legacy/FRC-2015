@@ -24,6 +24,7 @@ private:
 	JoystickButton* joystick2Button2;
 	JoystickButton* joystick2Button1;
 	Joystick* joystickGunnerOnPort1;
+	JoystickButton* joystickButton11;
 	JoystickButton* joystickButton5;
 	JoystickButton* joystickButton4;
 	JoystickButton* joystickButton3;
