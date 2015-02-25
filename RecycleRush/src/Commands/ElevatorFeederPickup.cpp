@@ -15,7 +15,6 @@
 ElevatorFeederPickup::ElevatorFeederPickup() {
 
 	// Move Arm to tote level 2 minus 2" to allow fingers to snap into place
-//	AddSequential(new ElevatorGotoPosition( 654*2.0 - 54*2.0 ));	// Initial estimate 1200
-	AddSequential(new ElevatorGotoPosition( 0 ));	// Initial estimate 1200
+	AddSequential(new ElevatorGotoPosition( 0 ));
 	AddSequential(new ElevatorFeederStage());
 }

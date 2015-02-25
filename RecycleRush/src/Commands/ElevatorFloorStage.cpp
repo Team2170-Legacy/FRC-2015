@@ -13,6 +13,6 @@
 
 ElevatorFloorStage::ElevatorFloorStage() {
 
-	// Move Arm to tote level 2, plus 2" clearance to allow driving over totes on the floor
-	AddSequential(new ElevatorGotoPosition( 831 ));	// Initial estimate 1416
+	// Move Arm to allow driving over totes on the floor
+	AddSequential(new ElevatorGotoPosition( 831 ));
 }

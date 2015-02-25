@@ -12,11 +12,9 @@
 #include "ElevatorGotoPosition.h"
 #include "ElevatorFloorStage.h"
 
-
 ElevatorFloorPickup::ElevatorFloorPickup() {
 
 	// Move Arm to tote level 1 minus 2" to allow fingers to snap into place
-	AddSequential(new ElevatorGotoPosition( 654*1.0 - 54*2.0 ));	// Initial estimate 546
-	AddSequential(new ElevatorGotoPosition( 50 ));	// Initial estimate 546
+	AddSequential(new ElevatorGotoPosition( 0 ));
 	AddSequential(new ElevatorFloorStage());
 }

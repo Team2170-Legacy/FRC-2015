@@ -177,7 +177,6 @@ void Elevator::StartMovingTowardTargetPosition(float TargetPosition){
 
 	// Remember what our goal was and where we started out from
 	m_targetPosition = TargetPosition;
-//	m_targetPosition = 654 * 2.0;	// Crawl, walk, run
 	m_startingPosition = shaftEncoder->GetDistance();
 
 	// Remember our direction
@@ -189,7 +188,6 @@ void Elevator::StartMovingTowardTargetPosition(float TargetPosition){
 
 	// Start moving
 	motor->Set(kAutomatedStartSpeed * m_direction);
-		motor->Set(0.1);	// Crawl, walk, run
 
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
@@ -214,8 +212,8 @@ void Elevator::AccelerateMaxSpeedDecelerate(){
 //		std::cout << "FullSpeed>";
 //	}
 
-		motor->Set(kAutomatedMaxSpeed * m_direction);	// Crawl, walk, run
-//		motor->Set(1.0);	// Crawl, walk, run
+	motor->Set(kAutomatedMaxSpeed * m_direction);	// Crawl, walk, run
+
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
 
@@ -223,8 +221,6 @@ bool Elevator::ReachedTargetPosition(){
 
 	std::cout << "IsFinished";
 	std::cout << " Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
-
-//	return shaftEncoder->GetDistance() > 654 * 2.0;	// Crawl, walk, run
 
 	if (m_direction > 0) {
 		// Moving upward
