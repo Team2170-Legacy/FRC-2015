@@ -15,5 +15,6 @@ ElevatorFeederStage::ElevatorFeederStage() {
 
 	// Move Arm to tote level 3.5.
 	// Room for feeder station totes to slide diagonally onto single floor tote and not hit carried stack
-	AddSequential(new ElevatorGotoPosition( 654.0*3.5 ));		// Initial estimate 2289
+//	AddSequential(new ElevatorGotoPosition( 654.0*3.5 ));		// Initial estimate 2289
+	AddSequential(new ElevatorGotoPosition( 1783 ));		// Initial estimate 2289
 }

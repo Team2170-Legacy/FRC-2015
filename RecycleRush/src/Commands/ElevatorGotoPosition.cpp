@@ -38,7 +38,7 @@ void ElevatorGotoPosition::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorGotoPosition::IsFinished() {
-	return Robot::elevator->ReachedTargetPosition() || Robot::elevator->LowerSafetyIsCurrentlyPressed() || Robot::elevator->UpperSafetyIsCurrentlyPressed();
+	return Robot::elevator->ReachedTargetPosition();
 }
 
 // Called once after isFinished returns true

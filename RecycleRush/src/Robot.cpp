@@ -55,9 +55,9 @@ void Robot::RobotInit() {
 	SmartDashboard::PutData("Autonomous Modes", chooser);
 
 	//Simple Vision camera code
-//	CameraServer::GetInstance()->SetQuality(50);
+	//CameraServer::GetInstance()->SetQuality(50);
 	//The camera name (ex "cam0") can be found through the roborio web interface
-//	CameraServer::GetInstance()->StartAutomaticCapture("cam0");
+    //CameraServer::GetInstance()->StartAutomaticCapture("cam0");
   }
 
 /**
