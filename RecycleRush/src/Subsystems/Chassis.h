@@ -59,7 +59,7 @@ public:
 
 	void StopMotors();
 
-	void DriveStraight();
+	void DriveStraight(bool Backwards = false);
 	void DriveStraight(float magnitude);
 	void TurnClockwise();
 	void TurnCounterclockwise();

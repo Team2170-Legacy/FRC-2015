@@ -28,9 +28,10 @@ private:
 	std::string mKey = "";
 	bool bSmartDashCtrl = false;
 	double GetDriveTime(void);
+	bool bDriveBackwards = false;
 public:
 	ChassisDriveStraightForTime();
-	ChassisDriveStraightForTime(double NewTime);
+	ChassisDriveStraightForTime(double NewTime, bool Backwards = false);
 	ChassisDriveStraightForTime(std::string key);
 	virtual void Initialize();
 	virtual void Execute();

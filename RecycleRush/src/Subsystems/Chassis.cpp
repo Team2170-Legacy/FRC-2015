@@ -66,7 +66,7 @@ void Chassis::TankDriveWithTriggers(float Left, float Right, float Trigger){
 			ResetChassisYaw();
 		}
 		bDriveStraight = true;
-		DriveStraight(Trigger * 0.8);
+		DriveStraight(Trigger * 0.8f);
 	}
 	else {
 		bDriveStraight = false;
@@ -97,10 +97,17 @@ void Chassis::StopMotors(void)
 	mCurrentAutoRotationVelocity = mDefaultAutoRotatationVelocity;
 }
 
-void Chassis::DriveStraight()
+void Chassis::DriveStraight(bool Backwards)
 {
 	// Drive chassis straight for specified time at auto velocity
-	DriveStraight(mAutoVelocity);
+	if (Backwards)
+	{
+		DriveStraight(-mAutoVelocity);
+	}
+	else
+	{
+		DriveStraight(mAutoVelocity);
+	}
 }
 
 void Chassis::DriveStraight(float magnitude)
