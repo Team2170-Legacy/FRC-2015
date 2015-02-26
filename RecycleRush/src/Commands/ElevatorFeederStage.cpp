@@ -13,5 +13,6 @@
 
 ElevatorFeederStage::ElevatorFeederStage() {
 
-	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorFeederTop"), 0), 654 * 6)));
+	// Room for feeder station totes to slide diagonally onto floor and not hit carried stack
+	AddSequential(new ElevatorGotoPosition( 1783 + 7.5*54 ));
 }

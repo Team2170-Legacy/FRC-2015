@@ -13,5 +13,6 @@
 
 ElevatorFloorStage::ElevatorFloorStage() {
 
-	AddSequential(new ElevatorGotoPosition( fmin( fmax(SmartDashboard::GetNumber("ElevatorFloorTop"), 0), 654 * 6)));
+	// Move Arm to allow driving over totes on the floor
+	AddSequential(new ElevatorGotoPosition( 831 ));
 }

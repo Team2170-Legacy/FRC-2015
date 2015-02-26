@@ -8,14 +8,21 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-#include "ElevatorPlatformPlace.h"
-#include "ElevatorGotoPosition.h"
 
-#include "ArmOpen.h"
 
-ElevatorPlatformPlace::ElevatorPlatformPlace() {
+#ifndef AUTONOMOUSPICKUPCANANDSCORE_H
+#define AUTONOMOUSPICKUPCANANDSCORE_H
 
-	// Move Arm to tote level 1, plus 1.5" to set stack on 2" Scoring Platform
-	AddSequential(new ElevatorGotoPosition( 654.0*1 + 54*1.5 ));		// Initial estimate 735
-	AddSequential(new ArmOpen());
-}
+#include "Commands/CommandGroup.h"
+
+/**
+ *
+ *
+ * @author ExampleAuthor
+ */
+class AutonomousPickupCanAndScore: public CommandGroup {
+public:	
+	AutonomousPickupCanAndScore();
+};
+
+#endif

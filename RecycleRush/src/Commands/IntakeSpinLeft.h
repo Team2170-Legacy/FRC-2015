@@ -8,14 +8,27 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-#include "ElevatorPlatformPlace.h"
-#include "ElevatorGotoPosition.h"
 
-#include "ArmOpen.h"
+#ifndef INTAKESPINLEFT_H
+#define INTAKESPINLEFT_H
 
-ElevatorPlatformPlace::ElevatorPlatformPlace() {
 
-	// Move Arm to tote level 1, plus 1.5" to set stack on 2" Scoring Platform
-	AddSequential(new ElevatorGotoPosition( 654.0*1 + 54*1.5 ));		// Initial estimate 735
-	AddSequential(new ArmOpen());
-}
+#include "Commands/Subsystem.h"
+#include "../Robot.h"
+
+/**
+ *
+ *
+ * @author ExampleAuthor
+ */
+class IntakeSpinLeft: public Command {
+public:
+	IntakeSpinLeft();
+	virtual void Initialize();
+	virtual void Execute();
+	virtual bool IsFinished();
+	virtual void End();
+	virtual void Interrupted();
+};
+
+#endif
