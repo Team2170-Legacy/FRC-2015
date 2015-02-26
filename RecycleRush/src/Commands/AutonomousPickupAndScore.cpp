@@ -13,11 +13,12 @@
 #include "AutonomousPickupAndScore.h"
 #include "ChassisDriveStraightForTime.h"
 #include "ChassisRotate.h"
-#include "ElevatorUpOne.h"
+#include "ElevatorGotoPosition.h"
 #include "ArmCalibrate.h"
 #include "ElevatorAutoZero.h"
 #include "IntakeCalibrate.h"
-#include "ArmOpenClose.h"
+#include "ArmOpen.h"
+#include "ArmClose.h"
 
 AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// Add Commands here:
@@ -37,22 +38,14 @@ AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
+	AddSequential(new ArmOpen());
+	AddSequential(new WaitCommand(0.5));	// wait for arm to open
+	AddSequential(new ElevatorAutoZero());
+	AddSequential(new ArmClose());
+	AddSequential(new WaitCommand(0.5));		// wait for arm to close
+	AddSequential(new ElevatorGotoPosition(700.0));
+	AddSequential(new ChassisRotate(90.0));
+	AddSequential(new WaitCommand(0.5));
+	AddSequential(new ChassisRotate(90.0, true));
 	AddSequential(new ChassisDriveStraightForTime(2.0));
-	AddSequential(new ChassisRotate(-180.0));
-	AddSequential(new WaitCommand(1.0));
-	AddSequential(new ChassisRotate(-180.0, true));
-	AddSequential(new ChassisDriveStraightForTime(2.0));
-
-//	AddSequential(new ArmCalibrate());
-//	AddSequential(new ElevatorAutoZero());
-//	AddSequential(new IntakeCalibrate());
-//
-//	AddSequential(new ChassisDriveStraightForTime(0.25));
-//	AddSequential(new ElevatorUpOne());
-//	AddSequential(new ElevatorUpOne());
-//	AddSequential(new ArmOpenClose());
-//	AddSequential(new ElevatorUpOne());
-//
-//	AddSequential(new ChassisRotate(180.0));
-//	AddSequential(new ChassisDriveStraightForTime(3.0));
 }
