@@ -20,6 +20,7 @@
 #include "Commands/AutonomousCommand.h"
 #include "Commands/AutonomousDriveToScore.h"
 #include "Commands/AutonomousPickupAndScore.h"
+#include "Commands/AutonomousPickupCanAndScore.h"
 #include "Commands/ChassisCalibrate.h"
 #include "Commands/ChassisDriveStraightForTime.h"
 #include "Commands/ChassisRotate.h"
@@ -42,6 +43,8 @@
 #include "Commands/IntakeOpenClose.h"
 #include "Commands/IntakeOut.h"
 #include "Commands/IntakeSpin.h"
+#include "Commands/IntakeSpinLeft.h"
+#include "Commands/IntakeSpinRight.h"
 #include "Commands/IntakeStop.h"
 #include "Commands/RotateWithBumpersLeft.h"
 #include "Commands/RotateWithBumpersRight.h"
@@ -73,8 +76,10 @@ OI::OI() {
 	
 	joystick2Button7 = new JoystickButton(joystickDriverOnPort2, 7);
 	joystick2Button7->WhenPressed(new IntakeStop());
+	joystick2Button5 = new JoystickButton(joystickDriverOnPort2, 5);
+	joystick2Button5->WhileHeld(new IntakeSpinRight());
 	joystick2Button4 = new JoystickButton(joystickDriverOnPort2, 4);
-	joystick2Button4->WhileHeld(new IntakeSpin());
+	joystick2Button4->WhileHeld(new IntakeSpinLeft());
 	joystick2Button3 = new JoystickButton(joystickDriverOnPort2, 3);
 	joystick2Button3->WhileHeld(new IntakeIn());
 	joystick2Button2 = new JoystickButton(joystickDriverOnPort2, 2);
@@ -111,6 +116,8 @@ OI::OI() {
 	SmartDashboard::PutData("AutonomousDriveToScore", new AutonomousDriveToScore());
 
 	SmartDashboard::PutData("AutonomousPickupAndScore", new AutonomousPickupAndScore());
+
+	SmartDashboard::PutData("AutonomousPickupCanAndScore", new AutonomousPickupCanAndScore());
 
 	SmartDashboard::PutData("DriveWithJoysticks", new DriveWithJoysticks());
 
@@ -161,6 +168,10 @@ OI::OI() {
 	SmartDashboard::PutData("IntakeOpenClose", new IntakeOpenClose());
 
 	SmartDashboard::PutData("IntakeSpin", new IntakeSpin());
+
+	SmartDashboard::PutData("IntakeSpinLeft", new IntakeSpinLeft());
+
+	SmartDashboard::PutData("IntakeSpinRight", new IntakeSpinRight());
 
 	SmartDashboard::PutData("IntakeStop", new IntakeStop());
 
