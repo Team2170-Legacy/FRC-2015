@@ -32,12 +32,16 @@ ChassisRotate::ChassisRotate(float NewAngle, bool Correction)
 
 // Called just before this Command runs the first time
 void ChassisRotate::Initialize() {
-	Command::SetTimeout(10.0);
+	Command::SetTimeout(4.0);
+
+	Robot::chassis->driveMotors->SetSafetyEnabled(false);
 
 	if (bCorrection)
 	{
 		std::cout <<"Rotate Angle = " << mRotateAngle << std::endl;
+
 		mRotateAngle = mPassedAngle - Robot::chassis->ReadChassisYaw();
+
 		std::cout << "Corrected to " << mRotateAngle << std::endl;
 	}
 
@@ -48,7 +52,7 @@ void ChassisRotate::Initialize() {
 void ChassisRotate::Execute() {
 	float RemainingAngle = mRotateAngle - Robot::chassis->ReadChassisYaw();
 
-	if ((fabs(RemainingAngle) < 25.0) && (mDownshiftCounter == 0))
+	if ((fabs(RemainingAngle) < 25.0 || bCorrection) && (mDownshiftCounter == 0))
 	{
 		Robot::chassis->setCurrentAutoMagnitude(Robot::chassis->getCurrentAutoMagnitude() / 2.0);
 		mDownshiftCounter++;
@@ -90,6 +94,8 @@ void ChassisRotate::End() {
 	Robot::chassis->StopMotors();
 	mDownshiftCounter = 0;
 	std::cout << "Current Yaw: " << Robot::chassis->ReadChassisYaw() << std::endl;
+
+	Robot::chassis->driveMotors->SetSafetyEnabled(true);
 
 }
 
