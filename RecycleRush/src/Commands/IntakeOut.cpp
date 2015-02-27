@@ -22,7 +22,7 @@ IntakeOut::IntakeOut() {
 
 // Called just before this Command runs the first time
 void IntakeOut::Initialize() {
-	
+	Robot::intake->StartBothSides(Relay::kForward);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -37,11 +37,11 @@ bool IntakeOut::IsFinished() {
 
 // Called once after isFinished returns true
 void IntakeOut::End() {
-	
+	Robot::intake->StopBothSides();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void IntakeOut::Interrupted() {
-
+	End();
 }
