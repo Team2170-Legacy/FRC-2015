@@ -38,11 +38,7 @@ void ChassisRotate::Initialize() {
 
 	if (bCorrection)
 	{
-		std::cout <<"Rotate Angle = " << mRotateAngle << std::endl;
-
 		mRotateAngle = mPassedAngle - Robot::chassis->ReadChassisYaw();
-
-		std::cout << "Corrected to " << mRotateAngle << std::endl;
 	}
 
 	Robot::chassis->ResetChassisYaw();

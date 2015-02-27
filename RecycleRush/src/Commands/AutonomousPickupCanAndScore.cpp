@@ -38,21 +38,11 @@ AutonomousPickupCanAndScore::AutonomousPickupCanAndScore() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	AddSequential(new ChassisRotate(90.0));
-//	AddSequential(new ChassisRotate(90.0, true));
-	AddSequential(new WaitCommand(1.0));
-	AddSequential(new ChassisRotate(-90.0));
-//	AddSequential(new ChassisRotate(-90.0, true));
-
-
-//	AddSequential(new ArmOpen());
-//	AddSequential(new WaitCommand(0.5));	// wait for arm to open
-//	AddSequential(new ElevatorAutoZero());
-//	AddSequential(new ArmClose());
-//	AddSequential(new WaitCommand(0.5));		// wait for arm to close
-//	AddSequential(new ElevatorGotoPosition(700.0));
-//	AddSequential(new ChassisRotate(90.0));
-//	AddSequential(new WaitCommand(0.5));
-//	AddSequential(new ChassisRotate(90.0, true));
-//	AddSequential(new ChassisDriveStraightForTime(2.0));
+	AddSequential(new ArmOpen());
+	AddSequential(new WaitCommand(0.5));	// wait for arm to open
+	AddSequential(new ElevatorAutoZero());
+	AddSequential(new ElevatorGotoPosition(700.0));
+	AddSequential(new ArmClose());
+	AddSequential(new WaitCommand(0.5));		// wait for arm to close
+	AddSequential(new ChassisDriveStraightForTime(3.0, true));
 }

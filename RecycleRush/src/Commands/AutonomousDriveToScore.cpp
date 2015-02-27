@@ -11,8 +11,8 @@
 
 
 #include "AutonomousDriveToScore.h"
+#include "ElevatorAutoZero.h"
 #include "ChassisDriveStraightForTime.h"
-#include "ChassisRotate.h"
 
 AutonomousDriveToScore::AutonomousDriveToScore() {
 	// Add Commands here:
@@ -32,5 +32,6 @@ AutonomousDriveToScore::AutonomousDriveToScore() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
+	AddSequential(new ElevatorAutoZero());
 	AddSequential(new ChassisDriveStraightForTime("ChassisDriveStraightForTimeInput"));
 }
