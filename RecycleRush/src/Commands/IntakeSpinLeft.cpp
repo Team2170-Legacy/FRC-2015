@@ -21,7 +21,8 @@ IntakeSpinLeft::IntakeSpinLeft() {
 
 // Called just before this Command runs the first time
 void IntakeSpinLeft::Initialize() {
-	
+	Robot::intake->StartLeftSide(Relay::kReverse);
+	Robot::intake->StartRightSide(Relay::kForward);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -36,11 +37,11 @@ bool IntakeSpinLeft::IsFinished() {
 
 // Called once after isFinished returns true
 void IntakeSpinLeft::End() {
-	
+	Robot::intake->StopBothSides();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void IntakeSpinLeft::Interrupted() {
-
+	End();
 }
