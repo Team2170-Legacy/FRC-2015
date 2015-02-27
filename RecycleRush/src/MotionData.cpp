@@ -13,11 +13,7 @@ MotionData::MotionData() {
 }
 
 MotionData::MotionData(Accelerometer* accel) {
-	mAcceleration += accel->GetY() * GsToMeters;;
-	mVelocity += mAcceleration * mDeltaTime;
-	mDistance += mVelocity * mDeltaTime;
-	mOdometer += mVelocity * mDeltaTime;
-
+	mAccel = accel;
 }
 
 MotionData::~MotionData() {
@@ -25,7 +21,10 @@ MotionData::~MotionData() {
 }
 
 void MotionData::UpdateData() {
-	mAcceleration = mAccel->GetX();
+	mAcceleration += mAccel->GetY() * GsToMeters;;
+	mVelocity += mAcceleration * mDeltaTime;
+	mDistance += mVelocity * mDeltaTime;
+	mOdometer += mVelocity * mDeltaTime;
 }
 
 void MotionData::ResetDistance() {

@@ -35,11 +35,25 @@ public:
 	float distanceBetweenLevels;
 	float targetLevel; //Target 'Level' of lift, is theoretical encoder distance
 
+const float kAutomatedStartSpeed = 0.1;	// Automated elevator movements start moving at this speed
+const float kAutomatedMaxSpeed = 1.0;	// Automated elevator movements not to exceed this speed
+const float kAccelerateDeceleratePercentPerInvocation = 0.60;	// Upon each invocation, apply this percent to the current speed
+const float kAccelerateDecelerateEncoderCountRange = 20.0;	// If within this many encoder counts of start then apply acceleration, if within this many encoder counts of end then apply deceleration
+float m_targetPosition;				// Encoder position we are attempting to move elevator to
+float m_startingPosition;			// Encoder position when positioning command invoked
+float m_direction;					// +1 for up, -1 for down. Based on initialization comparison of starting and target position
+void StartMovingTowardTargetPosition(float TargetPosition);	// Save target position requested by command initialization; initialization of movement; and start moving
+void AccelerateMaxSpeedDecelerate();						// Continue movement but ramping up to, or down from, full speed
+bool ReachedTargetPosition();								// True when elevator has reached or passed the target position
+bool LowerSafetyIsCurrentlyPressed();						// Limit switch is currently wired to return false when pressed. We negate that and return true when pressed
+bool UpperSafetyIsCurrentlyPressed();						// Limit switch is currently wired to return false when pressed. We negate that and return true when pressed
+
 	void AddOneLevel();
 	void SubtractOneLevel();
 
 	float GetThrottle();
 	float GetTargetLevel(float direction);
+	void SetTargetLevel(float TargetLevel);
 	float GetCurrentPosition();//'Position' should refer to actual encoder reading, while Level should used for theoretical/target positions
 	void InitDefaultCommand();
 
@@ -48,9 +62,11 @@ public:
 	bool isMoving();
 	bool isAboveTarget();
 	bool isBelowTarget();
+	float GetSpeed();
 
 	void Start(float speed);
 	void ManualControl();
+	void SmartDashboardInputs();
 	void SmartDashboardOutputs();
 	void Stop();
 

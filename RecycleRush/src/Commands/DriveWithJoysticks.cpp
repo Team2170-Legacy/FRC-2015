@@ -30,8 +30,8 @@ void DriveWithJoysticks::Initialize() {
 void DriveWithJoysticks::Execute() {
 	// Gather the XBox controller left and right joystick Y axes values from the most recently received
 	// Driver Station transmission packet, and send them to the chassis TankDriveWithTriggers method
-	double left = pow(mDriverControl->GetLeftY(),3);
-	double right = pow(mDriverControl->GetRightY(), 3);
+	double left = mDriverControl->GetLeftY();
+	double right = mDriverControl->GetRightY();
 
 	Robot::chassis->TankDriveWithTriggers(left,	right, mDriverControl->GetTriggers());
 }
