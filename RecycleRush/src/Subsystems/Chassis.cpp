@@ -42,7 +42,7 @@ Chassis::Chassis() : Subsystem("Chassis")
 	driveMotors->SetInvertedMotor(RobotDrive::MotorType::kRearLeftMotor, isInverted);
 	driveMotors->SetInvertedMotor(RobotDrive::MotorType::kRearRightMotor, isInverted);
 
-	driveMotors->SetExpiration(0.25);
+	driveMotors->SetExpiration(1.0);
 }
 
 void Chassis::TankDriveWithTriggers(float Left, float Right, float Trigger){
