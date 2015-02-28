@@ -45,7 +45,7 @@ AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	AddSequential(new WaitCommand(0.5));		// wait for arm to close
 	AddSequential(new ElevatorGotoPosition(700.0));
 	AddSequential(new ChassisRotate(90.0));
-	AddSequential(new WaitCommand(0.5));
+	AddSequential(new WaitCommand(0.250));
 	AddSequential(new ChassisRotate(90.0, true));
-	AddSequential(new ChassisDriveStraightForTime(4.0));
+	AddSequential(new ChassisDriveStraightForTime(3.8));
 }

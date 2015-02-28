@@ -50,7 +50,7 @@ void ChassisRotate::Execute() {
 
 	if ((fabs(RemainingAngle) < 25.0 || bCorrection) && (mDownshiftCounter == 0))
 	{
-		Robot::chassis->setCurrentAutoMagnitude(Robot::chassis->getCurrentAutoMagnitude() / 2.0);
+		Robot::chassis->setCurrentAutoMagnitude(Robot::chassis->getCurrentAutoMagnitude() / 1.5);
 		mDownshiftCounter++;
 	}
 
