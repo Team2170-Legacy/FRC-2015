@@ -41,8 +41,13 @@ AutonomousPickupCanAndScore::AutonomousPickupCanAndScore() {
 	AddSequential(new ArmOpen());
 	AddSequential(new WaitCommand(0.5));	// wait for arm to open
 	AddSequential(new ElevatorAutoZero());
-	AddSequential(new ElevatorGotoPosition(700.0));
 	AddSequential(new ArmClose());
 	AddSequential(new WaitCommand(0.5));		// wait for arm to close
-	AddSequential(new ChassisDriveStraightForTime(3.0, true));
+	AddSequential(new ElevatorGotoPosition(500.0));
+	AddSequential(new ChassisRotate(-90.0));
+	AddSequential(new WaitCommand(0.250));
+	AddSequential(new ChassisRotate(-90.0, true));
+	AddSequential(new ChassisDriveStraightForTime(3.6));
+	AddSequential(new ElevatorGotoPosition(0.0));
+	AddSequential(new ArmOpen());
 }
