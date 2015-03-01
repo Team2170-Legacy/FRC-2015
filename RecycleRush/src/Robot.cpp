@@ -52,6 +52,7 @@ void Robot::RobotInit() {
 	chooser = new SendableChooser();
 	chooser->AddDefault("DriveToScore", new AutonomousDriveToScore());
 	chooser->AddObject("PickupAndScore", new AutonomousPickupAndScore());
+	chooser->AddObject("PickupCanAndScore", new AutonomousPickupCanAndScore());
 	SmartDashboard::PutData("Autonomous Modes", chooser);
 
 	//Simple Vision camera code

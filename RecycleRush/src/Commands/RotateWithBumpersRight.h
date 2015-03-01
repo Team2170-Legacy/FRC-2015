@@ -16,6 +16,7 @@
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
 #include "ChassisRotate.h"
+#include "../Xbox360.h"
 
 /**
  *
@@ -23,6 +24,8 @@
  * @author ExampleAuthor
  */
 class RotateWithBumpersRight: public ChassisRotate {
+private:
+	Xbox360* mDriverControl;
 public:
 	RotateWithBumpersRight();
 	virtual void Initialize();

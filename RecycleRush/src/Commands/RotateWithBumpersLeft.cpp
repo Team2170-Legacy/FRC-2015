@@ -11,6 +11,7 @@
 
 #include "RotateWithBumpersLeft.h"
 #include "ChassisRotate.h"
+#include "../Subsystems/Chassis.h"
 
 RotateWithBumpersLeft::RotateWithBumpersLeft() {
 	// Use requires() here to declare subsystem dependencies
@@ -26,6 +27,7 @@ RotateWithBumpersLeft::RotateWithBumpersLeft() {
 // Called just before this Command runs the first time
 void RotateWithBumpersLeft::Initialize() {
 	ChassisRotate::Initialize();
+	mDriverControl = new Xbox360(Robot::oi->getJoystickDriverOnPort0());
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -35,12 +37,24 @@ void RotateWithBumpersLeft::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool RotateWithBumpersLeft::IsFinished() {
-	return ChassisRotate::IsFinished();
+	bool rVal = false;
+	float LeftStick = mDriverControl->GetLeftY();
+	float RightStick = mDriverControl->GetRightY();
+
+	if ((DEADBAND(LeftStick, 0.075) != 0.0) || (DEADBAND(RightStick, 0.075) != 0.0)) {
+		rVal = true;
+	}
+	else {
+		rVal =  ChassisRotate::IsFinished();
+	}
+
+	return rVal;
 }
 
 // Called once after isFinished returns true
 void RotateWithBumpersLeft::End() {
 	ChassisRotate::End();
+	delete mDriverControl;
 }
 
 // Called when another command which requires one or more of the same
