@@ -41,8 +41,15 @@ AutonomousPickupCanAndScore::AutonomousPickupCanAndScore() {
 	AddSequential(new ArmOpen());
 	AddSequential(new WaitCommand(0.5));	// wait for arm to open
 	AddSequential(new ElevatorAutoZero());
-	AddSequential(new ElevatorGotoPosition(700.0));
 	AddSequential(new ArmClose());
 	AddSequential(new WaitCommand(0.5));		// wait for arm to close
-	AddSequential(new ChassisDriveStraightForTime(3.0, true));
+	AddSequential(new ElevatorGotoPosition(900.0));
+	AddSequential(new ChassisDriveStraightForTime(1.0));
+// We could add ArmClose here and IntakeIn for a short period, but also we still had the tote when done in every test
+	AddSequential(new ChassisRotate(-90.0));
+	AddSequential(new WaitCommand(0.250));
+	AddSequential(new ChassisRotate(-90.0, true));
+	AddSequential(new ChassisDriveStraightForTime(4.1));
+//	AddSequential(new ElevatorGotoPosition(0.0));
+//	AddSequential(new ArmOpen());
 }

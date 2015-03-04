@@ -15,9 +15,9 @@
 
 class MotionData {
 private:
-	double mAcceleration = 0.0;
-	double mVelocity = 0.0;
-	double mDistance = 0.0;
+	double mAcceleration[2] = {0.0, 0.0};
+	double mVelocity[2] = {0.0, 0.0};
+	double mDistance[2] = {0.0, 0.0};
 	double mOdometer = 0.0;
 	Accelerometer* mAccel = nullptr;
 	Timer UpdateTimer;

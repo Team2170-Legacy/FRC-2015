@@ -20,13 +20,19 @@ MotionData::~MotionData() {
 }
 
 void MotionData::UpdateData() {
-	double accel = DEADBAND(mAccel->GetX(), 0.05);
+	double accel = DEADBAND(mAccel->GetY(), 0.05);
 	double dT = UpdateTimer.Get();
 
-	mAcceleration += accel * GsToMeters;;
-	mVelocity += mAcceleration * dT;
-	mDistance += mVelocity * dT;
-	mOdometer += mVelocity * dT;
+	mAcceleration[1] = accel * GsToMeters;;
+	mVelocity[1] = mVelocity[0] + mAcceleration[0] +
+			((mAcceleration[1] - mAcceleration[0])/2.0) * dT;
+	mDistance[1] = mDistance[0] + mVelocity[0] +
+			((mVelocity[1] - mVelocity[0])/2.0) * dT;
+
+	mAcceleration[0] = mAcceleration[1];
+	mVelocity[0] = mVelocity[1];
+	mDistance[0] = mDistance[1];
+	mOdometer += mDistance[0];
 	UpdateTimer.Reset();
 }
 
@@ -34,7 +40,8 @@ void MotionData::Start() {
 	UpdateTimer.Start();
 }
 void MotionData::ResetDistance() {
-	mDistance = 0.0;
+	mDistance[0] = 0.0;
+	mDistance[1] = 0.0;
 }
 
 void MotionData::ResetOdometer() {
@@ -42,11 +49,11 @@ void MotionData::ResetOdometer() {
 }
 
 double MotionData::GetDistance() {
-	return mDistance;
+	return mDistance[0];
 }
 
 double MotionData::GetVelocity() {
-	return mVelocity;
+	return mVelocity[0];
 }
 
 double MotionData::GetOdometer() {
@@ -54,13 +61,16 @@ double MotionData::GetOdometer() {
 }
 
 double MotionData::GetAcceleration() {
-	return mAcceleration;
+	return mAcceleration[0];
 }
 
 void MotionData::Stop() {
-	mAcceleration = 0.0;
-	mVelocity = 0.0;
-	mDistance = 0.0;
+	mAcceleration[0] = 0.0;
+	mVelocity[0] = 0.0;
+	mDistance[0] = 0.0;
+	mAcceleration[1] = 0.0;
+	mVelocity[1] = 0.0;
+	mDistance[1] = 0.0;
 	UpdateTimer.Stop();
 	UpdateTimer.Reset();
 }
