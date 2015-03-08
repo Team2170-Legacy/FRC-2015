@@ -56,7 +56,6 @@ bool ChassisDriveStraightForTime::IsFinished() {
 // Called once after isFinished returns true
 void ChassisDriveStraightForTime::End() {
 	Robot::chassis->StopMotors();
-	Robot::chassis->movementData->Stop();
 	SmartDashboard::PutNumber("Auto Distance", Robot::chassis->movementData->GetOdometer());
 
 }

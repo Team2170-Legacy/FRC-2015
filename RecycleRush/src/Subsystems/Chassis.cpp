@@ -92,6 +92,7 @@ void Chassis::StopMotors(void)
 {
 	// Send zero to the driveMotors controller for both left and right .i.e. stop the motors
 	driveMotors->StopMotor();
+	Robot::chassis->movementData->Stop();
 
 	mCurrentAutoMagnitude = mDefaultAutoMagnitude;
 	mCurrentAutoRotationVelocity = mDefaultAutoRotatationVelocity;
