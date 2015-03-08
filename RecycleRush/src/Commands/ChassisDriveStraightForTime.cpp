@@ -36,6 +36,10 @@ void ChassisDriveStraightForTime::Initialize() {
 	Robot::chassis->movementData->ResetOdometer();
 	Robot::chassis->movementData->Start();
 	Command::SetTimeout(GetDriveTime());
+
+	if (mVelocity != 0.0) {
+		Robot::chassis->setAutoVelocity(mVelocity);
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -88,4 +92,10 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(std::string key) {
 
 	mKey = key;
 	bSmartDashCtrl = true;
+}
+
+ChassisDriveStraightForTime::ChassisDriveStraightForTime(double NewTime,
+		float Speed) {
+	mDriveTime = NewTime;
+	mVelocity = Speed;
 }

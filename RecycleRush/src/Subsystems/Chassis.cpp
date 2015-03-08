@@ -95,6 +95,7 @@ void Chassis::StopMotors(void)
 
 	mCurrentAutoMagnitude = mDefaultAutoMagnitude;
 	mCurrentAutoRotationVelocity = mDefaultAutoRotatationVelocity;
+	mAutoVelocity = mDefaultAutoVelocity;
 }
 
 void Chassis::DriveStraight(bool Backwards)

@@ -33,6 +33,7 @@ private:
 	float mAutoVelocity = 0.4;
 	const float mDefaultAutoRotatationVelocity = 1.0;
 	const float mDefaultAutoMagnitude = 0.6;
+	const float mDefaultAutoVelocity = 0.4;
 	float mCurrentAutoRotationVelocity = 1.0;
 	float mCurrentAutoMagnitude = 0.6;
 	float mYawGain = -0.2;
@@ -74,6 +75,14 @@ public:
 	void setCurrentAutoMagnitude(float currentAutoMagnitude = -0.3);
 	float getCurrentAutoRotationVelocity() const;
 	void setCurrentAutoRotationVelocity(float currentAutoRotationVelocity = 1.0);
+
+	float getAutoVelocity() const {
+		return mAutoVelocity;
+	}
+
+	void setAutoVelocity(float autoVelocity = 0.4) {
+		mAutoVelocity = autoVelocity;
+	}
 };
 
 #endif
