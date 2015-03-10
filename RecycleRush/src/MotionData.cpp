@@ -20,7 +20,7 @@ MotionData::~MotionData() {
 }
 
 void MotionData::UpdateData() {
-	double accel = DEADBAND(mAccel->GetY(), 0.05);
+	double accel = mAccel->GetY();
 	double dT = UpdateTimer.Get();
 
 	mAcceleration[1] = accel * GsToMeters;;
