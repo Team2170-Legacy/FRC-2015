@@ -6,6 +6,7 @@
  */
 
 #include "MotionData.h"
+#include <iostream>
 
 MotionData::MotionData() {
 	// TODO Auto-generated constructor stub
@@ -23,6 +24,7 @@ void MotionData::UpdateData() {
 	double accel = mAccel->GetY();
 	double dT = UpdateTimer.Get();
 
+
 	mAcceleration[1] = accel * GsToMeters;;
 	mVelocity[1] = mVelocity[0] + mAcceleration[0] +
 			((mAcceleration[1] - mAcceleration[0])/2.0) * dT;
@@ -32,7 +34,7 @@ void MotionData::UpdateData() {
 	mAcceleration[0] = mAcceleration[1];
 	mVelocity[0] = mVelocity[1];
 	mDistance[0] = mDistance[1];
-	mOdometer += mDistance[0];
+	mOdometer = mDistance[0];
 	UpdateTimer.Reset();
 }
 
