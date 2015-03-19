@@ -21,6 +21,7 @@ ChassisDriveStraightForDistance::ChassisDriveStraightForDistance() {
 
 // Called just before this Command runs the first time
 void ChassisDriveStraightForDistance::Initialize() {
+	Robot::chassis->ResetChassisYaw();
 	Robot::chassis->ResetChassisDistance();
 }
 
@@ -31,7 +32,7 @@ void ChassisDriveStraightForDistance::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ChassisDriveStraightForDistance::IsFinished() {
-	return (fabs(Robot::chassis->ReadChassisDistance()) < fabs(mDistance));
+	return (fabs(Robot::chassis->ReadChassisDistance()) >= fabs(mDistance));
 }
 
 // Called once after isFinished returns true
@@ -47,6 +48,7 @@ void ChassisDriveStraightForDistance::Interrupted() {
 
 ChassisDriveStraightForDistance::ChassisDriveStraightForDistance(double distance,
 		float magnitude) {
+	Requires(Robot::chassis);
 	mDistance = distance;
 	mMagnitude = magnitude;
 }

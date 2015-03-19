@@ -56,7 +56,7 @@ AutonomousPickupCanAndScore::AutonomousPickupCanAndScore() {
 
 	// tote #2
 	AddSequential(new IntakeOpenClose());							// close intake
-	AddParallel(new IntakeOut(), 1.0);						        // spin intake away from robot
+	AddParallel(new IntakeSpinLeft(), 1.0);						    // spin intake away from robot
 	AddParallel(new ChassisDriveStraightForTime(1.0, V_KNOCK_CAN));	// move to next tote
 	AddSequential(new IntakeOpenClose());							// open intake
 	AddSequential(new ChassisDriveStraightForTime(0.5));			// approach 2nd tote
