@@ -69,6 +69,8 @@ public:
 	void ResetChassisYaw();
 	float ReadChassisYaw();
 	void CalibrateChassis();
+	float ReadChassisDistance();
+	void ResetChassisDistance();
 
 	void TankDriveWithTriggers(float Left, float Right, float Trigger);
 

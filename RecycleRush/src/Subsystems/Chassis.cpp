@@ -183,3 +183,11 @@ double Chassis::AxisPower(double axis, double exponent) {
 void Chassis::setCurrentAutoRotationVelocity(float currentAutoRotationVelocity) {
 	mCurrentAutoRotationVelocity = currentAutoRotationVelocity;
 }
+
+float Chassis::ReadChassisDistance() {
+	return Robot::chassis->chassisEncoder->GetDistance();
+}
+
+void Chassis::ResetChassisDistance() {
+	Robot::chassis->chassisEncoder->Reset();
+}
