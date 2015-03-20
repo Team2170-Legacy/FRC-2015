@@ -20,6 +20,7 @@
 #include "IntakeOpenClose.h"
 #include "IntakeOut.h"
 #include "IntakeSpin.h"
+#include "IntakeSpinLeft.h"
 #include "ArmOpen.h"
 #include "ArmClose.h"
 

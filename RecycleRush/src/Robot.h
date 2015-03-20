@@ -32,6 +32,8 @@
 //Added for sendable chooser for autonomous commands
 #include "Commands/AutonomousPickupAndScore.h"
 #include "Commands/AutonomousPickupCanAndScore.h"
+#include "Commands/AutonomousPickupThreeTotesAndScore.h"
+#include "Commands/AutonomousPickupTwoTotesAndScore.h"
 
 class Robot : public IterativeRobot {
 public:
