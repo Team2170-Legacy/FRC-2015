@@ -23,17 +23,17 @@
 #include "IntakeClose.h"
 #include "IntakeOut.h"
 #include "IntakeSpin.h"
-#include "IntakeSpinLeft.h"
+#include "IntakeSpinRight.h"
 #include "ArmOpen.h"
 #include "ArmClose.h"
 
 
 //  1450 counts li
 
-#define	TOTE_RAISE_POSITION		1700.0f			// 47.5 counts per inch
+#define	TOTE_RAISE_POSITION		1800.0f			// 47.5 counts per inch
 #define TOTE_DRIVE_POSITION      531.0f
-#define V_KNOCK_CAN		1.0f
-#define V_COLLECT_TOTE	0.6f
+#define V_KNOCK_CAN		0.6f
+#define V_COLLECT_TOTE	0.4f
 #define V_FULL 1.0f
 #define D_CAN 48.0f			// distance to move to end of rectangle
 #define D_TOTE 33.0f		// distance from end of rectangle to next tote
@@ -62,14 +62,16 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new WaitCommand(0.5));							// wait for arm to open
 	AddSequential(new ElevatorAutoZero());							// lower elevator
 	AddSequential(new ArmClose());									// grab first tote
-	AddSequential(new WaitCommand(0.5));							// wait for arm to close
+	AddSequential(new WaitCommand(1.5));							// wait for arm to close
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise tote
 
 	// tote #2
 	AddSequential(new IntakeClose());								// close intake
-	AddParallel(new IntakeSpinLeft(), 1.0);						    // spin intake away from robot
+	AddSequential(new WaitCommand(0.750));
+	AddSequential(new IntakeSpinRight(), 1.0);						    // spin intake away from robot
 	AddParallel(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
 	AddSequential(new IntakeOpen());								// open intake
+#if 0
 	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_FULL));	// approach 2nd tote
 	AddParallel(new IntakeSpin(), 0.5);								// spin inward to pull tote
 	AddParallel(new IntakeClose());									// close intake to pull in bin
@@ -77,7 +79,6 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
 
-#if 0
 
 	// tote #3
 	AddSequential(new IntakeClose());								// close intake
