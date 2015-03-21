@@ -27,7 +27,11 @@
 #include "ArmOpen.h"
 #include "ArmClose.h"
 
-#define	TOTE_RAISE_POSITION		831.0f
+
+//  1450 counts li
+
+#define	TOTE_RAISE_POSITION		1700.0f			// 47.5 counts per inch
+#define TOTE_DRIVE_POSITION      531.0f
 #define V_KNOCK_CAN		1.0f
 #define V_COLLECT_TOTE	0.6f
 #define V_FULL 1.0f
@@ -73,9 +77,11 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
 
+#if 0
+
 	// tote #3
 	AddSequential(new IntakeClose());								// close intake
-	AddParallel(new IntakeOut(), 1.0);						        // spin intake away from robot
+	AddParallel(new IntakeSpinLeft(), 1.0);					        // spin intake away from robot
 	AddParallel(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
 	AddSequential(new IntakeOpen());								// open intake
 	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_FULL));		// approach 3rd tote
@@ -83,7 +89,7 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddParallel(new IntakeClose());									// close intake to pull in bin
 	AddSequential(new IntakeOpen());								// open intake
 	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
-	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
+	AddSequential(new ElevatorGotoPosition(TOTE_DRIVE_POSITION));	// raise stack of 2 totes
 
 	// go to autonomous scoring zone
 	AddSequential(new ChassisRotate(90.0));
@@ -92,6 +98,6 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new ChassisDriveStraightForDistance(D_SCORE, V_FULL));
 	AddSequential(new ElevatorGotoPosition(0.0));
 	AddSequential(new ArmOpen());
-	AddSequential(new ElevatorGotoPosition(500.0));
+#endif
 
 }

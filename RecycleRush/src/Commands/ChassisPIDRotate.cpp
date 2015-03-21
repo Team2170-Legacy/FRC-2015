@@ -11,11 +11,11 @@
 
 #include "ChassisPIDRotate.h"
 
-#define ROTATE_P 0.1f
-#define ROTATE_I 0.0f
-#define ROTATE_D 0.0f
+#define ROTATE_P 0.030f
+#define ROTATE_I 0.001f
+#define ROTATE_D 0.00225f
 
-#define SET_WAIT_COUNT 2		// times to wait for ontarget to be true
+#define SET_WAIT_COUNT 20		// times to wait for ontarget to be true
 
 ChassisPIDRotate::ChassisPIDRotate() {
 	// Use requires() here to declare subsystem dependencies
@@ -38,7 +38,7 @@ void ChassisPIDRotate::Initialize() {
 	Robot::chassis->ResetChassisYaw();
 
 	rotate = new SimplePIDOutput();
-	turn = new PIDController(ROTATE_P, ROTATE_I, ROTATE_D, Robot::chassis->yawGyro, rotate);
+	turn = new PIDController(ROTATE_P, ROTATE_I, ROTATE_D, Robot::chassis->yawGyro, rotate, 0.01);
 
 	turn->SetSetpoint(mAngle);
 	turn->SetAbsoluteTolerance(1.0f);
