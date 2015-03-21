@@ -67,18 +67,6 @@ AutonomousPickupTwoTotesAndScore::AutonomousPickupTwoTotesAndScore() {
 	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
 
-	// tote #3
-	AddSequential(new IntakeOpenClose());							// close intake
-	AddParallel(new IntakeOut(), 1.0);						        // spin intake away from robot
-	AddParallel(new ChassisDriveStraightForTime(1.0, V_KNOCK_CAN));	// move to next tote
-	AddSequential(new IntakeOpenClose());							// open intake
-	AddSequential(new ChassisDriveStraightForTime(0.5));			// approach 2nd tote
-	AddParallel(new IntakeSpin(), 0.5);								// spin inward to pull tote
-	AddParallel(new IntakeOpenClose());								// close intake to pull in bin
-	AddSequential(new IntakeOpenClose());							// open intake
-	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
-	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
-
 	// go to autonomous scoring zone
 	AddSequential(new ChassisRotate(90.0));
 	AddSequential(new WaitCommand(0.250));
