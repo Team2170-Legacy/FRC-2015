@@ -11,6 +11,8 @@
 
 #include "ChassisDriveStraightForDistance.h"
 
+#define COAST_DISTANCE 10.0F
+
 ChassisDriveStraightForDistance::ChassisDriveStraightForDistance() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
@@ -28,7 +30,12 @@ void ChassisDriveStraightForDistance::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ChassisDriveStraightForDistance::Execute() {
-	Robot::chassis->DriveStraight(mMagnitude);
+	if (fabs(mDistance) - fabs(Robot::chassis->ReadChassisDistance()) < COAST_DISTANCE) {
+		Robot::chassis->DriveStraight(mCoastMagnitude);
+	}
+	else {
+		Robot::chassis->DriveStraight(mMagnitude);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -52,4 +59,5 @@ ChassisDriveStraightForDistance::ChassisDriveStraightForDistance(double distance
 	Requires(Robot::chassis);
 	mDistance = distance;
 	mMagnitude = magnitude;
+	mCoastMagnitude = magnitude / 3.0f;
 }

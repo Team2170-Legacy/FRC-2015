@@ -44,6 +44,8 @@
 #define T_ARM 0.500f		// time for arm to open/close
 #define T_SPIN_RT 1.0f		// time to run spin motors to push can
 
+#define BRAKE AddSequential(new ChassisDriveStraightForTime(0.1F, -0.5f)
+
 AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -62,6 +64,8 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
+
+
 	AddSequential(new ArmOpen());									// open arms to pass around tote
 	AddSequential(new IntakeCalibrate());							// opens intake
 	AddSequential(new WaitCommand(T_ARM));							// wait for arm to open
@@ -70,37 +74,38 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new WaitCommand(T_ARM));							// wait for arm to close
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise tote
 
-	// tote #2
+	// Whack can #1 on way to tote #2
 	AddSequential(new IntakeClose());								// close intake
 	AddSequential(new WaitCommand(T_INTAKE_MOVE));
 
+	AddSequential(new IntakeOpen());								// open intake
+	//the following two commands happen in parallel (intake opens while moving too)
 	AddParallel(new IntakeSpinRight(), T_SPIN_RT);				    // spin intake away from robot
 	AddSequential(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
 
-	AddSequential(new IntakeOpen());								// open intake
-	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_FULL));	// approach 2nd tote
+	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_COLLECT_TOTE));	// approach 2nd tote
 
-	AddParallel(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
-	AddSequential(new IntakeClose());								// close intake to pull in bin
+	AddSequential(new IntakeClose());									// close intake to pull in bin
+	AddSequential(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
 
 	AddSequential(new IntakeOpen());								// open intake
 	AddSequential(new WaitCommand(T_INTAKE_MOVE));
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
 
 
-	// tote #3
+	// Whack can #2 on way to tote #3
 	AddSequential(new IntakeClose());								// close intake
 	AddSequential(new WaitCommand(T_INTAKE_MOVE));
 
+	AddSequential(new IntakeOpen());								// open intake (move while driving)
+	// the following two commands run in parallel (intake opens while moving too)
 	AddParallel(new IntakeSpinRight(), T_SPIN_RT);			        // spin intake away from robot
 	AddSequential(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
 
-	AddSequential(new IntakeOpen());								// open intake
-	AddSequential(new WaitCommand(T_INTAKE_MOVE));
-	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_FULL));		// approach 3rd tote
+	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_COLLECT_TOTE));		// approach 3rd tote
 
-	AddParallel(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
-	AddSequential(new IntakeClose());								// close intake to pull in bin
+	AddSequential(new IntakeClose());									// close intake to pull in bin
+	AddSequential(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
 	AddSequential(new WaitCommand(T_INTAKE_MOVE));					// wait for intake to close
 
 	AddSequential(new IntakeOpen());								// open intake

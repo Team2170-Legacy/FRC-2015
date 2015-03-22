@@ -25,6 +25,7 @@ class ChassisDriveStraightForDistance: public Command {
 private:
 	double mDistance = 0.0;
 	float mMagnitude = 0.0;
+	float mCoastMagnitude = 0.0;
 public:
 	ChassisDriveStraightForDistance();
 	ChassisDriveStraightForDistance(double distance, float magnitude);
