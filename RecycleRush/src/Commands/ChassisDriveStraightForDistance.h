@@ -26,9 +26,10 @@ private:
 	double mDistance = 0.0;
 	float mMagnitude = 0.0;
 	float mCoastMagnitude = 0.0;
+	bool bResetGyro = false;
 public:
 	ChassisDriveStraightForDistance();
-	ChassisDriveStraightForDistance(double distance, float magnitude);
+	ChassisDriveStraightForDistance(double distance, float magnitude, bool reset = true);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

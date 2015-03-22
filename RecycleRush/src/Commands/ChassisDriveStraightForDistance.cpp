@@ -24,7 +24,9 @@ ChassisDriveStraightForDistance::ChassisDriveStraightForDistance() {
 
 // Called just before this Command runs the first time
 void ChassisDriveStraightForDistance::Initialize() {
-	Robot::chassis->ResetChassisYaw();
+	if (bResetGyro) {
+		Robot::chassis->ResetChassisYaw();
+	}
 	Robot::chassis->ResetChassisDistance();
 }
 
@@ -55,9 +57,10 @@ void ChassisDriveStraightForDistance::Interrupted() {
 }
 
 ChassisDriveStraightForDistance::ChassisDriveStraightForDistance(double distance,
-		float magnitude) {
+		float magnitude, bool reset) {
 	Requires(Robot::chassis);
 	mDistance = distance;
 	mMagnitude = magnitude;
-	mCoastMagnitude = magnitude / 3.0f;
+	mCoastMagnitude = magnitude;
+	bResetGyro = reset;
 }

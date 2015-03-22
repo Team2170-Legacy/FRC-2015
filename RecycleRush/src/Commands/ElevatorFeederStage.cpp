@@ -14,5 +14,6 @@
 ElevatorFeederStage::ElevatorFeederStage() {
 
 	// Room for feeder station totes to slide diagonally onto floor and not hit carried stack
-	AddSequential(new ElevatorGotoPosition( 1783 + 7.5*54 ));
+//	AddSequential(new ElevatorGotoPosition( 1783 + 7.5*54 ));
+	AddSequential(new ElevatorGotoPosition(1400.0f));
 }

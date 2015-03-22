@@ -36,7 +36,7 @@ private:
 	const float mDefaultAutoVelocity = 0.4;
 	float mCurrentAutoRotationVelocity = 1.0;
 	float mCurrentAutoMagnitude = 0.6;
-	float mYawGain = -0.2;
+	float mYawGain = -0.3;
 	LowPassFilter* LeftStickFilter;
 	LowPassFilter* RightStickFilter;
 

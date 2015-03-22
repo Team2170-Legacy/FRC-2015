@@ -11,7 +11,7 @@
 
 
 #include "AutonomousTesting.h"
-#include "ChassisPIDRotate.h"
+#include "ChassisDriveStraightForDistance.h"
 
 AutonomousTesting::AutonomousTesting() {
 	// Add Commands here:
@@ -31,5 +31,5 @@ AutonomousTesting::AutonomousTesting() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	AddSequential(new ChassisPIDRotate(90.0));
+	AddSequential(new ChassisDriveStraightForDistance(48.0, 0.4));
 }
