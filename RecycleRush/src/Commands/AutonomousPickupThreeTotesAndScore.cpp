@@ -84,7 +84,7 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new IntakeClose());								// close intake to pull in bin
 
 	AddSequential(new IntakeOpen());								// open intake
-	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
 
 
@@ -96,6 +96,7 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
 
 	AddSequential(new IntakeOpen());								// open intake
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));
 	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_FULL));		// approach 3rd tote
 
 	AddParallel(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
