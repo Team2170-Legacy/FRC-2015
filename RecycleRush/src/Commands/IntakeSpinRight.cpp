@@ -33,7 +33,7 @@ void IntakeSpinRight::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool IntakeSpinRight::IsFinished() {
-	return false;
+	return IsTimedOut();		// note:  will return false is no timeout is used
 }
 
 // Called once after isFinished returns true

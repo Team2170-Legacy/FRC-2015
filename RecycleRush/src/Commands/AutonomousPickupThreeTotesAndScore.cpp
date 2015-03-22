@@ -22,7 +22,7 @@
 #include "IntakeOpen.h"
 #include "IntakeClose.h"
 #include "IntakeOut.h"
-#include "IntakeSpin.h"
+#include "IntakeIn.h"
 #include "IntakeSpinRight.h"
 #include "ArmOpen.h"
 #include "ArmClose.h"
@@ -30,14 +30,19 @@
 
 //  1450 counts li
 
-#define	TOTE_RAISE_POSITION		1800.0f			// 47.5 counts per inch
-#define TOTE_DRIVE_POSITION      531.0f
+#define	TOTE_RAISE_POSITION		1800.0f			// raise totes above can height
+#define TOTE_DRIVE_POSITION      531.0f			// safe height to travel with
+#define TOTE_STACK_POSITION      831.0f			// Height to move tote stack above a tote on floow
 #define V_KNOCK_CAN		0.6f
 #define V_COLLECT_TOTE	0.4f
 #define V_FULL 1.0f
 #define D_CAN 48.0f			// distance to move to end of rectangle
 #define D_TOTE 33.0f		// distance from end of rectangle to next tote
 #define D_SCORE 107.0f		// distance from rectangle to center of scoring zone
+#define T_INTAKE_MOVE 0.750f		// time for intake to open/close
+#define T_INTAKE_IN 0.500f	// time to pull tote with intake spinning
+#define T_ARM 0.500f		// time for arm to open/close
+#define T_SPIN_RT 1.0f		// time to run spin motors to push can
 
 AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	// Add Commands here:
@@ -59,22 +64,25 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 
 	AddSequential(new ArmOpen());									// open arms to pass around tote
 	AddSequential(new IntakeCalibrate());							// opens intake
-	AddSequential(new WaitCommand(0.5));							// wait for arm to open
+	AddSequential(new WaitCommand(T_ARM));							// wait for arm to open
 	AddSequential(new ElevatorAutoZero());							// lower elevator
 	AddSequential(new ArmClose());									// grab first tote
-	AddSequential(new WaitCommand(1.5));							// wait for arm to close
+	AddSequential(new WaitCommand(T_ARM));							// wait for arm to close
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise tote
 
 	// tote #2
 	AddSequential(new IntakeClose());								// close intake
-	AddSequential(new WaitCommand(0.750));
-	AddSequential(new IntakeSpinRight(), 1.0);						    // spin intake away from robot
-	AddParallel(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));
+
+	AddParallel(new IntakeSpinRight(), T_SPIN_RT);				    // spin intake away from robot
+	AddSequential(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
+
 	AddSequential(new IntakeOpen());								// open intake
-#if 0
 	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_FULL));	// approach 2nd tote
-	AddParallel(new IntakeSpin(), 0.5);								// spin inward to pull tote
-	AddParallel(new IntakeClose());									// close intake to pull in bin
+
+	AddParallel(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
+	AddSequential(new IntakeClose());								// close intake to pull in bin
+
 	AddSequential(new IntakeOpen());								// open intake
 	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
@@ -82,13 +90,20 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 
 	// tote #3
 	AddSequential(new IntakeClose());								// close intake
-	AddParallel(new IntakeSpinLeft(), 1.0);					        // spin intake away from robot
-	AddParallel(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));
+
+	AddParallel(new IntakeSpinRight(), T_SPIN_RT);			        // spin intake away from robot
+	AddSequential(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN));	// move to next tote
+
 	AddSequential(new IntakeOpen());								// open intake
 	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_FULL));		// approach 3rd tote
-	AddParallel(new IntakeSpin(), 0.5);								// spin inward to pull tote
-	AddParallel(new IntakeClose());									// close intake to pull in bin
+
+	AddParallel(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
+	AddSequential(new IntakeClose());								// close intake to pull in bin
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));					// wait for intake to close
+
 	AddSequential(new IntakeOpen());								// open intake
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));
 	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
 	AddSequential(new ElevatorGotoPosition(TOTE_DRIVE_POSITION));	// raise stack of 2 totes
 
@@ -99,6 +114,4 @@ AutonomousPickupThreeTotesAndScore::AutonomousPickupThreeTotesAndScore() {
 	AddSequential(new ChassisDriveStraightForDistance(D_SCORE, V_FULL));
 	AddSequential(new ElevatorGotoPosition(0.0));
 	AddSequential(new ArmOpen());
-#endif
-
 }
