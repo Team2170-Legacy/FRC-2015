@@ -10,11 +10,17 @@
 
 
 
-#include "AutonomousTesting.h"
-#include "ChassisDriveStraightForDistance.h"
+#include "AutonomousKnockOverCan.h"
+#include "ChassisDriveStraightForTime.h"
+#include "ChassisRotate.h"
+#include "ElevatorGotoPosition.h"
+#include "ArmCalibrate.h"
 #include "ElevatorAutoZero.h"
+#include "IntakeCalibrate.h"
+#include "ArmOpen.h"
+#include "ArmClose.h"
 
-AutonomousTesting::AutonomousTesting() {
+AutonomousKnockOverCan::AutonomousKnockOverCan() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -31,7 +37,13 @@ AutonomousTesting::AutonomousTesting() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-
-//	AddSequential(new ChassisDriveStraightForDistance(48.0, 0.4));
+	AddSequential(new ArmOpen());
+	AddSequential(new WaitCommand(0.5));	// wait for arm to open
 	AddSequential(new ElevatorAutoZero());
+	AddSequential(new ElevatorGotoPosition(500.0));
+	AddSequential(new WaitCommand(0.5));		// wait for arm to close
+	AddSequential(new ChassisRotate(-90.0));
+	AddSequential(new WaitCommand(0.250));
+	AddSequential(new ChassisRotate(-90.0, true));
+
 }

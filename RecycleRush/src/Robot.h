@@ -34,6 +34,7 @@
 #include "Commands/AutonomousPickupCanAndScore.h"
 #include "Commands/AutonomousPickupThreeTotesAndScore.h"
 #include "Commands/AutonomousPickupTwoTotesAndScore.h"
+#include "Commands/AutonomousKnockOverCan.h"
 #include "Commands/AutonomousTesting.h"
 
 class Robot : public IterativeRobot {

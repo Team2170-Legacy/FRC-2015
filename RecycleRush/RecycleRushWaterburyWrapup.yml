@@ -1091,6 +1091,12 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: ChassisPIDDriveStraightForDistance
+  - Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command Group
+    Name: AutonomousKnockOverCan
   Properties: {}
   Base: Commands
   Name: Commands
