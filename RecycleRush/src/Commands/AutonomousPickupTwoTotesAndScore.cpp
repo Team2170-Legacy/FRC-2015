@@ -12,22 +12,34 @@
 
 #include "AutonomousPickupTwoTotesAndScore.h"
 #include "ChassisDriveStraightForTime.h"
+#include "ChassisDriveStraightForDistance.h"
 #include "ChassisRotate.h"
 #include "ElevatorGotoPosition.h"
 #include "ArmCalibrate.h"
 #include "ElevatorAutoZero.h"
 #include "IntakeCalibrate.h"
-#include "IntakeOpenClose.h"
+#include "IntakeOpen.h"
+#include "IntakeClose.h"
 #include "IntakeOut.h"
+#include "IntakeIn.h"
 #include "IntakeSpin.h"
-#include "IntakeSpinLeft.h"
+#include "IntakeSpinRight.h"
 #include "ArmOpen.h"
 #include "ArmClose.h"
 
-#define	TOTE_RAISE_POSITION		831.0f
-#define V_KNOCK_CAN		1.0f
-#define V_COLLECT_TOTE	0.6f
+#define	TOTE_RAISE_POSITION		1800.0f			// raise totes above can height
+#define TOTE_DRIVE_POSITION      531.0f			// safe height to travel with
+#define TOTE_STACK_POSITION      831.0f			// Height to move tote stack above a tote on floow
+#define V_KNOCK_CAN		0.45f
+#define V_COLLECT_TOTE	0.4f
 #define V_FULL 1.0f
+#define D_CAN 48.0f			// distance to move to end of rectangle
+#define D_TOTE 33.0f		// distance from end of rectangle to next tote
+#define D_SCORE 80.0f		// distance from rectangle to center of scoring zone
+#define T_INTAKE_MOVE 0.500f		// time for intake to open/close
+#define T_INTAKE_IN 0.500f	// time to pull tote with intake spinning
+#define T_ARM 0.500f		// time for arm to open/close
+#define T_SPIN_RT 2.0f		// time to run spin motors to push can
 
 AutonomousPickupTwoTotesAndScore::AutonomousPickupTwoTotesAndScore() {
 	// Add Commands here:
@@ -48,33 +60,37 @@ AutonomousPickupTwoTotesAndScore::AutonomousPickupTwoTotesAndScore() {
 	// arm.
 
 	AddSequential(new ArmOpen());									// open arms to pass around tote
-	AddSequential(new IntakeCalibrate());							// opens intake
-	AddSequential(new WaitCommand(0.5));							// wait for arm to open
+	AddSequential(new IntakeOpen());							// opens intake
+	AddSequential(new WaitCommand(T_ARM));							// wait for arm to open
 	AddSequential(new ElevatorAutoZero());							// lower elevator
 	AddSequential(new ArmClose());									// grab first tote
-	AddSequential(new WaitCommand(0.5));							// wait for arm to close
+	AddSequential(new WaitCommand(T_ARM));							// wait for arm to close
 	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise tote
 
-	// tote #2
-	AddSequential(new IntakeOpenClose());							// close intake
-	AddParallel(new IntakeSpinLeft(), 1.0);						    // spin intake away from robot
-	AddParallel(new ChassisDriveStraightForTime(1.0, V_KNOCK_CAN));	// move to next tote
-	AddSequential(new IntakeOpenClose());							// open intake
-	AddSequential(new ChassisDriveStraightForTime(0.5));			// approach 2nd tote
-	AddParallel(new IntakeSpin(), 0.5);								// spin inward to pull tote
-	AddParallel(new IntakeOpenClose());								// close intake to pull in bin
-	AddSequential(new IntakeOpenClose());							// open intake
+	// Whack can #1 on way to tote #2
+	AddSequential(new IntakeClose());								// close intake
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));
+
+	//the following two commands happen in parallel (intake opens while moving too)
+	AddParallel(new IntakeSpinRight(), T_SPIN_RT);				    // spin intake away from robot
+	AddSequential(new ChassisDriveStraightForDistance(D_CAN, V_KNOCK_CAN, true));	// move to next tote
+	AddSequential(new IntakeOpen());								// open intake
+	AddSequential(new ChassisDriveStraightForDistance(D_TOTE, V_COLLECT_TOTE, false));	// approach 2nd tote
+
+	AddSequential(new IntakeClose());									// close intake to pull in bin
+	AddSequential(new IntakeIn(), T_INTAKE_IN);						// spin inward to pull tote
+
+	AddSequential(new IntakeOpen());								// open intake
+	AddSequential(new WaitCommand(T_INTAKE_MOVE));
 	AddSequential(new ElevatorGotoPosition(0.0));					// lower elevator to grab bottom
-	AddSequential(new ElevatorGotoPosition(TOTE_RAISE_POSITION));	// raise stack of 2 totes
+	AddSequential(new ElevatorGotoPosition(TOTE_DRIVE_POSITION));	// raise stack of 2 totes
 
 	// go to autonomous scoring zone
 	AddSequential(new ChassisRotate(90.0));
 	AddSequential(new WaitCommand(0.250));
 	AddSequential(new ChassisRotate(90.0, true));
-	AddSequential(new ChassisDriveStraightForTime(2.0, V_FULL));
+	AddSequential(new ChassisDriveStraightForTime(3.6));
 	AddSequential(new ElevatorGotoPosition(0.0));
 	AddSequential(new ArmOpen());
-	AddSequential(new ElevatorGotoPosition(500.0));
-
 
 }
