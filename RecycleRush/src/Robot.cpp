@@ -55,6 +55,7 @@ void Robot::RobotInit() {
 	chooser->AddObject("Pickup2TotesAndScore", new AutonomousPickupTwoTotesAndScore());
 	chooser->AddObject("Pickup3TotesAndScore", new AutonomousPickupThreeTotesAndScore());
 	chooser->AddObject("PickupCanAndScore", new AutonomousPickupCanAndScore());
+	chooser->AddObject("PickupCanWait", new AutonomousKnockOverCan());
 	chooser->AddObject("Auto Testing - DO NOT USE", new AutonomousTesting());
 	SmartDashboard::PutData("Autonomous Modes", chooser);
 

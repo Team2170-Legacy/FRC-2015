@@ -19,6 +19,7 @@
 #include "Commands/ArmOpenClose.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/AutonomousDriveToScore.h"
+#include "Commands/AutonomousKnockOverCan.h"
 #include "Commands/AutonomousPickupAndScore.h"
 #include "Commands/AutonomousPickupCanAndScore.h"
 #include "Commands/AutonomousPickupThreeTotesAndScore.h"
@@ -66,7 +67,7 @@ OI::OI() {
 	//SmartDashboard::PutNumber("DrivingSensitivity", .5);
 
 	// Create SD key fields here!!  Not at the END !!!
-	SmartDashboard::PutNumber("ChassisDriveStraightForTimeInput", 2);
+	SmartDashboard::PutNumber("ChassisDriveStraightForTimeInput", 3.3);
 
 	SmartDashboard::PutNumber("ChassisRotateAngleInput", 90);
 
