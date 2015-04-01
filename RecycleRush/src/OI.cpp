@@ -67,7 +67,7 @@ OI::OI() {
 	//SmartDashboard::PutNumber("DrivingSensitivity", .5);
 
 	// Create SD key fields here!!  Not at the END !!!
-	SmartDashboard::PutNumber("ChassisDriveStraightForTimeInput", 2);
+	SmartDashboard::PutNumber("ChassisDriveStraightForTimeInput", 3.3);
 
 	SmartDashboard::PutNumber("ChassisRotateAngleInput", 90);
 

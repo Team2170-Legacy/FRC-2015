@@ -40,10 +40,9 @@ AutonomousKnockOverCan::AutonomousKnockOverCan() {
 	AddSequential(new ArmOpen());
 	AddSequential(new WaitCommand(0.5));	// wait for arm to open
 	AddSequential(new ElevatorAutoZero());
-	AddSequential(new ElevatorGotoPosition(500.0));
-	AddSequential(new WaitCommand(0.5));		// wait for arm to close
-	AddSequential(new ChassisRotate(-90.0));
-	AddSequential(new WaitCommand(0.250));
-	AddSequential(new ChassisRotate(-90.0, true));
+	AddSequential(new ChassisDriveStraightForTime(0.3f));
+	AddSequential(new ArmClose());
+	AddSequential(new WaitCommand(0.5));	// wait for arm to open
+	AddSequential(new ElevatorGotoPosition(1500.0f));	// pick up can to feeder height
 
 }
