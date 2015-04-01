@@ -36,6 +36,10 @@ void ChassisDriveStraightForTime::Initialize() {
 	Robot::chassis->movementData->ResetOdometer();
 	Robot::chassis->movementData->Start();
 	Command::SetTimeout(GetDriveTime());
+
+	if (mVelocity != 0.0) {
+		Robot::chassis->setAutoVelocity(mVelocity);
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -52,7 +56,6 @@ bool ChassisDriveStraightForTime::IsFinished() {
 // Called once after isFinished returns true
 void ChassisDriveStraightForTime::End() {
 	Robot::chassis->StopMotors();
-	Robot::chassis->movementData->Stop();
 	SmartDashboard::PutNumber("Auto Distance", Robot::chassis->movementData->GetOdometer());
 
 }
@@ -88,4 +91,10 @@ ChassisDriveStraightForTime::ChassisDriveStraightForTime(std::string key) {
 
 	mKey = key;
 	bSmartDashCtrl = true;
+}
+
+ChassisDriveStraightForTime::ChassisDriveStraightForTime(double NewTime,
+		float Speed) {
+	mDriveTime = NewTime;
+	mVelocity = Speed;
 }

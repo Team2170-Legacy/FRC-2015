@@ -18,6 +18,7 @@ SpeedController* RobotMap::chassisLeftMotor = NULL;
 SpeedController* RobotMap::chassisRightMotor = NULL;
 RobotDrive* RobotMap::chassisDriveMotors = NULL;
 Gyro* RobotMap::chassisYawGyro = NULL;
+Encoder* RobotMap::chassisChassisEncoder = NULL;
 Encoder* RobotMap::elevatorShaftEncoder = NULL;
 SpeedController* RobotMap::elevatorMotor = NULL;
 DigitalInput* RobotMap::elevatorLowerLimit = NULL;
@@ -53,6 +54,10 @@ void RobotMap::init() {
 	chassisYawGyro = new Gyro(0);
 	lw->AddSensor("Chassis", "YawGyro", chassisYawGyro);
 	chassisYawGyro->SetSensitivity(0.007);
+	chassisChassisEncoder = new Encoder(5, 6, false, Encoder::k4X);
+	lw->AddSensor("Chassis", "ChassisEncoder", chassisChassisEncoder);
+	chassisChassisEncoder->SetDistancePerPulse(1.0);
+        chassisChassisEncoder->SetPIDSourceParameter(Encoder::kRate);
 	elevatorShaftEncoder = new Encoder(0, 1, false, Encoder::k4X);
 	lw->AddSensor("Elevator", "ShaftEncoder", elevatorShaftEncoder);
 	elevatorShaftEncoder->SetDistancePerPulse(1.0);

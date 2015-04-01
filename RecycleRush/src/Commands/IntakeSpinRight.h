@@ -22,6 +22,8 @@
  * @author ExampleAuthor
  */
 class IntakeSpinRight: public Command {
+private:
+	double TimeOut = 0;
 public:
 	IntakeSpinRight();
 	virtual void Initialize();

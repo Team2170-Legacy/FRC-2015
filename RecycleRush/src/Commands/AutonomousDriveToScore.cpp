@@ -12,7 +12,9 @@
 
 #include "AutonomousDriveToScore.h"
 #include "ElevatorAutoZero.h"
+#include "ElevatorGotoPosition.h"
 #include "ChassisDriveStraightForTime.h"
+#include "ChassisDriveStraightForDistance.h"
 
 AutonomousDriveToScore::AutonomousDriveToScore() {
 	// Add Commands here:
@@ -33,5 +35,6 @@ AutonomousDriveToScore::AutonomousDriveToScore() {
 	// arm.
 
 	AddSequential(new ElevatorAutoZero());
+	AddSequential(new ElevatorGotoPosition(512.0));
 	AddSequential(new ChassisDriveStraightForTime("ChassisDriveStraightForTimeInput"));
 }

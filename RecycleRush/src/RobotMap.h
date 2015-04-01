@@ -26,6 +26,7 @@ public:
 	static SpeedController* chassisRightMotor;
 	static RobotDrive* chassisDriveMotors;
 	static Gyro* chassisYawGyro;
+	static Encoder* chassisChassisEncoder;
 	static Encoder* elevatorShaftEncoder;
 	static SpeedController* elevatorMotor;
 	static DigitalInput* elevatorLowerLimit;
