@@ -33,6 +33,8 @@ void DriveWithJoysticks::Execute() {
 	double left = mDriverControl->GetLeftY();
 	double right = mDriverControl->GetRightY();
 
+	SmartDashboard::PutNumber("ReadChassisDistance",Robot::chassis->ReadChassisDistance());
+
 	Robot::chassis->TankDriveWithTriggers(left,	right, mDriverControl->GetTriggers());
 }
 
