@@ -133,9 +133,9 @@ void Elevator::SmartDashboardInputs() {
 }
 
 void Elevator::SmartDashboardOutputs() {
-	SmartDashboard::PutNumber("CurrentPosition", GetCurrentPosition());
-	SmartDashboard::PutNumber("TargetLevel", targetLevel);
-	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
+	SmartDashboard::PutNumber("ElevatorEncoderGetDistance", GetCurrentPosition());
+//	SmartDashboard::PutNumber("TargetLevel", targetLevel);
+//	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
 }
 
 void Elevator::RampUp( float MaxSpeed,  float RampRate){
@@ -213,6 +213,7 @@ void Elevator::AccelerateMaxSpeedDecelerate(){
 //	}
 
 	motor->Set(kAutomatedMaxSpeed * m_direction);	// Crawl, walk, run
+	SmartDashboardOutputs();
 
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }

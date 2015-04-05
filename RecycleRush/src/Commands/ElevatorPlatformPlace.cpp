@@ -15,7 +15,6 @@
 
 ElevatorPlatformPlace::ElevatorPlatformPlace() {
 
-	// Move Arm to tote level 1, plus 1.5" to set stack on 2" Scoring Platform
-	AddSequential(new ElevatorGotoPosition( 654.0*1 + 54*1.5 ));		// Initial estimate 735
-	AddSequential(new ArmOpen());
+	AddSequential(new ElevatorGotoPosition( 0.0f ));
+//	AddSequential(new ArmOpen());
 }

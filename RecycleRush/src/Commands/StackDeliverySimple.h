@@ -8,10 +8,21 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-#include "ElevatorPlatformStage.h"
-#include "ElevatorGotoPosition.h"
 
-ElevatorPlatformStage::ElevatorPlatformStage() {
 
-	AddSequential(new ElevatorGotoPosition( 800.0f ));
-}
+#ifndef STACKDELIVERYSIMPLE_H
+#define STACKDELIVERYSIMPLE_H
+
+#include "Commands/CommandGroup.h"
+
+/**
+ *
+ *
+ * @author ExampleAuthor
+ */
+class StackDeliverySimple: public CommandGroup {
+public:	
+	StackDeliverySimple();
+};
+
+#endif

@@ -32,6 +32,10 @@ private:
 	JoystickButton* joystickButton2;
 	JoystickButton* joystickButton1;
 	Joystick* joystickDriverOnPort0;
+	JoystickButton* joystickButtonY;
+	JoystickButton* joystickButtonX;
+	JoystickButton* joystickButtonB;
+	JoystickButton* joystickButtonA;
 	JoystickButton* joystickRightBumper;
 	JoystickButton* joystickLeftBumper;
 
