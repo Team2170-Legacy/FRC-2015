@@ -1051,6 +1051,14 @@ Children:
     Name: ElevatorGotoPosition
   - Children: []
     Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Elevator}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: ElevatorGotoPositionWithPower
+  - Children: []
+    Properties:
       Requires: !!robotbuilder.data.properties.ComponentSelectionProperty
         componentName: PID Subsystem
         default: None
@@ -1097,6 +1105,12 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: ElevatorPlatformPlace
+  - Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command Group
+    Name: ElevatorPlatformPlaceWithPower
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,

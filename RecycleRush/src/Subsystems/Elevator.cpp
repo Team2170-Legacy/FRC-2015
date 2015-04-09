@@ -192,6 +192,27 @@ void Elevator::StartMovingTowardTargetPosition(float TargetPosition){
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
 
+void Elevator::StartMovingTowardTargetPositionWithPower(float TargetPosition, float MotorPower){
+
+	std::cout << "Initialize";
+
+	// Remember what our goal was and where we started out from
+	m_targetPosition = TargetPosition;
+	m_startingPosition = shaftEncoder->GetDistance();
+
+	// Remember our direction
+	if (m_targetPosition > m_startingPosition) {
+		m_direction = +1.0;		// Move Upward
+	}else{
+		m_direction = -1.0;		// Move Downward
+	}
+
+	// Start moving
+	motor->Set(MotorPower * m_direction);
+
+	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+}
+
 void Elevator::AccelerateMaxSpeedDecelerate(){
 
 	std::cout << "Execute ";
@@ -218,7 +239,7 @@ void Elevator::AccelerateMaxSpeedDecelerate(){
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
 
-void Elevator::AccelerateMaxSpeedDeceleratePower(float MotorPower){
+void Elevator::AccelerateMaxSpeedDecelerateWithPower(float MotorPower){
 
 	std::cout << "Execute ";
 

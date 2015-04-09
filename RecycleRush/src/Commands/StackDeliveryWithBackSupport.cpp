@@ -13,7 +13,7 @@
 #include "ChassisDriveStraightForDistance.h"
 #include "ElevatorGotoPosition.h"
 #include "ElevatorPlatformStage.h"
-#include "ElevatorPlatformPlace.h"
+#include "ElevatorPlatformPlaceWithPower.h"
 
 StackDeliveryWithBackSupport::StackDeliveryWithBackSupport() {
 	// Add Commands here:
@@ -29,12 +29,21 @@ StackDeliveryWithBackSupport::StackDeliveryWithBackSupport() {
 	// A command group will require all of the subsystems that each member would require.
 	// e.g. if Command1 requires chassis, and Command2 requires arm,  a CommandGroup containing them would require both the chassis and the arm.
 
-	AddParallel(new ElevatorPlatformStage());											// Lift the stack to just above scoring platform
-	AddSequential(new ChassisDriveStraightForDistance(11.45, 0.25, true));				// Drive to ready for partial drop
-	AddSequential(new ElevatorGotoPosition( 800.0 - 54*0.5 ));							// Partial stack drop, onto back support and scoring platform
-	AddSequential(new ChassisDriveStraightForDistance(18.75 - 11.45, 0.25, true));		// Drive to final stack drop location
-	AddSequential(new ElevatorPlatformPlace());											// Put the stack down
-	AddParallel(new ArmOpen());															// Open the arms
-	AddSequential(new WaitCommand(0.250));												// Wait for arms to finish opening
-	AddSequential(new ChassisDriveStraightForDistance(-(18.75 - 4.0), -0.50, true));	// Back away from stack
+	AddParallel(new ElevatorPlatformStage());										// Lift the stack to just above scoring platform
+	AddSequential(new ChassisDriveStraightForDistance(22.75, 0.35, true));			// Drive to stack drop location
+	AddSequential(new WaitCommand(0.50));											// Wait for arms to finish opening
+	AddSequential(new ElevatorPlatformPlaceWithPower());										// Put the stack down
+	AddParallel(new ArmOpen());														// Open the arms
+//	AddSequential(new WaitCommand(0.250));											// Wait for arms to finish opening
+//	AddSequential(new ChassisDriveStraightForDistance(-(11.375 - 2.0), -0.50, true));// Back away from stack
+
+
+//	AddParallel(new ElevatorPlatformStage());											// Lift the stack to just above scoring platform
+//	AddSequential(new ChassisDriveStraightForDistance(11.45, 0.25, true));				// Drive to ready for partial drop
+//	AddSequential(new ElevatorGotoPosition( 800.0 - 54*0.5 ));							// Partial stack drop, onto back support and scoring platform
+//	AddSequential(new ChassisDriveStraightForDistance(18.75 - 11.45, 0.25, true));		// Drive to final stack drop location
+//	AddSequential(new ElevatorPlatformPlace());											// Put the stack down
+//	AddParallel(new ArmOpen());															// Open the arms
+//	AddSequential(new WaitCommand(0.250));												// Wait for arms to finish opening
+//	AddSequential(new ChassisDriveStraightForDistance(-(18.75 - 4.0), -0.50, true));	// Back away from stack
 }
