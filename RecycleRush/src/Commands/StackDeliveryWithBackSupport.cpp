@@ -31,8 +31,8 @@ StackDeliveryWithBackSupport::StackDeliveryWithBackSupport() {
 
 	AddParallel(new ElevatorPlatformStage());										// Lift the stack to just above scoring platform
 	AddSequential(new ChassisDriveStraightForDistance(22.75, 0.35, true));			// Drive to stack drop location
-	AddSequential(new WaitCommand(0.50));											// Wait for arms to finish opening
-	AddSequential(new ElevatorPlatformPlaceWithPower());										// Put the stack down
+	AddSequential(new WaitCommand(0.50));											// Wait for can to settle down from driving
+	AddSequential(new ElevatorPlatformPlaceWithPower());							// Put the stack down
 	AddParallel(new ArmOpen());														// Open the arms
 //	AddSequential(new WaitCommand(0.250));											// Wait for arms to finish opening
 //	AddSequential(new ChassisDriveStraightForDistance(-(11.375 - 2.0), -0.50, true));// Back away from stack

@@ -453,7 +453,7 @@ Children:
           name: Command
           type: Command
           validators: *id023
-          value: ElevatorPlatformPlace
+          value: ElevatorPlatformPlaceWithPower
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id024
           default: whileHeld

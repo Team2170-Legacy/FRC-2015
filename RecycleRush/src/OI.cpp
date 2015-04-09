@@ -122,7 +122,7 @@ OI::OI() {
 	joystickButtonB = new JoystickButton(joystickDriverOnPort0, 2);
 	joystickButtonB->WhenPressed(new StackDeliverySimple());
 	joystickButtonA = new JoystickButton(joystickDriverOnPort0, 1);
-	joystickButtonA->WhenPressed(new ElevatorPlatformPlace());
+	joystickButtonA->WhenPressed(new ElevatorPlatformPlaceWithPower());
 	joystickRightBumper = new JoystickButton(joystickDriverOnPort0, 6);
 	joystickRightBumper->WhenPressed(new RotateWithBumpersRight());
 	joystickLeftBumper = new JoystickButton(joystickDriverOnPort0, 5);
