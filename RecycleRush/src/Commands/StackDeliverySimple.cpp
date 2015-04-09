@@ -29,10 +29,10 @@ StackDeliverySimple::StackDeliverySimple() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,  a CommandGroup containing them would require both the chassis and the arm.
 
 	AddParallel(new ElevatorPlatformStage());										// Lift the stack to just above scoring platform
-	AddSequential(new ChassisDriveStraightForDistance(18.75, 0.25, true));			// Drive to stack drop location
+	AddSequential(new ChassisDriveStraightForDistance(22.75, 0.35, true));			// Drive to stack drop location
 	AddSequential(new ElevatorPlatformPlace());										// Put the stack down
 	AddParallel(new ArmOpen());														// Open the arms
-	AddSequential(new WaitCommand(0.250));											// Wait for arms to finish opening
-	AddSequential(new ChassisDriveStraightForDistance(-(18.75 - 4.0), -0.50, true));// Back away from stack
+//	AddSequential(new WaitCommand(0.250));											// Wait for arms to finish opening
+//	AddSequential(new ChassisDriveStraightForDistance(-(11.375 - 2.0), -0.50, true));// Back away from stack
 
 }

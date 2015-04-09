@@ -13,5 +13,5 @@
 
 ElevatorPlatformStage::ElevatorPlatformStage() {
 
-	AddSequential(new ElevatorGotoPosition( 800.0f ));
+	AddSequential(new ElevatorGotoPosition( 200.0f ));
 }

@@ -218,6 +218,32 @@ void Elevator::AccelerateMaxSpeedDecelerate(){
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
 
+void Elevator::AccelerateMaxSpeedDeceleratePower(float MotorPower){
+
+	std::cout << "Execute ";
+
+//	// If we are within acceleration range of starting position. Speed up
+//	if (fabs(m_startingPosition - shaftEncoder->GetDistance()) < kAccelerateDecelerateEncoderCountRange) {
+//		motor->Set(motor->Get()*(1+kAccelerateDeceleratePercentPerInvocation));
+//		std::cout << "Accel>";
+//
+//	// If we are within deceleration range of ending position. Slow down
+//	}else if(fabs(m_targetPosition - shaftEncoder->GetDistance()) < kAccelerateDecelerateEncoderCountRange){
+//		motor->Set(motor->Get()*kAccelerateDeceleratePercentPerInvocation);
+//		std::cout << "Decel>";
+//
+//	// We are outside of both the acceleration range and the deceleration range. Go to max speed
+//	}else{
+//		motor->Set(kAutomatedMaxSpeed * m_direction);
+//		std::cout << "FullSpeed>";
+//	}
+
+	motor->Set(MotorPower * m_direction);	// Crawl, walk, run
+	SmartDashboardOutputs();
+
+	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+}
+
 bool Elevator::ReachedTargetPosition(){
 
 	std::cout << "IsFinished";
