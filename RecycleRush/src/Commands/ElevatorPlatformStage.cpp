@@ -13,6 +13,7 @@
 
 ElevatorPlatformStage::ElevatorPlatformStage() {
 
-	AddSequential(new ElevatorGotoPosition( 240.0f ));
+	AddSequential(new ElevatorGotoPosition( 160.0f ));
+//	AddSequential(new ElevatorGotoPosition( 240.0f ));
 //	AddSequential(new ElevatorGotoPosition( 200.0f ));
 }

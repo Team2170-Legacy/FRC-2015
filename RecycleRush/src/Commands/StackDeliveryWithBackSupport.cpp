@@ -31,7 +31,7 @@ StackDeliveryWithBackSupport::StackDeliveryWithBackSupport() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,  a CommandGroup containing them would require both the chassis and the arm.
 
 	AddParallel(new ElevatorPlatformStage());										// Lift the stack to just above scoring platform
-	AddSequential(new ChassisDriveStraightForDistanceAccelDecel(22.75, 0.35, true, 0.5, 3.0));	// Drive to stack drop location
+	AddSequential(new ChassisDriveStraightForDistanceAccelDecel(22.75, 0.50, true, 0.5, 3.0));	// Drive to stack drop location
 	AddSequential(new WaitCommand(0.50));											// Wait for can to settle down from driving
 	AddSequential(new ElevatorPlatformPlaceWithPower());							// Put the stack down gently
 	AddParallel(new ArmOpen());														// Open the arms
