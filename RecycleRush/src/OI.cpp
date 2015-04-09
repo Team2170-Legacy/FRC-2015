@@ -27,6 +27,7 @@
 #include "Commands/AutonomousTesting.h"
 #include "Commands/ChassisCalibrate.h"
 #include "Commands/ChassisDriveStraightForDistance.h"
+#include "Commands/ChassisDriveStraightForDistanceAccelDecel.h"
 #include "Commands/ChassisDriveStraightForTime.h"
 #include "Commands/ChassisPIDDriveStraightForDistance.h"
 #include "Commands/ChassisPIDRotate.h"
