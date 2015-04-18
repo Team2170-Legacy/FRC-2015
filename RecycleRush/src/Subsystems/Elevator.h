@@ -43,7 +43,9 @@ float m_targetPosition;				// Encoder position we are attempting to move elevato
 float m_startingPosition;			// Encoder position when positioning command invoked
 float m_direction;					// +1 for up, -1 for down. Based on initialization comparison of starting and target position
 void StartMovingTowardTargetPosition(float TargetPosition);	// Save target position requested by command initialization; initialization of movement; and start moving
+void StartMovingTowardTargetPositionWithPower(float TargetPosition, float MotorPower);	// Save target position requested by command initialization; initialization of movement; and start moving
 void AccelerateMaxSpeedDecelerate();						// Continue movement but ramping up to, or down from, full speed
+void AccelerateMaxSpeedDecelerateWithPower(float MotorPower);						// Continue movement but ramping up to, or down from, full speed
 bool ReachedTargetPosition();								// True when elevator has reached or passed the target position
 bool LowerSafetyIsCurrentlyPressed();						// Limit switch is currently wired to return false when pressed. We negate that and return true when pressed
 bool UpperSafetyIsCurrentlyPressed();						// Limit switch is currently wired to return false when pressed. We negate that and return true when pressed

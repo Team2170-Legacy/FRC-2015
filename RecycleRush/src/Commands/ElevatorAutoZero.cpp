@@ -40,6 +40,7 @@ bool ElevatorAutoZero::IsFinished() {
 void ElevatorAutoZero::End() {
 	Robot::elevator->Stop();
 	Robot::elevator->shaftEncoder->Reset();
+	Robot::elevator->SmartDashboardOutputs();
 }
 
 // Called when another command which requires one or more of the same

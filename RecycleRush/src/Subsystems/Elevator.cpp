@@ -133,9 +133,9 @@ void Elevator::SmartDashboardInputs() {
 }
 
 void Elevator::SmartDashboardOutputs() {
-	SmartDashboard::PutNumber("CurrentPosition", GetCurrentPosition());
-	SmartDashboard::PutNumber("TargetLevel", targetLevel);
-	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
+	SmartDashboard::PutNumber("ElevatorEncoderGetDistance", GetCurrentPosition());
+//	SmartDashboard::PutNumber("TargetLevel", targetLevel);
+//	SmartDashboard::PutNumber("distanceBetweenLevels", distanceBetweenLevels);
 }
 
 void Elevator::RampUp( float MaxSpeed,  float RampRate){
@@ -192,6 +192,27 @@ void Elevator::StartMovingTowardTargetPosition(float TargetPosition){
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
 
+void Elevator::StartMovingTowardTargetPositionWithPower(float TargetPosition, float MotorPower){
+
+	std::cout << "Initialize";
+
+	// Remember what our goal was and where we started out from
+	m_targetPosition = TargetPosition;
+	m_startingPosition = shaftEncoder->GetDistance();
+
+	// Remember our direction
+	if (m_targetPosition > m_startingPosition) {
+		m_direction = +1.0;		// Move Upward
+	}else{
+		m_direction = -1.0;		// Move Downward
+	}
+
+	// Start moving
+	motor->Set(MotorPower * m_direction);
+
+	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+}
+
 void Elevator::AccelerateMaxSpeedDecelerate(){
 
 	std::cout << "Execute ";
@@ -213,6 +234,33 @@ void Elevator::AccelerateMaxSpeedDecelerate(){
 //	}
 
 	motor->Set(kAutomatedMaxSpeed * m_direction);	// Crawl, walk, run
+	SmartDashboardOutputs();
+
+	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
+}
+
+void Elevator::AccelerateMaxSpeedDecelerateWithPower(float MotorPower){
+
+	std::cout << "Execute ";
+
+//	// If we are within acceleration range of starting position. Speed up
+//	if (fabs(m_startingPosition - shaftEncoder->GetDistance()) < kAccelerateDecelerateEncoderCountRange) {
+//		motor->Set(motor->Get()*(1+kAccelerateDeceleratePercentPerInvocation));
+//		std::cout << "Accel>";
+//
+//	// If we are within deceleration range of ending position. Slow down
+//	}else if(fabs(m_targetPosition - shaftEncoder->GetDistance()) < kAccelerateDecelerateEncoderCountRange){
+//		motor->Set(motor->Get()*kAccelerateDeceleratePercentPerInvocation);
+//		std::cout << "Decel>";
+//
+//	// We are outside of both the acceleration range and the deceleration range. Go to max speed
+//	}else{
+//		motor->Set(kAutomatedMaxSpeed * m_direction);
+//		std::cout << "FullSpeed>";
+//	}
+
+	motor->Set(MotorPower * m_direction);	// Crawl, walk, run
+	SmartDashboardOutputs();
 
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
