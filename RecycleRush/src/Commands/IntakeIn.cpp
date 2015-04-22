@@ -22,7 +22,7 @@ IntakeIn::IntakeIn() {
 
 // Called just before this Command runs the first time
 void IntakeIn::Initialize() {
-	Robot::intake->StartBothSides(Relay::kReverse);
+	Robot::intake->StartBothSides(-1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -28,6 +28,8 @@ Encoder* RobotMap::elevatorPIDShaftEncoder = NULL;
 SpeedController* RobotMap::elevatorPIDMotor = NULL;
 Relay* RobotMap::intakeLeftMotor = NULL;
 Relay* RobotMap::intakeRightMotor = NULL;
+SpeedController* RobotMap::intakeLeftMotorTalon = NULL;
+SpeedController* RobotMap::intakeRightMotorTalon = NULL;
 DoubleSolenoid* RobotMap::intakeDoubleSolenoid = NULL;
 DigitalInput* RobotMap::intakeToteReceivedLimit = NULL;
 
@@ -86,6 +88,12 @@ void RobotMap::init() {
 	
 	intakeRightMotor = new Relay(1);
 	lw->AddActuator("Intake", "RightMotor", intakeRightMotor);
+	
+	intakeLeftMotorTalon = new Talon(3);
+	lw->AddActuator("Intake", "LeftMotorTalon", (Talon*) intakeLeftMotorTalon);
+	
+	intakeRightMotorTalon = new Talon(4);
+	lw->AddActuator("Intake", "RightMotorTalon", (Talon*) intakeRightMotorTalon);
 	
 	intakeDoubleSolenoid = new DoubleSolenoid(0, 2, 3);      
 	lw->AddActuator("Intake", "DoubleSolenoid", intakeDoubleSolenoid);

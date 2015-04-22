@@ -36,6 +36,8 @@ public:
 	static SpeedController* elevatorPIDMotor;
 	static Relay* intakeLeftMotor;
 	static Relay* intakeRightMotor;
+	static SpeedController* intakeLeftMotorTalon;
+	static SpeedController* intakeRightMotorTalon;
 	static DoubleSolenoid* intakeDoubleSolenoid;
 	static DigitalInput* intakeToteReceivedLimit;
 
