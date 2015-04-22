@@ -38,8 +38,8 @@ public:
 	void InitDefaultCommand();
 //	void StartBothSides(Relay::Value direction);
 	void StartBothSides(float direction);
-	void StartRightSide(Relay::Value direction);
-	void StartLeftSide(Relay::Value direction);
+	void StartRightSide(float direction);
+	void StartLeftSide(float direction);
 	void StopBothSides();
 	void StopRightSide();
 	void StopLeftSide();

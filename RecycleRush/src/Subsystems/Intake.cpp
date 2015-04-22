@@ -52,12 +52,12 @@ void Intake::StartBothSides(float direction) {
 	rightMotorTalon->Set(direction);
 }
 
-void Intake::StartLeftSide(Relay::Value direction) {
-	leftMotor->Set(direction);
+void Intake::StartLeftSide(float direction) {
+	leftMotorTalon->Set(direction);
 }
 
-void Intake::StartRightSide(Relay::Value direction) {
-	rightMotor->Set(direction);
+void Intake::StartRightSide(float direction) {
+	rightMotorTalon->Set(direction);
 }
 
 void Intake::StopBothSides() {

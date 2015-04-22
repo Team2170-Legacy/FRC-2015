@@ -22,8 +22,8 @@ IntakeSpinRight::IntakeSpinRight() {
 
 // Called just before this Command runs the first time
 void IntakeSpinRight::Initialize() {
-	Robot::intake->StartLeftSide(Relay::kForward);
-	Robot::intake->StartRightSide(Relay::kReverse);
+	Robot::intake->StartLeftSide(1.0);
+	Robot::intake->StartRightSide(-1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -22,7 +22,8 @@ IntakeOut::IntakeOut() {
 
 // Called just before this Command runs the first time
 void IntakeOut::Initialize() {
-	Robot::intake->StartBothSides(Relay::kForward);
+//	Robot::intake->StartBothSides(Relay::kForward);
+	Robot::intake->StartBothSides(1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
