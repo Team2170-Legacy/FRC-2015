@@ -19,6 +19,7 @@
 #include "IntakeCalibrate.h"
 #include "ArmOpen.h"
 #include "ArmClose.h"
+#include "ChassisDriveStraightForDistance.h"
 
 AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	// Add Commands here:
@@ -44,10 +45,10 @@ AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	AddSequential(new ArmClose());			//pick up tote
 	AddSequential(new WaitCommand(0.5));		// wait for arm to close
 	AddSequential(new ElevatorGotoPosition(700.0));		//lift the tote
-	AddSequential(new ChassisRotate(90.0));
+	AddSequential(new ChassisRotate(61.0));
 	AddSequential(new WaitCommand(0.250));
-	AddSequential(new ChassisRotate(90.0, true));
-	AddSequential(new ChassisDriveStraightForTime(3.2));
+	//AddSequential(new ChassisRotate(70.0, true));
+	AddSequential(new ChassisDriveStraightForDistance(72.0, 0.4, true));
 	AddSequential(new ElevatorGotoPosition(0.0));
 	AddSequential(new ArmOpen());
 }
