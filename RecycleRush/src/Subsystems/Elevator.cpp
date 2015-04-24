@@ -192,6 +192,11 @@ void Elevator::StartMovingTowardTargetPosition(float TargetPosition){
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
 
+void Elevator::StartMovingTowardLowerSafety(){
+	// Start moving
+	motor->Set(-0.1);
+}
+
 void Elevator::StartMovingTowardTargetPositionWithPower(float TargetPosition, float MotorPower){
 
 	std::cout << "Initialize";
@@ -239,6 +244,11 @@ void Elevator::AccelerateMaxSpeedDecelerate(){
 	std::cout << " New Speed:" << motor->Get() << " Position:" << shaftEncoder->GetDistance() <<" Strt:" << m_startingPosition << " Targ:" << m_targetPosition << " Dir:" << m_direction << std::endl;
 }
 
+void Elevator::MaxSpeedTowardsLowerSafety(){
+	motor->Set(-1.0);	// Crawl, walk, run
+	SmartDashboardOutputs();
+}
+
 void Elevator::AccelerateMaxSpeedDecelerateWithPower(float MotorPower){
 
 	std::cout << "Execute ";
@@ -282,6 +292,10 @@ bool Elevator::ReachedTargetPosition(){
 		return shaftEncoder->GetDistance() < m_targetPosition || LowerSafetyIsCurrentlyPressed();
 	}
 	return true;	// Will never reach this line but it eliminates a compiler warning. All code paths now have a return
+}
+
+bool Elevator::ReachedLowerSafety(){
+	return  LowerSafetyIsCurrentlyPressed();
 }
 
 bool Elevator::LowerSafetyIsCurrentlyPressed(){

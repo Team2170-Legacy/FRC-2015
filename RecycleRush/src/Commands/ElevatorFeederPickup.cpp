@@ -9,12 +9,15 @@
 // it from being updated in the future.
 
 #include "ElevatorFeederPickup.h"
-#include "ElevatorGotoPosition.h"
+//#include "ElevatorGotoPosition.h"
+#include "ElevatorGoToLowerSafety.h"
 #include "ElevatorFeederStage.h"
 
 ElevatorFeederPickup::ElevatorFeederPickup() {
 
 	// Move Arm to tote level 2 minus 2" to allow fingers to snap into place
-	AddSequential(new ElevatorGotoPosition( 0 ));
+	//AddSequential(new ElevatorGotoPosition( 0 ));
+	AddSequential(new ElevatorGotoLowerSafety());
 	AddSequential(new ElevatorFeederStage());
+
 }

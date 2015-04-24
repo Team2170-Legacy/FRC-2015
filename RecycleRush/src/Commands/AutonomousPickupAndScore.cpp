@@ -41,9 +41,9 @@ AutonomousPickupAndScore::AutonomousPickupAndScore() {
 	AddSequential(new ArmOpen());
 	AddSequential(new WaitCommand(0.5));	// wait for arm to open
 	AddSequential(new ElevatorAutoZero());
-	AddSequential(new ArmClose());
+	AddSequential(new ArmClose());			//pick up tote
 	AddSequential(new WaitCommand(0.5));		// wait for arm to close
-	AddSequential(new ElevatorGotoPosition(700.0));
+	AddSequential(new ElevatorGotoPosition(700.0));		//lift the tote
 	AddSequential(new ChassisRotate(90.0));
 	AddSequential(new WaitCommand(0.250));
 	AddSequential(new ChassisRotate(90.0, true));
